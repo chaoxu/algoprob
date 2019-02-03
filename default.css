@@ -1,0 +1,274 @@
+.katex { font-size: 1em !important; } 
+
+@media screen and (min-width: 114ex) {
+  .container {
+    width: 110ex;
+    margin: auto;
+  }
+  .intro-left {
+    width: 40%;
+    float:left;
+  }
+  .intro-right {
+    width: 60%;
+    float:left;
+  }
+  .cv-left{
+    width: 10%;
+  }
+  .cv-right{
+    width: 90%;
+  }
+}
+@media screen and (max-width: 113ex) {
+  .container {
+    width: 97%;
+    margin: auto;
+  }
+  .intro-left {
+    width: 100%;
+    float:left;
+    text-align: center;
+  }
+  .intro-right {
+    width: 100%;
+    float: left;
+    font-size: large;
+  }
+  .cv-left{
+    width:20px;
+  }
+  .cv-right{
+    width:100%;
+  }
+}
+
+/* Main structure
+----------------------------------------------- */
+body {
+    font-family: KaTeX_Main,Times New Roman,serif;
+    font-size: 14px;
+    margin: auto;
+    background-color: #fff;
+    text-align: left;
+    display: block;
+    -webkit-text-size-adjust: none;
+    /*min-width: 840px;*/
+}
+
+footer {
+    clear: both;
+}
+
+
+/* HTML element control
+----------------------------------------------- */
+p {
+    margin: 0 0 0 0;
+    text-align: left;
+    text-justify: auto;
+    line-height: 1.3em;
+}
+
+
+blockquote {
+    margin: 0 0 1em 0;
+    padding: 0 30px;
+    color: #808080;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+small {
+    font-size: 0.8em;
+}
+
+sup, sub {
+    font-size: 0.75em;
+}
+
+sup {
+    vertical-align: super;
+}
+
+sub {
+    vertical-align: sub;
+}
+
+hr {
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+    color: #ccc;
+    margin: 1em 0;
+    border: none;
+    padding: 0;
+}
+
+pre, code, tt {
+    font-family: 'Monaco', 'DejaVu Sans Mono', 'Consolas', 'Courier', 'Courier New', monospace;
+    font-size: 1em;
+    line-height:1.8;
+    color: #4d4d4d;
+}
+
+pre {
+    margin: 0 0 1em 0;
+    border: 1px solid #e5e5e5;
+    padding: 0.5em 1em;
+    white-space: pre-wrap;
+    overflow: hidden;
+    background: #fafafa;
+}
+
+code, tt {
+    background: #efefef;
+}
+
+pre code, pre tt {
+    background: none;
+}
+
+html > body code, html > body tt, html > body pre {
+    font-size:12px;
+}
+
+h3 code {
+    text-transform: none;
+}
+
+ul, ol {
+    margin: 0.25em 0 1em 15px;
+    padding: 0;
+}
+ul {
+    list-style: disc;
+}
+li {
+    line-height: 1.3em;
+}
+ul li {
+    margin: 0 0 0.25em 0.35em;
+}
+ol li {
+    margin: 0 0 0.25em 0.45em;
+}
+a { 
+    text-decoration: none;
+    border-bottom: 1px #ccc dotted;
+    color: inherit;
+}
+a:hover { 
+    border: 0;
+}
+
+footer {
+    margin: 0.5em 0 0 0;
+    border-top: 3px double #ccc;
+    padding: 1em 0 0 0;
+    font-size: 70%;
+    color: #999;
+}
+rt {
+    color: #777;
+}
+/* Headers
+----------------------------------------------- */
+
+/* The headers tries to emulate the format of
+ Oxfod Lecture Series in Mathematics and Its Applications */
+h1 {
+    font-size: 1.15em;
+    line-height: 3em;
+    font-weight: bold;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.2em;
+    font-style: italic;
+    font-weight: normal;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+h3 {
+    font-size: 1.1em;
+    font-style: italic;
+    font-weight: bold;
+}
+/* You must be doing it wrong... if you use the following headings
+No one need more than 3 levels in a short article... */
+h4 {
+    font-size: 1em;
+}
+h5 {
+    font-size: 0.8em;
+}
+div .problem {
+    border: 1px;
+    border-style: solid;
+    margin: 1em;
+    padding:1em;
+}
+
+.tags {
+  color: #777;
+  font-size: x-small;
+}
+.tags:before {
+  content: "Tags: ";
+  display: inline;
+}
+.tags div {
+  display:inline;
+  margin:0px;
+}
+.tags div+div::before {
+  content: ", ";
+}
+
+div .title {
+    font-size: 110%;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+div .description{
+    margin-bottom: 1em;
+    font-style: italic;
+}
+div .note {
+}
+div .note:before {
+  content: "Note: ";
+}
+
+div .exercises:before {
+  content: "Exercise: ";
+}
+
+
+
+
+#site-title {
+    font-size: 2.5em;
+    font-weight: normal;
+    margin: 0;
+    border: none;
+    padding: 0;
+    line-height: 100%;
+    text-align:center;
+}
+
+/* Global content control
+----------------------------------------------- */
+img {
+    max-width:100%;
+    height: auto;
+    margin: auto;
+}

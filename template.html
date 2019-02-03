@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Algorithmic problems</title>
+  <meta name="Description" content="Some algorithmic problems.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var macros={
+              "\\C":"\\mathbb{C}",
+              "\\F":"\\mathbb{F}",
+              "\\e": "\\varepsilon",
+              "\\eps": "\\varepsilon",
+              "\\argmin": "\\DOTSB\\mathop{\\operatorname{arg\\,min}}\\limits",
+              "\\argmax": "\\DOTSB\\mathop{\\operatorname{arg\\,max}}\\limits",
+              "\\mex": "\\mathop{\\operatorname{mex}}",
+              "\\lcm": "\\mathop{\\operatorname{lcm}}",
+              "\\dist": "\\mathop{\\operatorname{dist}}",
+              "\\bigtriangleright": "{\\mathop{\\Large \\triangleright}}",
+              "\\bigtriangleleft": "{\\mathop{\\Large \\triangleleft}}",
+              '\\set':'\\left\\{ #1 \\right\\}',
+              '\\floor':'\\left\\lfloor #1 \\right\\rfloor',
+              '\\ceil':'\\left\\lceil #1 \\right\\rceil',
+              '\\abs':'\\left\\| #1 \\right\\|'
+              }
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false, macros:macros} );
+    }}});
+  </script>
+
+  <link rel="stylesheet" href="default.css">
+</head>
+<body>
+<div class="container">
+<div class="problems">
+{% for problem in problems %}
+  <div class="problem">
+
+    {% if problem.title %}
+    <div class="title">
+      {{problem.title}}
+    </div>
+    {% endif %}
+
+    <div class="description">
+      {{problem.problem}}
+    </div>
+
+    {% if problem.note %}
+    <div class="note">
+      {{problem.note}}
+    </div>
+    {% endif %}
+
+    {% if problem.exercises %}
+    <div class="exercises">
+      {% for exercise in problem.exercise %}
+        <div class="exercise">{{exercise}}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if problem.tag %}
+    <div class="tags">
+      {% for tag in problem.tag %}
+        <div class="tag">{{tag}}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+{% endfor %}
+</div>
+</div>
+</body>
+</html>
