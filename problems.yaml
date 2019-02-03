@@ -6,33 +6,66 @@
 # tag: just list of tags that might make sense
 # notes are just everything else
 # opt store the optimal running time
+# id: unique id of the problem
+# children: problem_id: why it is a special case
 
+
+# algorithm
+#   description: a simple description of the algorithm, hide a lot of details. it is used to identify the algorithm instead of saying what the algorithm is. Often it is just a link to the algorithm.
+#   problem: list of problems require to be solved in order to use the algorithm
+#   complexity: all kind of complexity
+#   opt: is the algorithm fastest known under some parameters? default is true (otherwise why document it here).
 ---
-title: $h$-index problem
-problem: Given positive $a_1,\ldots, a_n$, find the largest $h$ such that $|\set{i | a_i \geq h}|\geq h$.
+id: h-index
+title: The $h$-index problem
+problem: Given positive integers $a_1,\ldots, a_n$, find the largest $h$ such that $|\set{i | a_i \geq h}|\geq h$.
 note: $O(n)$ time though counting sort.
 opt: $O(n)$
+algorithms:
+  - description: Replace each $a_i$ with $\min(a_i,n)$, and sort the new list. 
+    problem: integer-sorting
+    complexity: $O(n)$ time
 ---
+id: weighted-h-index
 title: The weighted $h$-index problem
 problem: Given pairs $(w_1,a_1),\ldots,(w_n,a_n)$, find the largest $h$ such that $\sum_{i:a_i\geq h} w_i \geq h$.
 note: The counting sort algorithm for $h$-index no longer works. Need to use median selection instead.
 opt: $O(n)$
+children: 
+  h-index: set all $a_i$ to $1$.
+algorithms:
+  - description : Select weighted median, remove half of the elements, and recur.
+    problem: weighted-selection
+    complexity: $O(n)$ time
 ---
+title: Meet of two partitions
 problem: Let $\mathcal{A}$ and $\mathcal{B}$ to be partitions of $[n]$. Compute the meet of the two partitions. $\mathcal{C}=\set{A\cap B \mid A\in \mathcal{A}, B\in \mathcal{B}}$.
 note: can be solved in $O(n)$ time. Either directly or use partition refinement data structure.
 opt: $O(n)$
 ---
+title: Partition refinement
 problem: Maintain a partition $\mathcal{X}$, such that taking a input set $S$, it creates a new partition $\mathcal{X}_S = \set{ X\cap S, X\setminus S |X\in \mathcal{X} }$.
 note: We want $O(|S|)$ time per operation. This is the partition refinement data structure.
 opt: $O(|S|)$
 ---
+id: min-max-sum-k-partition-array
+title: Partition minimize maximum sum of subarrays
 problem: Given an array of $n$ positive elements, partition into $k$ contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
-note: It reduces to [Bottleneck $k$-link path](https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html). $O(n)$ time algorithm exists.
 opt: $O(n)$
+reduction: bottleneck-k-link-path
 ---
+id: min-max-weight-component-tree
+title: Minimize maximum weight component
+problem: Given positive weights on the vertices of a tree, $k$ edges so the maximum of the sum of the weights of each component is minimized.
+children:
+  min-max-weight-component-tree: Tree is a path.
+---
+id: bottleneck-k-link-path
 title: Bottleneck $k$-link path
 problem: Given a complete DAG with ordered weights, find a path consists of $k$ edges from $v_1$ to $v_n$, such that the maximum weight of the edges in the path is minimized.
-note: See [ordered weight of complete DAG].
+children:
+  min-max-sum-k-partition-array: when the weight of edge $w(i,j)$ is sum of elements from $i$th to $j-1$th.
+note: See [ordered weight of complete DAG] and [Bottleneck $k$-link path](https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html).
 opt: $O(n+k\log(n/k) \log n)$
 ---
 problem: The [proportional apportionment](https://chaoxuprime.com/posts/2016-08-02-proportional-apportionment.html)
@@ -52,7 +85,7 @@ opt:
   - $O(\sigma \log \sigma \log n)$, where $\sigma$ is the sum of all elements. 
   - $O(u^{5/4}\log^2 u)$
   - $O(\max(S)^{5/3})$
-  - $O(u^2/min(S))$
+  - $O(u^2/\min(S))$
 ---
 title: Subset sum with cardinality table up to $u$
 problem: Given $u$ and $S\subset [u]$ of size $n$, compute a set $T$ such that $(i,j)$ in $T$ if and only if there exists a subset of $S$ of size $j$ that sums to $i$, and $i\leq u$. 
@@ -133,19 +166,63 @@ title: Rotation of a sorted array
 problem: Let $n$ be a rotation of a sorted array consist of distinct elements, find if an element $x$ is in the array.
 note: rotation of a sorted array is bitonic.
 opt: $O(\log n)$
+
+---
+id: soft-heap
+title: Soft heap
+problem: todo, just read [soft heap](https://en.wikipedia.org/wiki/Soft_heap) here
 --- 
+id: median
+title: Median of an array
+tag: [selection]
+problem: Given an array of elements of length $n$, find the median.
+opt: $O(n)$
+algorithms:
+  - description: median of median recursion
+    complexity: $O(n)$ time
+  - description: use a soft-heap find approximate range of the element, and recur in the range.
+    problem: soft-heap
+    complexity: $O(n)$ time
+
+
+--- 
+id: selection
 title: Unordered selection 
 tag: [selection]
 problem: Given an array of elements of length $n$, find rank $k$ element.
 note: Linear time through soft-heap or median of median
 opt: $O(n)$
+algorithms:
+  - description: find median, recur on the correct side
+    complexity: $O(n)$ time
+children:
+  median: select the rank $\floor{n/2}$ element
 
 --- 
+id: weighted-selection
 title: Unordered weighted selection
 tag: [selection]
 problem: Given an array of elements of length $n$, and each element has an associated weight. Find weighted rank $k$ element. 
 note: The weighted median problem
 opt: $O(n)$
+children:
+  selection: the weight of each element is $1$. 
+algorithms:
+  - description: find the median and partition, check if weighted rank in which side, recur in the correct side
+    problem: median
+    complexity: $O(n)$ time
+
+--- 
+id: unordered-search
+title: Unordered search
+tag: [selection]
+problem: Given an array of elements of length $n$, and an oracle decides if $x\leq y$ or $x>y$, where $y$ is an unknown value. Find the largest value in the array that is no larger than $y$.
+opt: $O(n)$ time and $O(\log n)$ oracle calls
+algorithms:
+  - description: find median, partition, decide which side $y$ lies and recur. 
+    problem: median
+    complexity: $O(n)$ time and $O(\log n)$ oracle calls
+
 ---
 title: Selection in sorted matrix
 tag: [selection]

@@ -8,7 +8,7 @@ Algorithmic Problems
 
 <div class="problems">
 {% for problem in problems %}
-  <div class="problem">
+  <div class="problem" id="problem-{{problem.id}}">
 
     {% if problem.title %}
     <div class="title">
@@ -49,6 +49,50 @@ Algorithmic Problems
       {% endfor %}
     </div>
     {% endif %}
+
+    {% if problem.algorithms %}
+    <div class="algorithms">
+      {% for algorithm in problem.algorithms %}
+        <div class="algorithm">
+          <div class="algo-description">{{algorithm.description}}</div>
+          {% if algorithm.problem %}
+            <div class="algo-problem">
+              <ul class="inline">
+              {% for id in algorithm.problem %}
+                <li><a href="#problem-{{id}}">{{env.id_to_title[id]}}</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+          <div class="algo-complexity">{{algorithm.complexity}}</div>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if problem.children %}
+    <div class="children">
+      <ul>
+        {% for child in problem.children  %}
+          <li class="child-problem"><a href="#problem-{{child.id}}">{{env.id_to_title[child.id]}}</a> : 
+            <span class="child-description">{{child.description}}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if problem.parents %}
+    <div class="parents">
+      <ul class="inline">
+        {% for parent in problem.parents  %}
+          <li><a href="#problem-{{parent}}">{{env.id_to_title[parent]}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+
+
 
   </div>
 {% endfor %}
