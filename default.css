@@ -1,46 +1,39 @@
 .katex { font-size: 1em !important; } 
 
 @media screen and (min-width: 114ex) {
-  .container {
+  body {
     width: 110ex;
-    margin: auto;
-  }
-  .intro-left {
-    width: 40%;
-    float:left;
-  }
-  .intro-right {
-    width: 60%;
-    float:left;
-  }
-  .cv-left{
-    width: 10%;
-  }
-  .cv-right{
-    width: 90%;
   }
 }
 @media screen and (max-width: 113ex) {
-  .container {
+  body {
     width: 97%;
-    margin: auto;
   }
-  .intro-left {
-    width: 100%;
-    float:left;
-    text-align: center;
-  }
-  .intro-right {
-    width: 100%;
-    float: left;
-    font-size: large;
-  }
-  .cv-left{
-    width:20px;
-  }
-  .cv-right{
-    width:100%;
-  }
+}
+
+/* Navigation
+----------------------------------------------- */
+nav {
+    margin: 20px;
+    position: relative;
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px 0 0;
+    padding: 3px 0 3px 0;
+    position: relative;
+    border: 0;
+}
+nav ul li a {
+    border: 0;
 }
 
 /* Main structure
