@@ -33,22 +33,30 @@ def build_problem(problem):
     # tag: just list of tags that might make sense
     # notes are just everything else
 
-    if "title" not in problem.keys():
+    if "title" not in problem.keys() or problem["title"] is None:
         problem["title"] = ""
-    if "tag" not in problem.keys():
+    if "tag" not in problem.keys() or problem["tag"] is None:
         problem["tag"] = []
-    if "note" not in problem.keys():
+    if "note" not in problem.keys() or problem["note"] is None:
         problem["note"] = ""
-    if "problem" not in problem.keys():
+    if "problem" not in problem.keys() or problem["problem"] is None:
         problem["problem"] = ""
-    if "exercise" not in problem.keys():
+    if "exercise" not in problem.keys() or problem["exercise"] is None:
         problem["exercise"] = []
+    if "opt" not in problem.keys() or problem["opt"] is None:
+        problem["opt"] = []
+
+    if isinstance(problem["opt"], basestring): # Python 3: isinstance(arg, str)
+        problem["opt"] = [problem["opt"]]
+    if isinstance(problem["tag"], basestring): # Python 3: isinstance(arg, str)
+        problem["tag"] = [x.strip() for x in problem["tag"].split(',')]
 
     problem["title"] = parse(problem["title"])
     problem["tag"] = map(parse,problem["tag"])
     problem["note"] = parse(problem["note"])
     problem["problem"] = parse(problem["problem"])
     problem["exercise"] = map(parse,problem["exercise"])
+    problem["opt"] = map(parse,problem["opt"])
 
     return problem 
 

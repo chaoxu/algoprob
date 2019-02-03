@@ -18,3 +18,4 @@ periodic (sequence): A string is periodic if it has a period.
 border (sequence): A border of a string $S$ is both a prefix and a suffix of $S$.
 uniquely decodable code: See [explanation on wikipedia](https://en.wikipedia.org/wiki/Variable-length_code#Uniquely_decodable_codes).
 eventually periodic: Let $s$ be a infinite string. If $s=ab$ where $b$ is a infinite periodic string and $a$ is finite, then $s$ is an *eventually periodic string*. 
+steiner tree: A steiner tree for $S$ is a subgraph that is a tree and contain all vertices in $S$.

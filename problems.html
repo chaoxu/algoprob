@@ -42,6 +42,14 @@ Algorithmic Problems
     </div>
     {% endif %}
 
+    {% if problem.opt %}
+    <div class="opts">
+      {% for opt in problem.opt %}
+        <div class="opt">{{opt}}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
   </div>
 {% endfor %}
 </div>
