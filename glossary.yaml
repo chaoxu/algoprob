@@ -1,0 +1,20 @@
+# glossary
+
+partition : A partition of the groundset $X$ is a collection of disjoint sets where the union is $X$.
+$k$-partition: A $k$-partition is a partition $P$ such that $|P|=k$ and each set in $P$ is non-empty.
+subpartition : A subpartition of $X$ is a partition of a subset of $X$.
+meet (partition) : The meet of two partitions $A$ and $B$ is $\set{ A\cap B | A\in \mathcal{A}, B\in \mathcal{B}}$.
+complete DAG: A DAG is complete if under the topological ordering $v_1,\ldots,v_n$, $v_iv_j$ is an edge for all $i<j$.
+ordered weight of complete DAG: $v_1,\ldots,v_n$ is the topological order of the vertices of the DAG. Let $w(i,j)$ to be the weight of $v_iv_j$ where $i<j$. The weight is ordered if $w(i,j)\leq w(i,j+1)$ and $w(i+1,j)\leq w(i,j)$.
+rank (order): For a collection of elements, an element has rank $k$, if it appears as the $k$th element in the sorted sequence.
+weighted rank (order): For a collection of elements $S$ with associated weight function $w:S\to \R^+$. Let $a_1,\ldots,a_n$ be the sorted sequence of $S$. The weighted rank of $a_j$ is $\sum_{i=1}^{j} w(a_i)$. 
+sorted: A sequence $a_1,\ldots,a_n$ is sorted if $a_i\leq a_{i+1}$ for all $i$. The definition extends to infinite sequence, too.
+bitonic: A sequence $a_1,\ldots,a_n$ is bitonic, if there exists a $1\leq k\leq n$ such that $a_1\leq a_2 \leq \ldots a_k$ and $a_k\geq a_{k+1} \geq \ldots \geq a_n$.
+rotated sequence: A sequence $S$ is a rotation of $A=a_1,\ldots,a_n$, if it is of the form $a_j,a_{j+1},\ldots,a_n,a_1,\ldots,a_{j-1}$. $S$ is called a rotation of $A$. 
+sorted matrix: A matrix $M$ is sorted if $M_{i,j}\leq M_{i',j'}$ if $(i,j)\leq (i',j')$ in coordinate-wise comparison.
+primitive (sequence): A string $s$ is primitive if $s=w^k$ implies $k=1$.
+period (sequence): $p$ is the period of a string $s$ of length $n$ if $s_i=s_{i+p}$ for all $i$, $n>p>0$ and $p$ is the smallest integer of the property. 
+periodic (sequence): A string is periodic if it has a period.
+border (sequence): A border of a string $S$ is both a prefix and a suffix of $S$.
+uniquely decodable code: See [explanation on wikipedia](https://en.wikipedia.org/wiki/Variable-length_code#Uniquely_decodable_codes).
+eventually periodic: Let $s$ be a infinite string. If $s=ab$ where $b$ is a infinite periodic string and $a$ is finite, then $s$ is an *eventually periodic string*. 

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Glossary{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+  <dl class="glossary">
+  {% for word in glossary %}
+      <dt>{{word.name}}</dt>
+      <dd>{{word.definition}}</dd>
+  {% endfor %}
+  </dl>
+{% endblock %}

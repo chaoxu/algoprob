@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+Algorithmic Problems
+{% endblock %}
+
+{% block content %}
+See <a href="https://github.com/chaoxu/algoprob/tree/develop">source</a>.
+
+<div class="problems">
+{% for problem in problems %}
+  <div class="problem">
+
+    {% if problem.title %}
+    <div class="title">
+      {{problem.title}}
+    </div>
+    {% endif %}
+
+    <div class="description">
+      {{problem.problem}}
+    </div>
+
+    {% if problem.note %}
+    <div class="note">
+      {{problem.note}}
+    </div>
+    {% endif %}
+
+    {% if problem.exercises %}
+    <div class="exercises">
+      {% for exercise in problem.exercise %}
+        <div class="exercise">{{exercise}}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if problem.tag %}
+    <div class="tags">
+      {% for tag in problem.tag %}
+        <div class="tag">{{tag}}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

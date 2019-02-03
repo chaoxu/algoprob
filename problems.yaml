@@ -31,7 +31,7 @@ note: I believe it is equivalent to [this](https://chaoxuprime.com/posts/2019-01
 ---
 title: Bottleneck $k$-link path
 problem: Given a complete DAG with ordered weights, find a path consists of $k$ edges from $v_1$ to $v_n$, such that the maximum weight of the edges in the path is minimized.
-note: A DAG is called complete, if there are vertices $v_1,\ldots,v_n$, and $v_iv_j$ is an edge if and only if $i<j$. Let $w(i,j)$ be the edge weights from $i$ to $j$. The weight is called ordered, if $w(i,j)<w(i,j+1)$ and $w(i+ 1,j)<w(i,j)$. We are interested in the most general form, where the elements can only be compared.
+note: See [ordered weight of complete DAG].
 
 ---
 problem: The [proportional apportionment](https://chaoxuprime.com/posts/2016-08-02-proportional-apportionment.html)
@@ -100,7 +100,7 @@ exercise:
   - Show it takes $O(m\log \frac{n}{m})$ time. 
 
 ---
-title: Select in sorted arrays
+title: Selection in sorted arrays
 problem: Given $n$ sorted arrays, find the rank $k$ element.
 exercise:
   - Find $O(\log k)$ time algorithm when there are $2$ sorted arrays.
@@ -112,10 +112,11 @@ title: Bitonic array
 problem: Given a bitonic sequence such that each element can appears at most $k$ times in the sequence. 
 exercise:
   - Find the minimum in $O(k+\log n)$ time.
+  - Find if an element exists in $O(k+\log n)$ time. 
 
 ---
-title: Rotated sorted array
-problem: Let $n$ be a rotated sorted array consist of distinct elements, find if an element $x$ is in the array.
+title: Rotation of a sorted array
+problem: Let $n$ be a rotation of a sorted array consist of distinct elements, find if an element $x$ is in the array.
 exercise:
   - Do it in $O(\log n)$ time.
 note: just note that rotated sorted array is bitonic.
@@ -239,7 +240,7 @@ problem: Let $S_1,\ldots,S_n$ be a sequence of sets, decide if there are two set
 exercise:
   - Show if $k=1,0$, then $O(m)$ time is sufficient
   - Show if $k=2$, then $O(m^{4/3})$ time is sufficient (convert to finding $C_4$)
-  - Show if $k=3$, there is a $O(m^{2-\delta})$ time algorithm where $\delta$ is a constant strictly larger than $0$.
+  - Show if $k=3$, there is a $O(m^{2-\delta})$ time algorithm where $\delta$ is a constant strictly larger than $0$. (See [this](https://chaoxuprime.com/posts/2019-01-21-high-degree-low-degree-technique.html) for a solution.)
 
 ---
 problem: Given a collection of sets, find all maximal sets and all minimal sets.
@@ -263,36 +264,27 @@ tag: [string, pattern matching]
 title: Isomorphic subtrees
 problem: For each node, find all nodes with isomorphic subtrees.
 tag: [pattern matching]
-note: See https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html Note that the problem have different variations. The tree can be rooted/unrooted, ordered/unordered, labeled/unlabeled. All variations can be solved by one algorithm. https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23
+note: See [this](https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html). Note that the problem have different variations. The tree can be rooted/unrooted, ordered/unordered, labeled/unlabeled. All variations can be solved by [one algorithm](https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23) with $O(n)$ running time. 
 
 ---
 title: Multiple string matching
 problem: Given strings $s$ and $t_1,\ldots,t_k$, find the matching positions for each $t_i$.
 tag: [string, pattern matching]
+note: expect running time $O(n+m)$, where $m$ is the total length of $t_1,\ldots,t_k$ and $n$ is the length of $s$.
 
 ---
-problem: Given $n$ strings of length $m$. Decide if any two have hamming distance at most $1$.
+problem: Given a set of $n$ strings, each of length $m$, decide if any two strings where the sum of the length of matched prefix and matched suffix is at least $k$.
 tag: [string]
+note: See a solution [here](https://chaoxuprime.com/posts/2018-12-23-strings-with-hamming-distance-exactly-1.html). It work for $k=m-1$, but the same algorithm work for larger $k$, too.
 
 ---
-problem: Given a set of $n$ strings, each of length $m$, decide if any two strings are $k$-contiguous compatible.
-note: Two strings of equal length are *$k$-contiguous compatible* if changing $k$ contiguous positions in one string leads to the other string.
-tag: [string]
+problem: Given string $s$, find a primitive string $p$ such that $p^k=s$.
+
 ---
-problem: Given a set of $n$ strings, each of length $m$, find all pairs of strings that are $k$-contiguous compatible.
-tag: [string]
----
-problem: Given a string $S$ of length $n$ and a string $T$ of length $m$. Decide if $T$ is $k$-contiguous compatible to a substring of $S$.
-tag: [string]
----
-problem: Given string $s$, a primitive string $p$ such that $p^k=s$.
-note: A string $s$ is primitive if $s=w^k$ implies $k=1$.
----
-problem: Find the period of a string, if it exists. 
+problem: Find the period of a string. 
 exercise:
   - Show a string is periodic if and only if it has a proper border of length at least $\ceil{n/2}$.
   - If the string is periodic, then the period is the length of the maximum proper border.
-note: A string $z$ has period $p>0$, if $z[i]=z[i+p]$ for all $i$, and $p$ is as small as possible. Border is the intersection of prefixes and suffixes.
 ---
 problem: Find the longest periodic suffix. 
 exercise:
@@ -313,7 +305,7 @@ exercise:
   - Find the pairs $(a,b)$ in $O(n+u)$ time.
   - Show one can directly use a online suffix tree construction algorithm to obtain the same running time. 
 note: An infinite string is given as a function, $s:\N\to \Sigma$. It take an index and output the character at the index. 
-    Let $s$ be a infinite string. If $s=ab$ where $b$ is a infinite periodic string and $a$ is finite, then $s$ is an *eventually periodic string*. We say $(a,b)$ is a *split* of $s$ if $ab=s$ and $b$ is a infinite periodic string. A split $(a,b)$ is minimum, if period of $b$ is minimum and under the previous constraint, length of $a$ is minimum. 
+    We say $(a,b)$ is a *split* of $s$ if $ab=s$ and $b$ is a infinite periodic string. A split $(a,b)$ is minimum, if period of $b$ is minimum and under the previous constraint, length of $a$ is minimum. 
     An eventually periodic string $s$ is *$u$-normal*, if for any two indices $i<j$, where $j-i\leq u$ and $s[i..i+u] = s[j..j+u]$, there exists a split $(a,b)$ of $s$ where $|a|\leq i$, and the period of $b$ is at most $u$.
 ---
 problem: Given $u$ and $n$ and a eventually periodic sequence with initial sequence length at most $n$ and period at most $n$, find the initial sequence and the periodic sequence. 

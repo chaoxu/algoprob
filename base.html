@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title>Algorithmic problems</title>
+  <title>{% block title %}{% endblock %}</title>
   <meta name="Description" content="Some algorithmic problems.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
@@ -39,45 +39,7 @@
 </head>
 <body>
 <div class="container">
-<div class="problems">
-{% for problem in problems %}
-  <div class="problem">
-
-    {% if problem.title %}
-    <div class="title">
-      {{problem.title}}
-    </div>
-    {% endif %}
-
-    <div class="description">
-      {{problem.problem}}
-    </div>
-
-    {% if problem.note %}
-    <div class="note">
-      {{problem.note}}
-    </div>
-    {% endif %}
-
-    {% if problem.exercises %}
-    <div class="exercises">
-      {% for exercise in problem.exercise %}
-        <div class="exercise">{{exercise}}</div>
-      {% endfor %}
-    </div>
-    {% endif %}
-
-    {% if problem.tag %}
-    <div class="tags">
-      {% for tag in problem.tag %}
-        <div class="tag">{{tag}}</div>
-      {% endfor %}
-    </div>
-    {% endif %}
-
-  </div>
-{% endfor %}
-</div>
+{% block content %}{% endblock %}
 </div>
 </body>
 </html>
