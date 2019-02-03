@@ -4,6 +4,8 @@ import mistune
 import functools
 from jinja2 import Template, Environment, BaseLoader, FileSystemLoader
 import os
+import cgi
+
 mk = mistune.Markdown(parse_block_html=True)
 
 def is_str(x):
@@ -21,6 +23,9 @@ def set_default(y,x,default):
 def mki(x): 
     return mk(x)[3:-5]
 
+def my_replace(match):
+    return '<span class="math">'+cgi.escape(match.group(1))+'</span>'
+
 def yaml_loader(filepath):
     """Load a yaml file."""
     f = open(filepath, "r")
@@ -32,7 +37,7 @@ def math(string):
     # find $$ $$ pairs
     # return re.sub(r'\$\$(.*?)\$\$', r'<span class="math display">\1</span>', string)
     # find $ $ pairs
-    return re.sub(r'\$(.*?)\$', r'<span class="math">\1</span>', string)
+    return re.sub(r'\$(.*?)\$', my_replace, string)
 
 def build_problems(problems):
     parse = compose(mki,math)
@@ -50,7 +55,7 @@ def build_problems(problems):
         set_default(problem,"title","")
         set_default(problem,"tag",[])
         set_default(problem,"note","")
-        set_default(problem,"problem","")
+        # set_default(problem,"problem","") there is always a default
         set_default(problem,"exercises",[])
         #set_default(problem,"opt",[])
         set_default(problem,"algorithms",[])
@@ -87,7 +92,7 @@ def build_problems(problems):
             algorithm["complexity"] = parse(algorithm["complexity"])
             set_default(algorithm, "problem", [])
             if is_str(algorithm["problem"]):
-                algorithm["problem"] = [algorithm["problem"]]
+                algorithm["problem"] = [x.strip() for x in algorithm["problem"].split(',')]
         agg.append(problem)
         id_to_title[problem["id"]] = problem["title"]
 
