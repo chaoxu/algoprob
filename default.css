@@ -36,6 +36,7 @@ nav ul li a {
     border: 0;
 }
 
+
 /* Main structure
 ----------------------------------------------- */
 body {
@@ -245,10 +246,35 @@ div .exercises:before {
   content: "Exercise: ";
 }
 
+div .opts{
+    display: none;
+}
 div .opts:before {
   content: "Optimal: ";
 }
-
+div .parents:before {
+  content: "Generalizations: ";
+}
+div .children:before {
+  content: "Special Cases: ";
+}
+.algorithms:before {
+    content: "Algorithms: ";
+}
+.algorithm {
+    margin: 1em;
+    border-style: dotted;
+    border-width: 1px;
+}
+.algo-description:before {
+    content: "Description: ";
+}
+.algo-problem:before {
+    content: "Subroutines: ";
+}
+.algo-complexity:before {
+    content: "Complexity: ";
+}
 
 
 #site-title {
@@ -259,6 +285,24 @@ div .opts:before {
     padding: 0;
     line-height: 100%;
     text-align:center;
+}
+
+/* Inline list */
+
+.inline{
+    display: inline;
+}
+ul.inline {
+  margin:0px;
+  border:0px;
+  list-style: none;
+}
+.inline li {
+    display:inline;
+    margin:0px;
+}
+.inline li+li::before {
+  content: ", ";
 }
 
 /* Global content control
