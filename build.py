@@ -3,6 +3,7 @@ import re
 import mistune
 import functools
 from jinja2 import Template, Environment, BaseLoader, FileSystemLoader
+import os
 mk = mistune.Markdown(parse_block_html=True)
 
 def is_str(x):
@@ -50,14 +51,14 @@ def build_problems(problems):
         set_default(problem,"tag",[])
         set_default(problem,"note","")
         set_default(problem,"problem","")
-        set_default(problem,"exercise",[])
-        set_default(problem,"opt",[])
+        set_default(problem,"exercises",[])
+        #set_default(problem,"opt",[])
         set_default(problem,"algorithms",[])
         set_default(problem,"children",{})
         set_default(problem,"id","")
 
-        if is_str(problem["opt"]): 
-            problem["opt"] = [problem["opt"]]
+        #if is_str(problem["opt"]): 
+        #    problem["opt"] = [problem["opt"]]
         if is_str(problem["tag"]):
             problem["tag"] = [x.strip() for x in problem["tag"].split(',')]
 
@@ -65,8 +66,9 @@ def build_problems(problems):
         problem["tag"] = map(parse,problem["tag"])
         problem["note"] = parse(problem["note"])
         problem["problem"] = parse(problem["problem"])
-        problem["exercise"] = map(parse,problem["exercise"])
-        problem["opt"] = map(parse,problem["opt"])
+        problem["exercises"] = map(parse,problem["exercises"])
+
+        #problem["opt"] = map(parse,problem["opt"])
 
         children = []
         for (key,value) in problem["children"].items():
@@ -111,10 +113,13 @@ def build_glossary(glossary):
     return z
 
 
+
 env = Environment(loader=FileSystemLoader(""))
 # build problems
 problems = list(yaml_loader("problems.yaml"))
 parsed, glob = build_problems(problems)
+
+glob["csstime"] = int(os.path.getmtime("default.css"))
 template = env.get_template('problems.html')
 with open('_site/index.html', 'w') as file:
     file.write(remove_empty_lines(template.render(problems=parsed, env=glob)).encode( "utf-8" ))
@@ -124,4 +129,4 @@ glossary = list(yaml_loader("glossary.yaml"))[0]
 parsed = build_glossary(glossary)
 template = env.get_template('glossary.html')
 with open('_site/glossary.html', 'w') as file:
-    file.write(remove_empty_lines(template.render(glossary=parsed)).encode( "utf-8" ))
+    file.write(remove_empty_lines(template.render(glossary=parsed, env=glob)).encode( "utf-8" ))

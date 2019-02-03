@@ -28,7 +28,7 @@ Algorithmic Problems
 
     {% if problem.exercises %}
     <div class="exercises">
-      {% for exercise in problem.exercise %}
+      {% for exercise in problem.exercises %}
         <div class="exercise">{{exercise}}</div>
       {% endfor %}
     </div>
@@ -38,14 +38,6 @@ Algorithmic Problems
     <div class="tags">
       {% for tag in problem.tag %}
         <div class="tag">{{tag}}</div>
-      {% endfor %}
-    </div>
-    {% endif %}
-
-    {% if problem.opt %}
-    <div class="opts">
-      {% for opt in problem.opt %}
-        <div class="opt">{{opt}}</div>
       {% endfor %}
     </div>
     {% endif %}

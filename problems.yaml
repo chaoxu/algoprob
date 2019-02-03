@@ -19,8 +19,6 @@
 id: h-index
 title: The $h$-index problem
 problem: Given positive integers $a_1,\ldots, a_n$, find the largest $h$ such that $|\set{i | a_i \geq h}|\geq h$.
-note: $O(n)$ time though counting sort.
-opt: $O(n)$
 algorithms:
   - description: Replace each $a_i$ with $\min(a_i,n)$, and sort the new list. 
     problem: integer-sorting
@@ -29,8 +27,6 @@ algorithms:
 id: weighted-h-index
 title: The weighted $h$-index problem
 problem: Given pairs $(w_1,a_1),\ldots,(w_n,a_n)$, find the largest $h$ such that $\sum_{i:a_i\geq h} w_i \geq h$.
-note: The counting sort algorithm for $h$-index no longer works. Need to use median selection instead.
-opt: $O(n)$
 children: 
   h-index: set all $a_i$ to $1$.
 algorithms:
@@ -40,18 +36,22 @@ algorithms:
 ---
 title: Meet of two partitions
 problem: Let $\mathcal{A}$ and $\mathcal{B}$ to be partitions of $[n]$. Compute the meet of the two partitions. $\mathcal{C}=\set{A\cap B \mid A\in \mathcal{A}, B\in \mathcal{B}}$.
-note: can be solved in $O(n)$ time. Either directly or use partition refinement data structure.
-opt: $O(n)$
+algorithms:
+  - description: index the sets in $\mathcal{A}$ and $\mathcal{B}$. For each element $i$, find $a_i$ and $b_i$ where $a_i$ is index of a set in $\mathcal{A}$ that contains $i$, similarly for $b_i$. Group by $(a_i,b_i)$ using radix sort.
+    problem: integer-sorting
+    complexity: $O(n)$ time
+  - description: For each set in $\mathcal{A}$, interset it with all sets in $\mathcal{B}$ through a partition refinement data structure.
+    problem: partition-refinement
+    complexity: $O(n)$ time
 ---
+id: partition-refinement
 title: Partition refinement
 problem: Maintain a partition $\mathcal{X}$, such that taking a input set $S$, it creates a new partition $\mathcal{X}_S = \set{ X\cap S, X\setminus S |X\in \mathcal{X} }$.
 note: We want $O(|S|)$ time per operation. This is the partition refinement data structure.
-opt: $O(|S|)$
 ---
 id: min-max-sum-k-partition-array
 title: Partition minimize maximum sum of subarrays
 problem: Given an array of $n$ positive elements, partition into $k$ contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
-opt: $O(n)$
 reduction: bottleneck-k-link-path
 ---
 id: min-max-weight-component-tree
@@ -66,20 +66,17 @@ problem: Given a complete DAG with ordered weights, find a path consists of $k$ 
 children:
   min-max-sum-k-partition-array: when the weight of edge $w(i,j)$ is sum of elements from $i$th to $j-1$th.
 note: See [ordered weight of complete DAG] and [Bottleneck $k$-link path](https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html).
-opt: $O(n+k\log(n/k) \log n)$
 ---
 problem: The [proportional apportionment](https://chaoxuprime.com/posts/2016-08-02-proportional-apportionment.html)
-opt: $O(n)$
 ---
 problem: A tree on $n$ vertices with weights on the vertices. Finding height, max, min of the tree. 
-opt: $O(n)$
 ---
 title: Subset sum
 problem: Given $u$ and $S\subset [u]$ of size $n$, decide if there is a subset of $S$ that sums to $u$.
 tag: [subset sum]
-exercise: 
+exercises: 
   - Show the problem can be solved in $O(nu)$ time through dynamic programming.
-opt: 
+comments:
   - $O(\sqrt{n\log n}u\log u)$
   - $O(nu)$
   - $O(\sigma \log \sigma \log n)$, where $\sigma$ is the sum of all elements. 
@@ -90,14 +87,14 @@ opt:
 title: Subset sum with cardinality table up to $u$
 problem: Given $u$ and $S\subset [u]$ of size $n$, compute a set $T$ such that $(i,j)$ in $T$ if and only if there exists a subset of $S$ of size $j$ that sums to $i$, and $i\leq u$. 
 tag: [subset sum]
-opt: 
+comments: 
   - $O(nu\log u\log n)$
   - $O(n^2u)$
 ---
 title: Subset sum with cardinality table
 problem: Given $S$ a sequence of $n$ positive integers that sums to $\sigma$, compute a set $T$ such that $(i,j)$ in $T$ if and only if there exists a subset of $S$ of size $j$ that sums to $i$. 
 tag: [subset sum]
-opt: 
+comments: 
   - $O(n\sigma \log n\sigma)$
   - $O(n^2\sigma)$
 ---
@@ -108,64 +105,69 @@ tag: [subset sum]
 ---
 title: Sorting
 problem: Sort a sequence in a stable way.
-exercise:
+exercises:
   - Every comparison sorting algorithm can be made stable. Instead of sort $s_1,\ldots,s_n$, sorting the sequence $(s_1,1),\ldots,(s_n,n)$
 
 ---
-title: Sort integers
+id: integer-sorting
+title: Integer sorting
 problem: Given $n$ elements in $[m]$, return them sorted.
-exercise:
+exercises:
   - Show a running time of $O(n+m)$ can be achieved
   - Show a running time of $O(n\log m)$ can be achieved
   - Show a running time of $O(n \log_n m)$ can be achieved
 note: Basically, counting sort, radix sort with constant size base and radix sort with size $n$ base. In particular, this shows sorting elements in $[n^c]$ can be done in $O(n)$ time.
+algorithms:
+  - description: counting sort
+    complexity: $O(n+m)$
+    opt: false
+  - description: radix sort with base $n$
+    complexity: $O(n\log_n m)$
+
 ---
 problem: Let $X$ be a set of $n$ elements, such that comparing element $x$ and $y$ takes $O(f(x)+f(y))$ time, where $f$ is some function.
-exercise:
+exercises:
   - use the fact that there is a sorting network of $O(\log n)$ depth and $O(n\log n)$ size show sorting it can be done in $O(\sum_{x\in X} f(x) \log n)$ time. 
   - Show sorting strings lexicographcially can be done in $O(m\log n)$ time, where $m$ is the total length of the strings.
 
 ---
 title: Exponential search
 problem: Let $p$ be a monotonic predicate over positive integers, find the smallest $n$ such that $p(n)$ is true.
-exercise: 
+exercises: 
   - Show it can be done in $O(\log n)$ time.
 
 ---
 title: Binary search
 problem: Let $S$ be a sorted array of length $n$. Find the smallest index $i$ such that $S[i]\geq x$.
-exercise:
+exercises:
   - Show it reduces to the previous exponential search.
 
 ---
 title: multiple exponential search
 problem: Let $S$ be a sorted array on $n$ elements. Let $T$ be a set of $m$ elements, for each element $x\in T$ find the smallest $i$ such that $S[i]\geq x$.
-exercise:
+exercises:
   - Show it takes $O(m\log \frac{n}{m})$ time. 
 
 ---
 title: Selection in sorted arrays
 problem: Given $n$ sorted arrays, find the rank $k$ element in the union of the arrays.
-exercise:
+exercises:
   - Find $O(\log k)$ time algorithm when there are $2$ sorted arrays.
   - Find a $O(n\log k)$ time algorithm.
 note: Let $p=\min(k,n)$, and $m_i$ be the length of the $i$th array.
-opt: 
   - $O(n+p\log k/p)$ [@FredericksonJ82]
   - $O(k+\sum_{i=1}^n m_i)$ [@FredericksonJ80].
 
 --- 
 title: Bitonic sequence
 problem: Given a bitonic sequence such that each element can appears at most $k$ times in the sequence. 
-exercise:
+exercises:
   - Find the minimum in $O(k+\log n)$ time.
   - Find if an element exists in $O(k+\log n)$ time. 
-opt: $O(k+\log n)$
 ---
 title: Rotation of a sorted array
 problem: Let $n$ be a rotation of a sorted array consist of distinct elements, find if an element $x$ is in the array.
 note: rotation of a sorted array is bitonic.
-opt: $O(\log n)$
 
 ---
 id: soft-heap
@@ -176,7 +178,6 @@ id: median
 title: Median of an array
 tag: [selection]
 problem: Given an array of elements of length $n$, find the median.
-opt: $O(n)$
 algorithms:
   - description: median of median recursion
     complexity: $O(n)$ time
@@ -191,7 +192,6 @@ title: Unordered selection
 tag: [selection]
 problem: Given an array of elements of length $n$, find rank $k$ element.
 note: Linear time through soft-heap or median of median
-opt: $O(n)$
 algorithms:
   - description: find median, recur on the correct side
     complexity: $O(n)$ time
@@ -204,7 +204,6 @@ title: Unordered weighted selection
 tag: [selection]
 problem: Given an array of elements of length $n$, and each element has an associated weight. Find weighted rank $k$ element. 
 note: The weighted median problem
-opt: $O(n)$
 children:
   selection: the weight of each element is $1$. 
 algorithms:
@@ -217,7 +216,6 @@ id: unordered-search
 title: Unordered search
 tag: [selection]
 problem: Given an array of elements of length $n$, and an oracle decides if $x\leq y$ or $x>y$, where $y$ is an unknown value. Find the largest value in the array that is no larger than $y$.
-opt: $O(n)$ time and $O(\log n)$ oracle calls
 algorithms:
   - description: find median, partition, decide which side $y$ lies and recur. 
     problem: median
@@ -227,22 +225,20 @@ algorithms:
 title: Selection in sorted matrix
 tag: [selection]
 problem: Given a sorted $n\times m$ matrix where $n\leq m$, find the rank $k$ element.
-exercise:
+exercises:
   - Show we can assume $k\geq m$. 
   - Show this can be done in $O(k\log k)$ time.
   - Let $r(a,A)$ be the number of elements in matrix $A$ smaller or equal to $a$. Let $A_o$ be the matrix we obtain from $A$ by removing all even columns. Show if $A$ is a sorted $n\times m$ matrix, then $2(r(a,A_o)-n)\leq r(a,A) \leq 2r(a,A_o)$.
   - Show that there is a $O(m)$ time algorithm to find the $k$th smallest element. (Recursively solve the problem by solving the problem on $A_o$. Use $A_o$ to bound the search space in $A$. )
   - Show there is an algorithm with runnning time $O(n \log m/n)$ time. 
   - Can you modify the algorithm to output a description of all elements smaller than the $k$th smallest element? (i.e. for each $i$, find $j_i$, such that all elements before $j_i$ satisfies the property.) What's the running time? Is $O(n)$ time possible?
-opt: $O(n \log m/n)$ [@FredericksonJ84]
 ---
 title: Search in sorted matrix
 tag: [selection]
 problem: Given a sorted $n\times m$ matrix where $n\leq m$, and an oracle that decide if an element is at least $x$ or greater than $x$. Find the smallest value that is at most $x$ in the matrix.
-exercise:
+exercises:
   - Show there is an algorithm with running time and matrix access both $O(n\log m/n)$ and $O(\log nm)$ oracle calls.
   - Show this can be used to solve selection in $O(n\log m/n)$ time.
-opt: $O(n\log m/n)$ time, matrix access and $O(\log nm)$ oracle calls [@JacobR08] and [@FredericksonZ17]
 
 --- 
 title: Maximum XOR Subarray
@@ -253,7 +249,6 @@ note: This is Lintcode 722, Maximum Subarray VI
 title: Single source shortest path tree in directed graph
 problem: Given a directed graph and a vertex $s$, find the shortest path tree rooted at $s$.
 note: If cost are integers bounded by $C$, then we have a parameter $C$.
-opt: 
   - $O(m+n\log n)$ 
   - $O(m)$ if graph is DAG
   - $O(m\log \log n)$ [@Thorup00] for integer cost
@@ -263,13 +258,11 @@ opt:
 title: Single source shortest $2$-disjoint paths to all sinks
 problem: Given a directed graph and a vertex $s$, for each $v$, find the shortest $2$-disjoint path from $s$ to $v$.
 note: If instead of $2$, it is $3$. I have no idea if a similar running time is possible. 
-opt:
   - $O(m+n\log n)$ Suurballe's algorithm.
 
 ---
 title: Single source shortest path tree in undirected graph
 problem: Given a undirected graph and a vertex $s$, find the shortest path tree rooted at $s$.
-opt: 
   - same as directed graph
   - $O(m)$ if positive integer weight [@Thorup99]
 ---
@@ -277,7 +270,6 @@ opt:
 
 title: All-pair shortest path
 problem: Given a directed graph with positive and negative edges, find the distance function or indicate there is a negative cycle.
-opt:
   - $O(nm+n^2\log n)$
 ---
 title: DAG longest path
@@ -286,7 +278,7 @@ problem: Given a DAG, find the longest path in the DAG
 ---
 title: Lights out game
 problem: Solve $Ax=b$ where $b\in \F_2$ and $A$ is the incident matrix of a undirected graph.
-exercise:
+exercises:
   - Show if the graph is a $n\times m$ grid graph, then $O(nm^2)$ running time is possible. 
 
 ---
@@ -298,13 +290,13 @@ problem: Continous Weak Frechet distance in 1D [See](https://arxiv.org/abs/1807.
 --- 
 title: Find induced $P_3$.
 problem: Find a induced $P_3$ in a undirected graph.
-exercise:
+exercises:
   - Show a linear time algorithm.
 
 --- 
 title: Find a $C_4$
 problem: Find a $C_4$ in a undirected graph.
-exercise:
+exercises:
   - Show $O(n^2)$ time algorithm.
   - Show a $O(m\sqrt{n})$ time algorithm.
   - Show a $O(m^{4/3})$ time algorithm. (Use the fact about degenercy)
@@ -314,7 +306,7 @@ note:
 ---
 title: Find a triangle
 problem: Find a triangle in a undirected graph.
-exercise:
+exercises:
   - Show a $O(n^3)$ time algorithm.
   - Show a $O(n^\omega)$ time algorithm.
   - Show a $O(m^{3/2})$ time algorithm.
@@ -323,14 +315,13 @@ exercise:
 ---
 title: Find a cycle of minimum weight.
 problem: Find a cycle of minimum weight in a directed graph.
-exercise:
+exercises:
   - Show a solution using dijkstra $O(n)$ times.
 note: Orlin had a $O(nm)$ time algorithm
 ---
 title: Find a cycle of minimum weight that contains specified $k$ vertices
 problem: Given undirected graph and a subset of $k$ vertices, find a shortest cycle that contains them all.
 note: the problem is NP-hard when $k\geq 2$ for directed graphs. [A good survey](https://arxiv.org/abs/1705.00055).
-opt: 
   - $k=1,2$, $O(m+n\log n)$, reduces to single source shortest $2$-disjoint paths to all sinks
   - polynomial time for feasbility test for constant $k$, as it reduces to disjoint path problem. 
   - open for $k\geq 3$. randomized polynomial time algorithm exists for each constant $k$.
@@ -356,12 +347,12 @@ note: this is the optimal semi-matching problem.
 
 --- 
 problem: Let $S_1,\ldots,S_n$ be a sequence of sets, where the sum of the sizes is $m$. Partition $[n]$ such that $S_i=S_j$ iff $i$ and $j$ are in the same partition classes.
-exercise:
+exercises:
   - Show this can be solved in $O(m)$ time.
 
 ---
 problem: Let $S_1,\ldots,S_n$ be a sequence of sets, decide if there are two sets such that $S_i\cap S_j\geq k$.
-exercise:
+exercises:
   - Show if $k=1,0$, then $O(m)$ time is sufficient
   - Show if $k=2$, then $O(m^{4/3})$ time is sufficient (convert to finding $C_4$)
   - Show if $k=3$, there is a $O(m^{2-\delta})$ time algorithm where $\delta$ is a constant strictly larger than $0$. (See [this](https://chaoxuprime.com/posts/2019-01-21-high-degree-low-degree-technique.html) for a solution.)
@@ -406,12 +397,12 @@ problem: Given string $s$, find a primitive string $p$ such that $p^k=s$.
 
 ---
 problem: Find the period of a string. 
-exercise:
+exercises:
   - Show a string is periodic if and only if it has a proper border of length at least $\ceil{n/2}$.
   - If the string is periodic, then the period is the length of the maximum proper border.
 ---
 problem: Find the longest periodic suffix. 
-exercise:
+exercises:
   - Use suffix tree to solve this in $O(n)$ time.
 tag: [string]
 ---
@@ -423,7 +414,7 @@ note: I think the problem is open.
 problem: Find the first substring of length $t$ that appears at least twice.
 ---
 problem: Given $u$ and a $u$-normal eventually periodic string $s$, find the the minimum split $(a,b)$ of $s$. 
-exercise:
+exercises:
   - Let $n$ be length of $a$. Find an algorithm with running time $O((n+u)u)$. 
   - Given an index $i$ such that $i<n\leq i+2u$, find $n$. Show this can be done in $O(u)$ time.
   - Find the pairs $(a,b)$ in $O(n+u)$ time.
