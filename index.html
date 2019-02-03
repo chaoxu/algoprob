@@ -53,7 +53,7 @@ Algorithmic Problems
 <div class="container">
 <nav class="hide-on-print">
   <ul>
-    <li><a href="index.html">Problems</a></li>
+    <li><a href="">Problems</a></li>
     <li><a href="glossary.html">Glossary</a></li>
     <li><a href="https://github.com/chaoxu/algoprob">About</a></li>
   </ul>
@@ -86,6 +86,14 @@ Algorithmic Problems
 
     
 
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n)</span></div>
+      
+    </div>
+    
+
   </div>
 
   <div class="problem">
@@ -110,6 +118,14 @@ Algorithmic Problems
 
     
 
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n)</span></div>
+      
+    </div>
+    
+
   </div>
 
   <div class="problem">
@@ -128,6 +144,14 @@ Algorithmic Problems
 
     
 
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n)</span></div>
+      
+    </div>
     
 
   </div>
@@ -150,6 +174,14 @@ Algorithmic Problems
 
     
 
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(|S|)</span></div>
+      
+    </div>
+    
+
   </div>
 
   <div class="problem">
@@ -157,17 +189,25 @@ Algorithmic Problems
     
 
     <div class="description">
-      Given array of <span class="math">n</span> positive elements, partition into <span class="math">k</span> contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
+      Given an array of <span class="math">n</span> positive elements, partition into <span class="math">k</span> contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
     </div>
 
     
     <div class="note">
-      I believe it is equivalent to <a href="https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html">this</a>. It reduces to Bottleneck <span class="math">k</span>-link path.
+      It reduces to <a href="https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html">Bottleneck <span class="math">k</span>-link path</a>. <span class="math">O(n)</span> time algorithm exists.
     </div>
     
 
     
 
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n)</span></div>
+      
+    </div>
     
 
   </div>
@@ -194,6 +234,14 @@ Algorithmic Problems
 
     
 
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n+k\log(n/k) \log n)</span></div>
+      
+    </div>
+    
+
   </div>
 
   <div class="problem">
@@ -210,6 +258,14 @@ Algorithmic Problems
 
     
 
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n)</span></div>
+      
+    </div>
+    
+
   </div>
 
   <div class="problem">
@@ -217,13 +273,21 @@ Algorithmic Problems
     
 
     <div class="description">
-      A tree with weights on the vertices. Finding height, max, min of the tree.
+      A tree on <span class="math">n</span> vertices with weights on the vertices. Finding height, max, min of the tree.
     </div>
 
     
 
     
 
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n)</span></div>
+      
+    </div>
     
 
   </div>
@@ -252,6 +316,60 @@ Algorithmic Problems
     </div>
     
 
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(\sqrt{n\log n}u\log u)</span></div>
+      
+        <div class="opt"><span class="math">O(nu)</span></div>
+      
+        <div class="opt"><span class="math">O(\sigma \log \sigma \log n)</span>, where <span class="math">\sigma</span> is the sum of all elements.</div>
+      
+        <div class="opt"><span class="math">O(u^{5/4}\log^2 u)</span></div>
+      
+        <div class="opt"><span class="math">O(\max(S)^{5/3})</span></div>
+      
+        <div class="opt"><span class="math">O(u^2/min(S))</span></div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Subset sum with cardinality table up to <span class="math">u</span>
+    </div>
+    
+
+    <div class="description">
+      Given <span class="math">u</span> and <span class="math">S\subset [u]</span> of size <span class="math">n</span>, compute a set <span class="math">T</span> such that <span class="math">(i,j)</span> in <span class="math">T</span> if and only if there exists a subset of <span class="math">S</span> of size <span class="math">j</span> that sums to <span class="math">i</span>, and <span class="math">i\leq u</span>.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">subset sum</div>
+      
+    </div>
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(nu\log u\log n)</span></div>
+      
+        <div class="opt"><span class="math">O(n^2u)</span></div>
+      
+    </div>
+    
+
   </div>
 
   <div class="problem">
@@ -263,7 +381,7 @@ Algorithmic Problems
     
 
     <div class="description">
-      Given <span class="math">u</span> and <span class="math">S\subset [u]</span> of size <span class="math">n</span>, compute a set <span class="math">T</span> such that <span class="math">(i,j)</span> in <span class="math">T</span> if and only if there exists a subset of <span class="math">S</span> of size <span class="math">j</span> that sums to <span class="math">i</span>.
+      Given <span class="math">S</span> a sequence of <span class="math">n</span> positive integers that sums to <span class="math">\sigma</span>, compute a set <span class="math">T</span> such that <span class="math">(i,j)</span> in <span class="math">T</span> if and only if there exists a subset of <span class="math">S</span> of size <span class="math">j</span> that sums to <span class="math">i</span>.
     </div>
 
     
@@ -274,6 +392,16 @@ Algorithmic Problems
     <div class="tags">
       
         <div class="tag">subset sum</div>
+      
+    </div>
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n\sigma \log n\sigma)</span></div>
+      
+        <div class="opt"><span class="math">O(n^2\sigma)</span></div>
       
     </div>
     
@@ -304,6 +432,8 @@ Algorithmic Problems
     </div>
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -324,6 +454,8 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -335,7 +467,7 @@ Algorithmic Problems
     
 
     <div class="description">
-      Given <span class="math">n</span> elements in <span class="math">m</span>, return them sorted.
+      Given <span class="math">n</span> elements in <span class="math">[m]</span>, return them sorted.
     </div>
 
     
@@ -343,24 +475,6 @@ Algorithmic Problems
       Basically, counting sort, radix sort with constant size base and radix sort with size <span class="math">n</span> base. In particular, this shows sorting elements in <span class="math">[n^c]</span> can be done in <span class="math">O(n)</span> time.
     </div>
     
-
-    
-
-    
-
-  </div>
-
-  <div class="problem">
-
-    
-    <div class="title">
-      Fragile sorting
-    </div>
-    
-
-    <div class="description">
-      Sort <span class="math">n</span> elements such that each element is compared <span class="math">O(\log n)</span> times.
-    </div>
 
     
 
@@ -384,19 +498,23 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
 
     
     <div class="title">
-      exponential search
+      Exponential search
     </div>
     
 
     <div class="description">
-      Let <span class="math">p</span> be a monotonic predicate over integers, find the smallest <span class="math">n</span> such that <span class="math">p(n)</span> is true.
+      Let <span class="math">p</span> be a monotonic predicate over positive integers, find the smallest <span class="math">n</span> such that <span class="math">p(n)</span> is true.
     </div>
+
+    
 
     
 
@@ -410,13 +528,15 @@ Algorithmic Problems
 
     
     <div class="title">
-      binary search
+      Binary search
     </div>
     
 
     <div class="description">
       Let <span class="math">S</span> be a sorted array of length <span class="math">n</span>. Find the smallest index <span class="math">i</span> such that <span class="math">S[i]\geq x</span>.
     </div>
+
+    
 
     
 
@@ -444,6 +564,8 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -455,17 +577,27 @@ Algorithmic Problems
     
 
     <div class="description">
-      Given <span class="math">n</span> sorted arrays, find the rank <span class="math">k</span> element.
+      Given <span class="math">n</span> sorted arrays, find the rank <span class="math">k</span> element in the union of the arrays.
     </div>
 
     
     <div class="note">
-      Note there exists a <span class="math">O(n+p\log k/p)</span> time algorithm where <span class="math">p=\min(k,n)</span> [@FredericksonJ82]. There also exists a <span class="math">O(k+\sum_{i=1}^n m_i)</span> algorithm [@FredericksonJ80].
+      Let <span class="math">p=\min(k,n)</span>, and <span class="math">m_i</span> be the length of the <span class="math">i</span>th array.
     </div>
     
 
     
 
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n+p\log k/p)</span> [@FredericksonJ82]</div>
+      
+        <div class="opt"><span class="math">O(k+\sum_{i=1}^n m_i)</span> [@FredericksonJ80].</div>
+      
+    </div>
     
 
   </div>
@@ -474,7 +606,7 @@ Algorithmic Problems
 
     
     <div class="title">
-      Bitonic array
+      Bitonic sequence
     </div>
     
 
@@ -486,6 +618,14 @@ Algorithmic Problems
 
     
 
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(k+\log n)</span></div>
+      
+    </div>
     
 
   </div>
@@ -504,12 +644,20 @@ Algorithmic Problems
 
     
     <div class="note">
-      just note that rotated sorted array is bitonic.
+      rotation of a sorted array is bitonic.
     </div>
     
 
     
 
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(\log n)</span></div>
+      
+    </div>
     
 
   </div>
@@ -538,6 +686,14 @@ Algorithmic Problems
     <div class="tags">
       
         <div class="tag">selection</div>
+      
+    </div>
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n)</span></div>
       
     </div>
     
@@ -572,6 +728,14 @@ Algorithmic Problems
     </div>
     
 
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n)</span></div>
+      
+    </div>
+    
+
   </div>
 
   <div class="problem">
@@ -587,10 +751,6 @@ Algorithmic Problems
     </div>
 
     
-    <div class="note">
-      See [@FredericksonJ84]
-    </div>
-    
 
     
 
@@ -598,6 +758,14 @@ Algorithmic Problems
     <div class="tags">
       
         <div class="tag">selection</div>
+      
+    </div>
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n \log m/n)</span> [@FredericksonJ84]</div>
       
     </div>
     
@@ -617,10 +785,6 @@ Algorithmic Problems
     </div>
 
     
-    <div class="note">
-      See [@JacobR08] and [@FredericksonZ17]
-    </div>
-    
 
     
 
@@ -628,6 +792,14 @@ Algorithmic Problems
     <div class="tags">
       
         <div class="tag">selection</div>
+      
+    </div>
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(n\log m/n)</span> time, matrix access and <span class="math">O(\log nm)</span> oracle calls [@JacobR08] and [@FredericksonZ17]</div>
       
     </div>
     
@@ -656,13 +828,15 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
 
     
     <div class="title">
-      Single source shortest path tree
+      Single source shortest path tree in directed graph
     </div>
     
 
@@ -671,9 +845,91 @@ Algorithmic Problems
     </div>
 
     
+    <div class="note">
+      If cost are integers bounded by <span class="math">C</span>, then we have a parameter <span class="math">C</span>.
+    </div>
+    
 
     
 
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(m+n\log n)</span></div>
+      
+        <div class="opt"><span class="math">O(m)</span> if graph is DAG</div>
+      
+        <div class="opt"><span class="math">O(m\log \log n)</span> [@Thorup00] for integer cost</div>
+      
+        <div class="opt"><span class="math">O(m+n \min(\log^{1/3+\e}n, \log^{1/4+\e} C))</span> [@Raman97] for integer cost</div>
+      
+        <div class="opt"><span class="math">O(nm)</span> Allowing negative weights</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Single source shortest <span class="math">2</span>-disjoint paths to all sinks
+    </div>
+    
+
+    <div class="description">
+      Given a directed graph and a vertex <span class="math">s</span>, for each <span class="math">v</span>, find the shortest <span class="math">2</span>-disjoint path from <span class="math">s</span> to <span class="math">v</span>.
+    </div>
+
+    
+    <div class="note">
+      If instead of <span class="math">2</span>, it is <span class="math">3</span>. I have no idea if a similar running time is possible.
+    </div>
+    
+
+    
+
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(m+n\log n)</span> Suurballe's algorithm.</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Single source shortest path tree in undirected graph
+    </div>
+    
+
+    <div class="description">
+      Given a undirected graph and a vertex <span class="math">s</span>, find the shortest path tree rooted at <span class="math">s</span>.
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt">same as directed graph</div>
+      
+        <div class="opt"><span class="math">O(m)</span> if positive integer weight [@Thorup99]</div>
+      
+    </div>
     
 
   </div>
@@ -687,13 +943,21 @@ Algorithmic Problems
     
 
     <div class="description">
-      Given a directed graph, find the distance function.
+      Given a directed graph with positive and negative edges, find the distance function or indicate there is a negative cycle.
     </div>
 
     
 
     
 
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">O(nm+n^2\log n)</span></div>
+      
+    </div>
     
 
   </div>
@@ -709,6 +973,8 @@ Algorithmic Problems
     <div class="description">
       Given a DAG, find the longest path in the DAG
     </div>
+
+    
 
     
 
@@ -736,6 +1002,8 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -745,6 +1013,8 @@ Algorithmic Problems
     <div class="description">
       Single source replacement path
     </div>
+
+    
 
     
 
@@ -768,6 +1038,8 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -781,6 +1053,8 @@ Algorithmic Problems
     <div class="description">
       Find a induced <span class="math">P_3</span> in a undirected graph.
     </div>
+
+    
 
     
 
@@ -812,6 +1086,8 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -825,6 +1101,8 @@ Algorithmic Problems
     <div class="description">
       Find a triangle in a undirected graph.
     </div>
+
+    
 
     
 
@@ -856,6 +1134,44 @@ Algorithmic Problems
 
     
 
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Find a cycle of minimum weight that contains specified <span class="math">k</span> vertices
+    </div>
+    
+
+    <div class="description">
+      Given undirected graph and a subset of <span class="math">k</span> vertices, find a shortest cycle that contains them all.
+    </div>
+
+    
+    <div class="note">
+      the problem is NP-hard when <span class="math">k\geq 2</span> for directed graphs. <a href="https://arxiv.org/abs/1705.00055">A good survey</a>.
+    </div>
+    
+
+    
+
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt"><span class="math">k=1,2</span>, <span class="math">O(m+n\log n)</span>, reduces to single source shortest <span class="math">2</span>-disjoint paths to all sinks</div>
+      
+        <div class="opt">polynomial time for feasbility test for constant <span class="math">k</span>, as it reduces to disjoint path problem.</div>
+      
+        <div class="opt">open for <span class="math">k\geq 3</span>. randomized polynomial time algorithm exists for each constant <span class="math">k</span>.</div>
+      
+    </div>
+    
+
   </div>
 
   <div class="problem">
@@ -874,6 +1190,36 @@ Algorithmic Problems
 
     
 
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Steiner tree on constant number of vertices
+    </div>
+    
+
+    <div class="description">
+      Given <span class="math">k</span>, a constant number of vertices, find a minimum Steiner tree.
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="opts">
+      
+        <div class="opt">polynomial time.</div>
+      
+    </div>
     
 
   </div>
@@ -896,6 +1242,8 @@ Algorithmic Problems
         <div class="tag">matching</div>
       
     </div>
+    
+
     
 
   </div>
@@ -924,6 +1272,8 @@ Algorithmic Problems
     </div>
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -940,6 +1290,8 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -949,6 +1301,8 @@ Algorithmic Problems
     <div class="description">
       Let <span class="math">S_1,\ldots,S_n</span> be a sequence of sets, decide if there are two sets such that <span class="math">S_i\cap S_j\geq k</span>.
     </div>
+
+    
 
     
 
@@ -978,6 +1332,8 @@ Algorithmic Problems
     </div>
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -992,6 +1348,8 @@ Algorithmic Problems
     <div class="note">
       This result is used in matroid <span class="math">4</span>-connectivity algorithms. See <a href="https://chaoxuprime.com/posts/2019-01-21-high-degree-low-degree-technique.html">this</a>.
     </div>
+    
+
     
 
     
@@ -1024,6 +1382,8 @@ Algorithmic Problems
     </div>
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -1050,6 +1410,8 @@ Algorithmic Problems
         <div class="tag">pattern matching</div>
       
     </div>
+    
+
     
 
   </div>
@@ -1080,6 +1442,8 @@ Algorithmic Problems
         <div class="tag">pattern matching</div>
       
     </div>
+    
+
     
 
   </div>
@@ -1114,6 +1478,8 @@ Algorithmic Problems
     </div>
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -1140,6 +1506,8 @@ Algorithmic Problems
     </div>
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -1156,6 +1524,8 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -1165,6 +1535,8 @@ Algorithmic Problems
     <div class="description">
       Find the period of a string.
     </div>
+
+    
 
     
 
@@ -1194,6 +1566,8 @@ Algorithmic Problems
     </div>
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -1203,6 +1577,8 @@ Algorithmic Problems
     <div class="description">
       Decide if a set forms a uniquely decodable code.
     </div>
+
+    
 
     
 
@@ -1230,6 +1606,8 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -1239,6 +1617,8 @@ Algorithmic Problems
     <div class="description">
       Find the first substring of length <span class="math">t</span> that appears at least twice.
     </div>
+
+    
 
     
 
@@ -1266,6 +1646,8 @@ Algorithmic Problems
 
     
 
+    
+
   </div>
 
   <div class="problem">
@@ -1275,6 +1657,8 @@ Algorithmic Problems
     <div class="description">
       Given <span class="math">u</span> and <span class="math">n</span> and a eventually periodic sequence with initial sequence length at most <span class="math">n</span> and period at most <span class="math">n</span>, find the initial sequence and the periodic sequence.
     </div>
+
+    
 
     
 
