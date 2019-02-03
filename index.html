@@ -4,7 +4,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title>Algorithmic problems</title>
+  <title>
+Algorithmic Problems
+</title>
   <meta name="Description" content="Some algorithmic problems.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
@@ -39,6 +41,9 @@
 </head>
 <body>
 <div class="container">
+
+See <a href="https://github.com/chaoxu/algoprob/tree/develop">source</a>.
+
 <div class="problems">
 
   <div class="problem">
@@ -163,7 +168,7 @@
 
     
     <div class="note">
-      A DAG is called complete, if there are vertices <span class="math">v_1,\ldots,v_n</span>, and <span class="math">v_iv_j</span> is an edge if and only if <span class="math">i<j</span>. Let <span class="math">w(i,j)</span> be the edge weights from <span class="math">i</span> to <span class="math">j</span>. The weight is called ordered, if <span class="math">w(i,j)<w(i,j+1)</span> and <span class="math">w(i+ 1,j)<w(i,j)</span>. We are interested in the most general form, where the elements can only be compared.
+      See [ordered weight of complete DAG].
     </div>
     
 
@@ -427,7 +432,7 @@
 
     
     <div class="title">
-      Select in sorted arrays
+      Selection in sorted arrays
     </div>
     
 
@@ -471,12 +476,12 @@
 
     
     <div class="title">
-      Rotated sorted array
+      Rotation of a sorted array
     </div>
     
 
     <div class="description">
-      Let <span class="math">n</span> be a rotated sorted array consist of distinct elements, find if an element <span class="math">x</span> is in the array.
+      Let <span class="math">n</span> be a rotation of a sorted array consist of distinct elements, find if an element <span class="math">x</span> is in the array.
     </div>
 
     
@@ -1045,7 +1050,7 @@
 
     
     <div class="note">
-      See <a href="https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html">https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html</a> Note that the problem have different variations. The tree can be rooted/unrooted, ordered/unordered, labeled/unlabeled. All variations can be solved by one algorithm. <a href="https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23">https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23</a>
+      See <a href="https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html">this</a>. Note that the problem have different variations. The tree can be rooted/unrooted, ordered/unordered, labeled/unlabeled. All variations can be solved by <a href="https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23">one algorithm</a> with <span class="math">O(n)</span> running time.
     </div>
     
 
@@ -1074,6 +1079,10 @@
     </div>
 
     
+    <div class="note">
+      expect running time <span class="math">O(n+m)</span>, where <span class="math">m</span> is the total length of <span class="math">t_1,\ldots,t_k</span> and <span class="math">n</span> is the length of <span class="math">s</span>.
+    </div>
+    
 
     
 
@@ -1094,34 +1103,12 @@
     
 
     <div class="description">
-      Given <span class="math">n</span> strings of length <span class="math">m</span>. Decide if any two have hamming distance at most <span class="math">1</span>.
-    </div>
-
-    
-
-    
-
-    
-    <div class="tags">
-      
-        <div class="tag">string</div>
-      
-    </div>
-    
-
-  </div>
-
-  <div class="problem">
-
-    
-
-    <div class="description">
-      Given a set of <span class="math">n</span> strings, each of length <span class="math">m</span>, decide if any two strings are <span class="math">k</span>-contiguous compatible.
+      Given a set of <span class="math">n</span> strings, each of length <span class="math">m</span>, decide if any two strings where the sum of the length of matched prefix and matched suffix is at least <span class="math">k</span>.
     </div>
 
     
     <div class="note">
-      Two strings of equal length are <em><span class="math">k</span>-contiguous compatible</em> if changing <span class="math">k</span> contiguous positions in one string leads to the other string.
+      See a solution <a href="https://chaoxuprime.com/posts/2018-12-23-strings-with-hamming-distance-exactly-1.html">here</a>. It work for <span class="math">k=m-1</span>, but the same algorithm work for larger <span class="math">k</span>, too.
     </div>
     
 
@@ -1142,57 +1129,9 @@
     
 
     <div class="description">
-      Given a set of <span class="math">n</span> strings, each of length <span class="math">m</span>, find all pairs of strings that are <span class="math">k</span>-contiguous compatible.
+      Given string <span class="math">s</span>, find a primitive string <span class="math">p</span> such that <span class="math">p^k=s</span>.
     </div>
 
-    
-
-    
-
-    
-    <div class="tags">
-      
-        <div class="tag">string</div>
-      
-    </div>
-    
-
-  </div>
-
-  <div class="problem">
-
-    
-
-    <div class="description">
-      Given a string <span class="math">S</span> of length <span class="math">n</span> and a string <span class="math">T</span> of length <span class="math">m</span>. Decide if <span class="math">T</span> is <span class="math">k</span>-contiguous compatible to a substring of <span class="math">S</span>.
-    </div>
-
-    
-
-    
-
-    
-    <div class="tags">
-      
-        <div class="tag">string</div>
-      
-    </div>
-    
-
-  </div>
-
-  <div class="problem">
-
-    
-
-    <div class="description">
-      Given string <span class="math">s</span>, a primitive string <span class="math">p</span> such that <span class="math">p^k=s</span>.
-    </div>
-
-    
-    <div class="note">
-      A string <span class="math">s</span> is primitive if <span class="math">s=w^k</span> implies <span class="math">k=1</span>.
-    </div>
     
 
     
@@ -1206,13 +1145,9 @@
     
 
     <div class="description">
-      Find the period of a string, if it exists.
+      Find the period of a string.
     </div>
 
-    
-    <div class="note">
-      A string <span class="math">z</span> has period <span class="math">p>0</span>, if <span class="math">z[i]=z[i+p]</span> for all <span class="math">i</span>, and <span class="math">p</span> is as small as possible. Border is the intersection of prefixes and suffixes.
-    </div>
     
 
     
@@ -1305,7 +1240,7 @@
 
     
     <div class="note">
-      An infinite string is given as a function, <span class="math">s:\N\to \Sigma</span>. It take an index and output the character at the index. Let <span class="math">s</span> be a infinite string. If <span class="math">s=ab</span> where <span class="math">b</span> is a infinite periodic string and <span class="math">a</span> is finite, then <span class="math">s</span> is an <em>eventually periodic string</em>. We say <span class="math">(a,b)</span> is a <em>split</em> of <span class="math">s</span> if <span class="math">ab=s</span> and <span class="math">b</span> is a infinite periodic string. A split <span class="math">(a,b)</span> is minimum, if period of <span class="math">b</span> is minimum and under the previous constraint, length of <span class="math">a</span> is minimum. An eventually periodic string <span class="math">s</span> is <em><span class="math">u</span>-normal</em>, if for any two indices <span class="math">i<j</span>, where <span class="math">j-i\leq u</span> and <span class="math">s[i..i+u] = s[j..j+u]</span>, there exists a split <span class="math">(a,b)</span> of <span class="math">s</span> where <span class="math">|a|\leq i</span>, and the period of <span class="math">b</span> is at most <span class="math">u</span>.
+      An infinite string is given as a function, <span class="math">s:\N\to \Sigma</span>. It take an index and output the character at the index. We say <span class="math">(a,b)</span> is a <em>split</em> of <span class="math">s</span> if <span class="math">ab=s</span> and <span class="math">b</span> is a infinite periodic string. A split <span class="math">(a,b)</span> is minimum, if period of <span class="math">b</span> is minimum and under the previous constraint, length of <span class="math">a</span> is minimum. An eventually periodic string <span class="math">s</span> is <em><span class="math">u</span>-normal</em>, if for any two indices <span class="math">i<j</span>, where <span class="math">j-i\leq u</span> and <span class="math">s[i..i+u] = s[j..j+u]</span>, there exists a split <span class="math">(a,b)</span> of <span class="math">s</span> where <span class="math">|a|\leq i</span>, and the period of <span class="math">b</span> is at most <span class="math">u</span>.
     </div>
     
 
@@ -1332,6 +1267,7 @@
   </div>
 
 </div>
+
 </div>
 </body>
 </html>

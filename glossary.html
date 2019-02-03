@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Glossary</title>
+  <meta name="Description" content="Some algorithmic problems.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var macros={
+              "\\C":"\\mathbb{C}",
+              "\\F":"\\mathbb{F}",
+              "\\e": "\\varepsilon",
+              "\\eps": "\\varepsilon",
+              "\\argmin": "\\DOTSB\\mathop{\\operatorname{arg\\,min}}\\limits",
+              "\\argmax": "\\DOTSB\\mathop{\\operatorname{arg\\,max}}\\limits",
+              "\\mex": "\\mathop{\\operatorname{mex}}",
+              "\\lcm": "\\mathop{\\operatorname{lcm}}",
+              "\\dist": "\\mathop{\\operatorname{dist}}",
+              "\\bigtriangleright": "{\\mathop{\\Large \\triangleright}}",
+              "\\bigtriangleleft": "{\\mathop{\\Large \\triangleleft}}",
+              '\\set':'\\left\\{ #1 \\right\\}',
+              '\\floor':'\\left\\lfloor #1 \\right\\rfloor',
+              '\\ceil':'\\left\\lceil #1 \\right\\rceil',
+              '\\abs':'\\left\\| #1 \\right\\|'
+              }
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false, macros:macros} );
+    }}});
+  </script>
+
+  <link rel="stylesheet" href="default.css">
+</head>
+<body>
+<div class="container">
+
+  <dl class="glossary">
+  
+      <dt><span class="math">k</span>-partition</dt>
+      <dd>A <span class="math">k</span>-partition is a partition <span class="math">P</span> such that <span class="math">|P|=k</span> and each set in <span class="math">P</span> is non-empty.</dd>
+  
+      <dt>bitonic</dt>
+      <dd>A sequence <span class="math">a_1,\ldots,a_n</span> is bitonic, if there exists a <span class="math">1\leq k\leq n</span> such that <span class="math">a_1\leq a_2 \leq \ldots a_k</span> and <span class="math">a_k\geq a_{k+1} \geq \ldots \geq a_n</span>.</dd>
+  
+      <dt>border (sequence)</dt>
+      <dd>A border of a string <span class="math">S</span> is both a prefix and a suffix of <span class="math">S</span>.</dd>
+  
+      <dt>complete DAG</dt>
+      <dd>A DAG is complete if under the topological ordering <span class="math">v_1,\ldots,v_n</span>, <span class="math">v_iv_j</span> is an edge for all <span class="math">i<j</span>.</dd>
+  
+      <dt>eventually periodic</dt>
+      <dd>Let <span class="math">s</span> be a infinite string. If <span class="math">s=ab</span> where <span class="math">b</span> is a infinite periodic string and <span class="math">a</span> is finite, then <span class="math">s</span> is an <em>eventually periodic string</em>.</dd>
+  
+      <dt>meet (partition)</dt>
+      <dd>The meet of two partitions <span class="math">A</span> and <span class="math">B</span> is <span class="math">\set{ A\cap B | A\in \mathcal{A}, B\in \mathcal{B}}</span>.</dd>
+  
+      <dt>ordered weight of complete DAG</dt>
+      <dd><span class="math">v_1,\ldots,v_n</span> is the topological order of the vertices of the DAG. Let <span class="math">w(i,j)</span> to be the weight of <span class="math">v_iv_j</span> where <span class="math">i<j</span>. The weight is ordered if <span class="math">w(i,j)\leq w(i,j+1)</span> and <span class="math">w(i+1,j)\leq w(i,j)</span>.</dd>
+  
+      <dt>partition</dt>
+      <dd>A partition of the groundset <span class="math">X</span> is a collection of disjoint sets where the union is <span class="math">X</span>.</dd>
+  
+      <dt>period (sequence)</dt>
+      <dd><span class="math">p</span> is the period of a string <span class="math">s</span> of length <span class="math">n</span> if <span class="math">s_i=s_{i+p}</span> for all <span class="math">i</span>, <span class="math">n>p>0</span> and <span class="math">p</span> is the smallest integer of the property.</dd>
+  
+      <dt>periodic (sequence)</dt>
+      <dd>A string is periodic if it has a period.</dd>
+  
+      <dt>primitive (sequence)</dt>
+      <dd>A string <span class="math">s</span> is primitive if <span class="math">s=w^k</span> implies <span class="math">k=1</span>.</dd>
+  
+      <dt>rank (order)</dt>
+      <dd>For a collection of elements, an element has rank <span class="math">k</span>, if it appears as the <span class="math">k</span>th element in the sorted sequence.</dd>
+  
+      <dt>rotated sequence</dt>
+      <dd>A sequence <span class="math">S</span> is a rotation of <span class="math">A=a_1,\ldots,a_n</span>, if it is of the form <span class="math">a_j,a_{j+1},\ldots,a_n,a_1,\ldots,a_{j-1}</span>. <span class="math">S</span> is called a rotation of <span class="math">A</span>.</dd>
+  
+      <dt>sorted</dt>
+      <dd>A sequence <span class="math">a_1,\ldots,a_n</span> is sorted if <span class="math">a_i\leq a_{i+1}</span> for all <span class="math">i</span>. The definition extends to infinite sequence, too.</dd>
+  
+      <dt>sorted matrix</dt>
+      <dd>A matrix <span class="math">M</span> is sorted if <span class="math">M_{i,j}\leq M_{i',j'}</span> if <span class="math">(i,j)\leq (i',j')</span> in coordinate-wise comparison.</dd>
+  
+      <dt>subpartition</dt>
+      <dd>A subpartition of <span class="math">X</span> is a partition of a subset of <span class="math">X</span>.</dd>
+  
+      <dt>uniquely decodable code</dt>
+      <dd>See <a href="https://en.wikipedia.org/wiki/Variable-length_code#Uniquely_decodable_codes">explanation on wikipedia</a>.</dd>
+  
+      <dt>weighted rank (order)</dt>
+      <dd>For a collection of elements <span class="math">S</span> with associated weight function <span class="math">w:S\to \R^+</span>. Let <span class="math">a_1,\ldots,a_n</span> be the sorted sequence of <span class="math">S</span>. The weighted rank of <span class="math">a_j</span> is <span class="math">\sum_{i=1}^{j} w(a_i)</span>.</dd>
+  
+  </dl>
+
+</div>
+</body>
+</html>
