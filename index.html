@@ -43,7 +43,7 @@ Algorithmic Problems
     gtag('js', new Date());
     gtag('config', 'UA-4171915-4');
   </script>
-  <link rel="stylesheet" href="default.css?ver=1549232782">
+  <link rel="stylesheet" href="default.css?ver=1549233121">
 </head>
 <body>
 <div class="container">
@@ -473,7 +473,7 @@ Algorithmic Problems
       Unordered search
     </div>
     <div class="description">
-      Given an array of elements of length <span class="math">n</span>, and an oracle decides if <span class="math">x\leq y</span> or <span class="math">x>y</span>, where <span class="math">y</span> is an unknown value. Find the largest value in the array that is no larger than <span class="math">y</span>.
+      Given an array of elements of length <span class="math">n</span>, and an oracle decides if <span class="math">x\leq y</span> or <span class="math">x&gt;y</span>, where <span class="math">y</span> is an unknown value. Find the largest value in the array that is no larger than <span class="math">y</span>.
     </div>
     <div class="tags">
         <div class="tag">selection</div>
@@ -848,11 +848,11 @@ Algorithmic Problems
       Given <span class="math">u</span> and a <span class="math">u</span>-normal eventually periodic string <span class="math">s</span>, find the the minimum split <span class="math">(a,b)</span> of <span class="math">s</span>.
     </div>
     <div class="note">
-      An infinite string is given as a function, <span class="math">s:\N\to \Sigma</span>. It take an index and output the character at the index. We say <span class="math">(a,b)</span> is a <em>split</em> of <span class="math">s</span> if <span class="math">ab=s</span> and <span class="math">b</span> is a infinite periodic string. A split <span class="math">(a,b)</span> is minimum, if period of <span class="math">b</span> is minimum and under the previous constraint, length of <span class="math">a</span> is minimum. An eventually periodic string <span class="math">s</span> is <em><span class="math">u</span>-normal</em>, if for any two indices <span class="math">i<j</span>, where <span class="math">j-i\leq u</span> and <span class="math">s[i..i+u] = s[j..j+u]</span>, there exists a split <span class="math">(a,b)</span> of <span class="math">s</span> where <span class="math">|a|\leq i</span>, and the period of <span class="math">b</span> is at most <span class="math">u</span>.
+      An infinite string is given as a function, <span class="math">s:\N\to \Sigma</span>. It take an index and output the character at the index. We say <span class="math">(a,b)</span> is a <em>split</em> of <span class="math">s</span> if <span class="math">ab=s</span> and <span class="math">b</span> is a infinite periodic string. A split <span class="math">(a,b)</span> is minimum, if period of <span class="math">b</span> is minimum and under the previous constraint, length of <span class="math">a</span> is minimum. An eventually periodic string <span class="math">s</span> is <em><span class="math">u</span>-normal</em>, if for any two indices <span class="math">i&lt;j</span>, where <span class="math">j-i\leq u</span> and <span class="math">s[i..i+u] = s[j..j+u]</span>, there exists a split <span class="math">(a,b)</span> of <span class="math">s</span> where <span class="math">|a|\leq i</span>, and the period of <span class="math">b</span> is at most <span class="math">u</span>.
     </div>
     <div class="exercises">
         <div class="exercise">Let <span class="math">n</span> be length of <span class="math">a</span>. Find an algorithm with running time <span class="math">O((n+u)u)</span>.</div>
-        <div class="exercise">Given an index <span class="math">i</span> such that <span class="math">i<n\leq i+2u</span>, find <span class="math">n</span>. Show this can be done in <span class="math">O(u)</span> time.</div>
+        <div class="exercise">Given an index <span class="math">i</span> such that <span class="math">i&lt;n\leq i+2u</span>, find <span class="math">n</span>. Show this can be done in <span class="math">O(u)</span> time.</div>
         <div class="exercise">Find the pairs <span class="math">(a,b)</span> in <span class="math">O(n+u)</span> time.</div>
         <div class="exercise">Show one can directly use a online suffix tree construction algorithm to obtain the same running time.</div>
     </div>
