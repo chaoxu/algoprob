@@ -1,0 +1,319 @@
+# problem statement
+# minimum required is problem, which defines the formal problem
+# everything else is optional
+# exercise are things one can say about the problem
+# optional title
+# tag: just list of tags that might make sense
+# notes are just everything else
+
+---
+title: $h$-index problem
+problem: Given positive $a_1,\ldots, a_n$, find the largest $h$ such that $|\set{i | a_i \geq h}|\geq h$.
+note: $O(n)$ time though counting sort.
+
+---
+title: The weighted $h$-index problem
+problem: Given pairs $(w_1,a_1),\ldots,(w_n,a_n)$, find the largest $h$ such that $\sum_{i:a_i\geq h} w_i \geq h$.
+note: The counting sort algorithm for $h$-index no longer works. Need to use median selection instead.
+
+---
+problem: Let $\mathcal{A}$ and $\mathcal{B}$ to be partitions of $[n]$. Compute the meet of the two partitions. $\mathcal{C}=\set{A\cap B \mid A\in \mathcal{A}, B\in \mathcal{B}}$.
+note: can be solved in $O(n)$ time. Either directly or use partition refinement data structure.
+
+---
+problem: Maintain a partition $\mathcal{X}$, such that taking a input set $S$, it creates a new partition $\mathcal{X}_S = \set{ X\cap S, X\setminus S |X\in \mathcal{X} }$.
+note: We want $O(|S|)$ time per operation. This is the partition refinement data structure.
+
+---
+problem: Given array of $n$ positive elements, partition into $k$ contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
+note: I believe it is equivalent to [this](https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html). It reduces to Bottleneck $k$-link path.
+
+---
+title: Bottleneck $k$-link path
+problem: Given a complete DAG with ordered weights, find a path consists of $k$ edges from $v_1$ to $v_n$, such that the maximum weight of the edges in the path is minimized.
+note: A DAG is called complete, if there are vertices $v_1,\ldots,v_n$, and $v_iv_j$ is an edge if and only if $i<j$. Let $w(i,j)$ be the edge weights from $i$ to $j$. The weight is called ordered, if $w(i,j)<w(i,j+1)$ and $w(i+ 1,j)<w(i,j)$. We are interested in the most general form, where the elements can only be compared.
+
+---
+problem: The [proportional apportionment](https://chaoxuprime.com/posts/2016-08-02-proportional-apportionment.html)
+
+---
+problem: A tree with weights on the vertices. Finding height, max, min of the tree. 
+
+---
+title: Subset sum
+problem: Given $u$ and $S\subset [u]$ of size $n$, decide if there is a subset of $S$ that sums to $u$.
+tag: [subset sum]
+exercise: 
+  - Show the problem can be solved in $O(nu)$ time through dynamic programming.
+
+---
+title: Subset sum with cardinality table
+problem: Given $u$ and $S\subset [u]$ of size $n$, compute a set $T$ such that $(i,j)$ in $T$ if and only if there exists a subset of $S$ of size $j$ that sums to $i$.
+tag: [subset sum]
+
+---
+title: Subset sum with cardinality and count
+problem: Given $u$ and $S\subset [u]$ of size $n$, compute the function $f$ such that $f(i,j)$ is the number of subsets of $S$ of size $j$ that sums to $i$.
+tag: [subset sum]
+
+---
+title: Sorting
+problem: Sort a sequence in a stable way.
+exercise:
+  - Every comparison sorting algorithm can be made stable. Instead of sort $s_1,\ldots,s_n$, sorting the sequence $(s_1,1),\ldots,(s_n,n)$
+
+---
+title: Sort integers
+problem: Given $n$ elements in $m$, return them sorted.
+exercise:
+  - Show a running time of $O(n+m)$ can be achieved
+  - Show a running time of $O(n\log m)$ can be achieved
+  - Show a running time of $O(n (1+\frac{\log m}{\log n}))$ can be achieved
+note: Basically, counting sort, radix sort with constant size base and radix sort with size $n$ base. In particular, this shows sorting elements in $[n^c]$ can be done in $O(n)$ time.
+
+--- 
+title: Fragile sorting
+problem: Sort $n$ elements such that each element is compared $O(\log n)$ times.
+
+---
+problem: Let $X$ be a set of $n$ elements, such that comparing element $x$ and $y$ takes $O(f(x)+f(y))$ time, where $f$ is some function.
+exercise:
+  - Show sorting it can be done in $O(\sum_{x\in X} f(x) \log n)$ time. 
+  - Show sorting strings lexicographcially can be done in $O(m\log n)$ time, where $m$ is the total length of the strings.
+
+---
+title: exponential search
+problem: Let $p$ be a monotonic predicate over integers, find the smallest $n$ such that $p(n)$ is true.
+exercise: 
+  - Show it can be done in $O(\log n)$ time.
+
+---
+title: binary search
+problem: Let $S$ be a sorted array of length $n$. Find the smallest index $i$ such that $S[i]\geq x$.
+exercise:
+  - Show it reduces to the previous exponential search.
+
+---
+title: multiple exponential search
+problem: Let $S$ be a sorted array on $n$ elements. Let $T$ be a set of $m$ elements, for each element $x\in T$ find the smallest $i$ such that $S[i]\geq x$.
+exercise:
+  - Show it takes $O(m\log \frac{n}{m})$ time. 
+
+---
+title: Select in sorted arrays
+problem: Given $n$ sorted arrays, find the rank $k$ element.
+exercise:
+  - Find $O(\log k)$ time algorithm when there are $2$ sorted arrays.
+  - Find a $O(n\log k)$ time algorithm.
+note:  Note there exists a $O(n+p\log k/p)$ time algorithm where $p=\min(k,n)$ [@FredericksonJ82]. There also exists a $O(k+\sum_{i=1}^n m_i)$ algorithm [@FredericksonJ80]. 
+
+--- 
+title: Bitonic array
+problem: Given a bitonic sequence such that each element can appears at most $k$ times in the sequence. 
+exercise:
+  - Find the minimum in $O(k+\log n)$ time.
+
+---
+title: Rotated sorted array
+problem: Let $n$ be a rotated sorted array consist of distinct elements, find if an element $x$ is in the array.
+exercise:
+  - Do it in $O(\log n)$ time.
+note: just note that rotated sorted array is bitonic.
+
+--- 
+title: Unordered selection 
+tag: [selection]
+problem: Given an array of elements of length $n$, find rank $k$ element.
+note: Linear time through soft-heap or median of median
+
+--- 
+title: Unordered weighted selection
+tag: [selection]
+problem: Given an array of elements of length $n$, and each element has an associated weight. Find weighted rank $k$ element. 
+note: The weighted median problem
+
+---
+title: Selection in sorted matrix
+tag: [selection]
+problem: Given a sorted $n\times m$ matrix where $n\leq m$, find the rank $k$ element.
+exercise:
+  - Show we can assume $k\geq m$. 
+  - Show this can be done in $O(k\log k)$ time.
+  - Let $r(a,A)$ be the number of elements in matrix $A$ smaller or equal to $a$. Let $A_o$ be the matrix we obtain from $A$ by removing all even columns. Show if $A$ is a sorted $n\times m$ matrix, then $2(r(a,A_o)-n)\leq r(a,A) \leq 2r(a,A_o)$.
+  - Show that there is a $O(m)$ time algorithm to find the $k$th smallest element. (Recursively solve the problem by solving the problem on $A_o$. Use $A_o$ to bound the search space in $A$. )
+  - Show there is an algorithm with runnning time $O(n \log m/n)$ time. 
+  - Can you modify the algorithm to output a description of all elements smaller than the $k$th smallest element? (i.e. for each $i$, find $j_i$, such that all elements before $j_i$ satisfies the property.) What's the running time? Is $O(n)$ time possible?
+note: See [@FredericksonJ84]
+
+---
+title: Search in sorted matrix
+tag: [selection]
+problem: Given a sorted $n\times m$ matrix where $n\leq m$, and an oracle that decide if an element is at least $x$ or greater than $x$. Find the smallest value that is at most $x$ in the matrix.
+exercise:
+  - Show there is an algorithm with running time and matrix access both $O(n\log m/n)$ and $O(\log nm)$ oracle calls.
+  - Show this can be used to solve selection in $O(n\log m/n)$ time.
+note: See [@JacobR08] and [@FredericksonZ17]
+
+--- 
+title: Maximum XOR Subarray
+problem: Given an array of non-negative integers. Find a subarray such that its XOR value is maximized.
+note: This is Lintcode 722, Maximum Subarray VI
+
+---
+title: Single source shortest path tree
+problem: Given a directed graph and a vertex $s$, find the shortest path tree rooted at $s$.
+
+---
+title: All-pair shortest path
+problem: Given a directed graph, find the distance function.
+
+---
+title: DAG longest path
+problem: Given a DAG, find the longest path in the DAG
+
+---
+title: Lights out game
+problem: Solve $Ax=b$ where $b\in \F_2$ and $A$ is the incident matrix of a undirected graph.
+exercise:
+  - Show if the graph is a $n\times m$ grid graph, then $O(nm^2)$ running time is possible. 
+
+---
+problem: Single source replacement path
+
+---
+problem: Continous Weak Frechet distance in 1D [See](https://arxiv.org/abs/1807.08699).
+
+--- 
+title: Find induced $P_3$.
+problem: Find a induced $P_3$ in a undirected graph.
+exercise:
+  - Show a linear time algorithm.
+
+--- 
+title: Find a $C_4$
+problem: Find a $C_4$ in a undirected graph.
+exercise:
+  - Show $O(n^2)$ time algorithm.
+  - Show a $O(m\sqrt{n})$ time algorithm.
+  - Show a $O(m^{4/3})$ time algorithm. (Use the fact about degenercy)
+note:
+  For a graph with at least $100kn^{1+1/k}$ edges, then there is a $C_{2\ell}$ for every $\ell\in [k,n^{1/k}]$.
+
+---
+title: Find a triangle
+problem: Find a triangle in a undirected graph.
+exercise:
+  - Show a $O(n^3)$ time algorithm.
+  - Show a $O(n^\omega)$ time algorithm.
+  - Show a $O(m^{3/2})$ time algorithm.
+  - Speed it up further. 
+
+---
+title: Find a cycle of minimum weight.
+problem: Find a cycle of minimum weight in a directed graph.
+exercise:
+  - Show a solution using dijkstra $O(n)$ times.
+note: Orlin had a $O(nm)$ time algorithm
+
+---
+title: Minimum average weight cycle
+problem: Find a cycle with minimum average weight. That is, the total weight divided by the number of edges is minimum.
+
+---
+problem: for each edge, find a min-weight matching that contains the edge.
+tag: [matching]
+
+
+---
+problem: For a bipartite graph $G=(A,B,E)$, find $M$ such that $\deg_M(v)=1$ for all $v\in A$, and the degree sequence of vertices in $B$ is lexicographcially maximum.
+tag: [matching]
+note: this is the optimal semi-matching problem.
+
+--- 
+problem: Let $S_1,\ldots,S_n$ be a sequence of sets, where the sum of the sizes is $m$. Partition $[n]$ such that $S_i=S_j$ iff $i$ and $j$ are in the same partition classes.
+exercise:
+  - Show this can be solved in $O(m)$ time.
+
+---
+problem: Let $S_1,\ldots,S_n$ be a sequence of sets, decide if there are two sets such that $S_i\cap S_j\geq k$.
+exercise:
+  - Show if $k=1,0$, then $O(m)$ time is sufficient
+  - Show if $k=2$, then $O(m^{4/3})$ time is sufficient (convert to finding $C_4$)
+  - Show if $k=3$, there is a $O(m^{2-\delta})$ time algorithm where $\delta$ is a constant strictly larger than $0$.
+
+---
+problem: Given a collection of sets, find all maximal sets and all minimal sets.
+tag: [set system]
+
+---
+problem: Find a weakly connected dominating set such that the sum of degrees is $O(n\sqrt{n\log n})$.
+note: This result is used in matroid $4$-connectivity algorithms. See [this](https://chaoxuprime.com/posts/2019-01-21-high-degree-low-degree-technique.html).
+
+--- 
+title: Lexicographically minimal string rotation
+problem: Given a string, find a rotation that is lexicographically minimal.
+tag: [string]
+
+---
+title: String matching
+problem: Given strings $s$ and $t$, decide if $t$ is an substring of $s$.
+tag: [string, pattern matching]
+
+---
+title: Isomorphic subtrees
+problem: For each node, find all nodes with isomorphic subtrees.
+tag: [pattern matching]
+note: See https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html Note that the problem have different variations. The tree can be rooted/unrooted, ordered/unordered, labeled/unlabeled. All variations can be solved by one algorithm. https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23
+
+---
+title: Multiple string matching
+problem: Given strings $s$ and $t_1,\ldots,t_k$, find the matching positions for each $t_i$.
+tag: [string, pattern matching]
+
+---
+problem: Given $n$ strings of length $m$. Decide if any two have hamming distance at most $1$.
+tag: [string]
+
+---
+problem: Given a set of $n$ strings, each of length $m$, decide if any two strings are $k$-contiguous compatible.
+note: Two strings of equal length are *$k$-contiguous compatible* if changing $k$ contiguous positions in one string leads to the other string.
+tag: [string]
+---
+problem: Given a set of $n$ strings, each of length $m$, find all pairs of strings that are $k$-contiguous compatible.
+tag: [string]
+---
+problem: Given a string $S$ of length $n$ and a string $T$ of length $m$. Decide if $T$ is $k$-contiguous compatible to a substring of $S$.
+tag: [string]
+---
+problem: Given string $s$, a primitive string $p$ such that $p^k=s$.
+note: A string $s$ is primitive if $s=w^k$ implies $k=1$.
+---
+problem: Find the period of a string, if it exists. 
+exercise:
+  - Show a string is periodic if and only if it has a proper border of length at least $\ceil{n/2}$.
+  - If the string is periodic, then the period is the length of the maximum proper border.
+note: A string $z$ has period $p>0$, if $z[i]=z[i+p]$ for all $i$, and $p$ is as small as possible. Border is the intersection of prefixes and suffixes.
+---
+problem: Find the longest periodic suffix. 
+exercise:
+  - Use suffix tree to solve this in $O(n)$ time.
+tag: [string]
+---
+problem: Decide if a set forms a uniquely decodable code. 
+---
+problem: Find the largest subset that forms a uniquely decodable code. 
+note: I think the problem is open.
+---
+problem: Find the first substring of length $t$ that appears at least twice.
+---
+problem: Given $u$ and a $u$-normal eventually periodic string $s$, find the the minimum split $(a,b)$ of $s$. 
+exercise:
+  - Let $n$ be length of $a$. Find an algorithm with running time $O((n+u)u)$. 
+  - Given an index $i$ such that $i<n\leq i+2u$, find $n$. Show this can be done in $O(u)$ time.
+  - Find the pairs $(a,b)$ in $O(n+u)$ time.
+  - Show one can directly use a online suffix tree construction algorithm to obtain the same running time. 
+note: An infinite string is given as a function, $s:\N\to \Sigma$. It take an index and output the character at the index. 
+    Let $s$ be a infinite string. If $s=ab$ where $b$ is a infinite periodic string and $a$ is finite, then $s$ is an *eventually periodic string*. We say $(a,b)$ is a *split* of $s$ if $ab=s$ and $b$ is a infinite periodic string. A split $(a,b)$ is minimum, if period of $b$ is minimum and under the previous constraint, length of $a$ is minimum. 
+    An eventually periodic string $s$ is *$u$-normal*, if for any two indices $i<j$, where $j-i\leq u$ and $s[i..i+u] = s[j..j+u]$, there exists a split $(a,b)$ of $s$ where $|a|\leq i$, and the period of $b$ is at most $u$.
+---
+problem: Given $u$ and $n$ and a eventually periodic sequence with initial sequence length at most $n$ and period at most $n$, find the initial sequence and the periodic sequence. 

@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Algorithmic problems</title>
+  <meta name="Description" content="Some algorithmic problems.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var macros={
+              "\\C":"\\mathbb{C}",
+              "\\F":"\\mathbb{F}",
+              "\\e": "\\varepsilon",
+              "\\eps": "\\varepsilon",
+              "\\argmin": "\\DOTSB\\mathop{\\operatorname{arg\\,min}}\\limits",
+              "\\argmax": "\\DOTSB\\mathop{\\operatorname{arg\\,max}}\\limits",
+              "\\mex": "\\mathop{\\operatorname{mex}}",
+              "\\lcm": "\\mathop{\\operatorname{lcm}}",
+              "\\dist": "\\mathop{\\operatorname{dist}}",
+              "\\bigtriangleright": "{\\mathop{\\Large \\triangleright}}",
+              "\\bigtriangleleft": "{\\mathop{\\Large \\triangleleft}}",
+              '\\set':'\\left\\{ #1 \\right\\}',
+              '\\floor':'\\left\\lfloor #1 \\right\\rfloor',
+              '\\ceil':'\\left\\lceil #1 \\right\\rceil',
+              '\\abs':'\\left\\| #1 \\right\\|'
+              }
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false, macros:macros} );
+    }}});
+  </script>
+
+  <link rel="stylesheet" href="default.css">
+</head>
+<body>
+<div class="container">
+<div class="problems">
+
+  <div class="problem">
+
+    
+    <div class="title">
+      <span class="math">h</span>-index problem
+    </div>
+    
+
+    <div class="description">
+      Given positive <span class="math">a_1,\ldots, a_n</span>, find the largest <span class="math">h</span> such that <span class="math">|\set{i | a_i \geq h}|\geq h</span>.
+    </div>
+
+    
+    <div class="note">
+      <span class="math">O(n)</span> time though counting sort.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      The weighted <span class="math">h</span>-index problem
+    </div>
+    
+
+    <div class="description">
+      Given pairs <span class="math">(w_1,a_1),\ldots,(w_n,a_n)</span>, find the largest <span class="math">h</span> such that <span class="math">\sum_{i:a_i\geq h} w_i \geq h</span>.
+    </div>
+
+    
+    <div class="note">
+      The counting sort algorithm for <span class="math">h</span>-index no longer works. Need to use median selection instead.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Let <span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span> to be partitions of <span class="math">[n]</span>. Compute the meet of the two partitions. <span class="math">\mathcal{C}=\set{A\cap B \mid A\in \mathcal{A}, B\in \mathcal{B}}</span>.
+    </div>
+
+    
+    <div class="note">
+      can be solved in <span class="math">O(n)</span> time. Either directly or use partition refinement data structure.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Maintain a partition <span class="math">\mathcal{X}</span>, such that taking a input set <span class="math">S</span>, it creates a new partition <span class="math">\mathcal{X}_S = \set{ X\cap S, X\setminus S |X\in \mathcal{X} }</span>.
+    </div>
+
+    
+    <div class="note">
+      We want <span class="math">O(|S|)</span> time per operation. This is the partition refinement data structure.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Given array of <span class="math">n</span> positive elements, partition into <span class="math">k</span> contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
+    </div>
+
+    
+    <div class="note">
+      I believe it is equivalent to <a href="https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html">this</a>. It reduces to Bottleneck <span class="math">k</span>-link path.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Bottleneck <span class="math">k</span>-link path
+    </div>
+    
+
+    <div class="description">
+      Given a complete DAG with ordered weights, find a path consists of <span class="math">k</span> edges from <span class="math">v_1</span> to <span class="math">v_n</span>, such that the maximum weight of the edges in the path is minimized.
+    </div>
+
+    
+    <div class="note">
+      A DAG is called complete, if there are vertices <span class="math">v_1,\ldots,v_n</span>, and <span class="math">v_iv_j</span> is an edge if and only if <span class="math">i<j</span>. Let <span class="math">w(i,j)</span> be the edge weights from <span class="math">i</span> to <span class="math">j</span>. The weight is called ordered, if <span class="math">w(i,j)<w(i,j+1)</span> and <span class="math">w(i+ 1,j)<w(i,j)</span>. We are interested in the most general form, where the elements can only be compared.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      The <a href="https://chaoxuprime.com/posts/2016-08-02-proportional-apportionment.html">proportional apportionment</a>
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      A tree with weights on the vertices. Finding height, max, min of the tree.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Subset sum
+    </div>
+    
+
+    <div class="description">
+      Given <span class="math">u</span> and <span class="math">S\subset [u]</span> of size <span class="math">n</span>, decide if there is a subset of <span class="math">S</span> that sums to <span class="math">u</span>.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">subset sum</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Subset sum with cardinality table
+    </div>
+    
+
+    <div class="description">
+      Given <span class="math">u</span> and <span class="math">S\subset [u]</span> of size <span class="math">n</span>, compute a set <span class="math">T</span> such that <span class="math">(i,j)</span> in <span class="math">T</span> if and only if there exists a subset of <span class="math">S</span> of size <span class="math">j</span> that sums to <span class="math">i</span>.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">subset sum</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Subset sum with cardinality and count
+    </div>
+    
+
+    <div class="description">
+      Given <span class="math">u</span> and <span class="math">S\subset [u]</span> of size <span class="math">n</span>, compute the function <span class="math">f</span> such that <span class="math">f(i,j)</span> is the number of subsets of <span class="math">S</span> of size <span class="math">j</span> that sums to <span class="math">i</span>.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">subset sum</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Sorting
+    </div>
+    
+
+    <div class="description">
+      Sort a sequence in a stable way.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Sort integers
+    </div>
+    
+
+    <div class="description">
+      Given <span class="math">n</span> elements in <span class="math">m</span>, return them sorted.
+    </div>
+
+    
+    <div class="note">
+      Basically, counting sort, radix sort with constant size base and radix sort with size <span class="math">n</span> base. In particular, this shows sorting elements in <span class="math">[n^c]</span> can be done in <span class="math">O(n)</span> time.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Fragile sorting
+    </div>
+    
+
+    <div class="description">
+      Sort <span class="math">n</span> elements such that each element is compared <span class="math">O(\log n)</span> times.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Let <span class="math">X</span> be a set of <span class="math">n</span> elements, such that comparing element <span class="math">x</span> and <span class="math">y</span> takes <span class="math">O(f(x)+f(y))</span> time, where <span class="math">f</span> is some function.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      exponential search
+    </div>
+    
+
+    <div class="description">
+      Let <span class="math">p</span> be a monotonic predicate over integers, find the smallest <span class="math">n</span> such that <span class="math">p(n)</span> is true.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      binary search
+    </div>
+    
+
+    <div class="description">
+      Let <span class="math">S</span> be a sorted array of length <span class="math">n</span>. Find the smallest index <span class="math">i</span> such that <span class="math">S[i]\geq x</span>.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      multiple exponential search
+    </div>
+    
+
+    <div class="description">
+      Let <span class="math">S</span> be a sorted array on <span class="math">n</span> elements. Let <span class="math">T</span> be a set of <span class="math">m</span> elements, for each element <span class="math">x\in T</span> find the smallest <span class="math">i</span> such that <span class="math">S[i]\geq x</span>.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Select in sorted arrays
+    </div>
+    
+
+    <div class="description">
+      Given <span class="math">n</span> sorted arrays, find the rank <span class="math">k</span> element.
+    </div>
+
+    
+    <div class="note">
+      Note there exists a <span class="math">O(n+p\log k/p)</span> time algorithm where <span class="math">p=\min(k,n)</span> [@FredericksonJ82]. There also exists a <span class="math">O(k+\sum_{i=1}^n m_i)</span> algorithm [@FredericksonJ80].
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Bitonic array
+    </div>
+    
+
+    <div class="description">
+      Given a bitonic sequence such that each element can appears at most <span class="math">k</span> times in the sequence.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Rotated sorted array
+    </div>
+    
+
+    <div class="description">
+      Let <span class="math">n</span> be a rotated sorted array consist of distinct elements, find if an element <span class="math">x</span> is in the array.
+    </div>
+
+    
+    <div class="note">
+      just note that rotated sorted array is bitonic.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Unordered selection
+    </div>
+    
+
+    <div class="description">
+      Given an array of elements of length <span class="math">n</span>, find rank <span class="math">k</span> element.
+    </div>
+
+    
+    <div class="note">
+      Linear time through soft-heap or median of median
+    </div>
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">selection</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Unordered weighted selection
+    </div>
+    
+
+    <div class="description">
+      Given an array of elements of length <span class="math">n</span>, and each element has an associated weight. Find weighted rank <span class="math">k</span> element.
+    </div>
+
+    
+    <div class="note">
+      The weighted median problem
+    </div>
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">selection</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Selection in sorted matrix
+    </div>
+    
+
+    <div class="description">
+      Given a sorted <span class="math">n\times m</span> matrix where <span class="math">n\leq m</span>, find the rank <span class="math">k</span> element.
+    </div>
+
+    
+    <div class="note">
+      See [@FredericksonJ84]
+    </div>
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">selection</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Search in sorted matrix
+    </div>
+    
+
+    <div class="description">
+      Given a sorted <span class="math">n\times m</span> matrix where <span class="math">n\leq m</span>, and an oracle that decide if an element is at least <span class="math">x</span> or greater than <span class="math">x</span>. Find the smallest value that is at most <span class="math">x</span> in the matrix.
+    </div>
+
+    
+    <div class="note">
+      See [@JacobR08] and [@FredericksonZ17]
+    </div>
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">selection</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Maximum XOR Subarray
+    </div>
+    
+
+    <div class="description">
+      Given an array of non-negative integers. Find a subarray such that its XOR value is maximized.
+    </div>
+
+    
+    <div class="note">
+      This is Lintcode 722, Maximum Subarray VI
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Single source shortest path tree
+    </div>
+    
+
+    <div class="description">
+      Given a directed graph and a vertex <span class="math">s</span>, find the shortest path tree rooted at <span class="math">s</span>.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      All-pair shortest path
+    </div>
+    
+
+    <div class="description">
+      Given a directed graph, find the distance function.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      DAG longest path
+    </div>
+    
+
+    <div class="description">
+      Given a DAG, find the longest path in the DAG
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Lights out game
+    </div>
+    
+
+    <div class="description">
+      Solve <span class="math">Ax=b</span> where <span class="math">b\in \F_2</span> and <span class="math">A</span> is the incident matrix of a undirected graph.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Single source replacement path
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Continous Weak Frechet distance in 1D <a href="https://arxiv.org/abs/1807.08699">See</a>.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Find induced <span class="math">P_3</span>.
+    </div>
+    
+
+    <div class="description">
+      Find a induced <span class="math">P_3</span> in a undirected graph.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Find a <span class="math">C_4</span>
+    </div>
+    
+
+    <div class="description">
+      Find a <span class="math">C_4</span> in a undirected graph.
+    </div>
+
+    
+    <div class="note">
+      For a graph with at least <span class="math">100kn^{1+1/k}</span> edges, then there is a <span class="math">C_{2\ell}</span> for every <span class="math">\ell\in [k,n^{1/k}]</span>.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Find a triangle
+    </div>
+    
+
+    <div class="description">
+      Find a triangle in a undirected graph.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Find a cycle of minimum weight.
+    </div>
+    
+
+    <div class="description">
+      Find a cycle of minimum weight in a directed graph.
+    </div>
+
+    
+    <div class="note">
+      Orlin had a <span class="math">O(nm)</span> time algorithm
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Minimum average weight cycle
+    </div>
+    
+
+    <div class="description">
+      Find a cycle with minimum average weight. That is, the total weight divided by the number of edges is minimum.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      for each edge, find a min-weight matching that contains the edge.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">matching</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      For a bipartite graph <span class="math">G=(A,B,E)</span>, find <span class="math">M</span> such that <span class="math">\deg_M(v)=1</span> for all <span class="math">v\in A</span>, and the degree sequence of vertices in <span class="math">B</span> is lexicographcially maximum.
+    </div>
+
+    
+    <div class="note">
+      this is the optimal semi-matching problem.
+    </div>
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">matching</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Let <span class="math">S_1,\ldots,S_n</span> be a sequence of sets, where the sum of the sizes is <span class="math">m</span>. Partition <span class="math">[n]</span> such that <span class="math">S_i=S_j</span> iff <span class="math">i</span> and <span class="math">j</span> are in the same partition classes.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Let <span class="math">S_1,\ldots,S_n</span> be a sequence of sets, decide if there are two sets such that <span class="math">S_i\cap S_j\geq k</span>.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Given a collection of sets, find all maximal sets and all minimal sets.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">set system</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Find a weakly connected dominating set such that the sum of degrees is <span class="math">O(n\sqrt{n\log n})</span>.
+    </div>
+
+    
+    <div class="note">
+      This result is used in matroid <span class="math">4</span>-connectivity algorithms. See <a href="https://chaoxuprime.com/posts/2019-01-21-high-degree-low-degree-technique.html">this</a>.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Lexicographically minimal string rotation
+    </div>
+    
+
+    <div class="description">
+      Given a string, find a rotation that is lexicographically minimal.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">string</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      String matching
+    </div>
+    
+
+    <div class="description">
+      Given strings <span class="math">s</span> and <span class="math">t</span>, decide if <span class="math">t</span> is an substring of <span class="math">s</span>.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">string</div>
+      
+        <div class="tag">pattern matching</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Isomorphic subtrees
+    </div>
+    
+
+    <div class="description">
+      For each node, find all nodes with isomorphic subtrees.
+    </div>
+
+    
+    <div class="note">
+      See <a href="https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html">https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html</a> Note that the problem have different variations. The tree can be rooted/unrooted, ordered/unordered, labeled/unlabeled. All variations can be solved by one algorithm. <a href="https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23">https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23</a>
+    </div>
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">pattern matching</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+    <div class="title">
+      Multiple string matching
+    </div>
+    
+
+    <div class="description">
+      Given strings <span class="math">s</span> and <span class="math">t_1,\ldots,t_k</span>, find the matching positions for each <span class="math">t_i</span>.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">string</div>
+      
+        <div class="tag">pattern matching</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Given <span class="math">n</span> strings of length <span class="math">m</span>. Decide if any two have hamming distance at most <span class="math">1</span>.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">string</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Given a set of <span class="math">n</span> strings, each of length <span class="math">m</span>, decide if any two strings are <span class="math">k</span>-contiguous compatible.
+    </div>
+
+    
+    <div class="note">
+      Two strings of equal length are <em><span class="math">k</span>-contiguous compatible</em> if changing <span class="math">k</span> contiguous positions in one string leads to the other string.
+    </div>
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">string</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Given a set of <span class="math">n</span> strings, each of length <span class="math">m</span>, find all pairs of strings that are <span class="math">k</span>-contiguous compatible.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">string</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Given a string <span class="math">S</span> of length <span class="math">n</span> and a string <span class="math">T</span> of length <span class="math">m</span>. Decide if <span class="math">T</span> is <span class="math">k</span>-contiguous compatible to a substring of <span class="math">S</span>.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">string</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Given string <span class="math">s</span>, a primitive string <span class="math">p</span> such that <span class="math">p^k=s</span>.
+    </div>
+
+    
+    <div class="note">
+      A string <span class="math">s</span> is primitive if <span class="math">s=w^k</span> implies <span class="math">k=1</span>.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Find the period of a string, if it exists.
+    </div>
+
+    
+    <div class="note">
+      A string <span class="math">z</span> has period <span class="math">p>0</span>, if <span class="math">z[i]=z[i+p]</span> for all <span class="math">i</span>, and <span class="math">p</span> is as small as possible. Border is the intersection of prefixes and suffixes.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Find the longest periodic suffix.
+    </div>
+
+    
+
+    
+
+    
+    <div class="tags">
+      
+        <div class="tag">string</div>
+      
+    </div>
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Decide if a set forms a uniquely decodable code.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Find the largest subset that forms a uniquely decodable code.
+    </div>
+
+    
+    <div class="note">
+      I think the problem is open.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Find the first substring of length <span class="math">t</span> that appears at least twice.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Given <span class="math">u</span> and a <span class="math">u</span>-normal eventually periodic string <span class="math">s</span>, find the the minimum split <span class="math">(a,b)</span> of <span class="math">s</span>.
+    </div>
+
+    
+    <div class="note">
+      An infinite string is given as a function, <span class="math">s:\N\to \Sigma</span>. It take an index and output the character at the index. Let <span class="math">s</span> be a infinite string. If <span class="math">s=ab</span> where <span class="math">b</span> is a infinite periodic string and <span class="math">a</span> is finite, then <span class="math">s</span> is an <em>eventually periodic string</em>. We say <span class="math">(a,b)</span> is a <em>split</em> of <span class="math">s</span> if <span class="math">ab=s</span> and <span class="math">b</span> is a infinite periodic string. A split <span class="math">(a,b)</span> is minimum, if period of <span class="math">b</span> is minimum and under the previous constraint, length of <span class="math">a</span> is minimum. An eventually periodic string <span class="math">s</span> is <em><span class="math">u</span>-normal</em>, if for any two indices <span class="math">i<j</span>, where <span class="math">j-i\leq u</span> and <span class="math">s[i..i+u] = s[j..j+u]</span>, there exists a split <span class="math">(a,b)</span> of <span class="math">s</span> where <span class="math">|a|\leq i</span>, and the period of <span class="math">b</span> is at most <span class="math">u</span>.
+    </div>
+    
+
+    
+
+    
+
+  </div>
+
+  <div class="problem">
+
+    
+
+    <div class="description">
+      Given <span class="math">u</span> and <span class="math">n</span> and a eventually periodic sequence with initial sequence length at most <span class="math">n</span> and period at most <span class="math">n</span>, find the initial sequence and the periodic sequence.
+    </div>
+
+    
+
+    
+
+    
+
+  </div>
+
+</div>
+</div>
+</body>
+</html>
