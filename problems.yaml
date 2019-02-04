@@ -304,7 +304,8 @@ exercises:
   - Let $t$ be the smallest integer such that $M_{t,t}>x$. Show there is a $O(\log k)$ oracle call and $O(t \log k/t)$ time algorithm. 
   - Show there is an $O(\sqrt{k})$ time algorithm with $O(\log k)$ oracle calls.
 algorithms:
-  - description: find $M_{t,t}>x$ using exponential search. Find $n$ and $m$ using exponential search on first row and first column. Apply search on a $t\times n$ and $t\times m$ matrix. This uses algorithm [cite the algorithm].
+  - description: find $M_{t,t}>x$ using exponential search. Find $n$ and $m$ using exponential search on first row and first column. Apply search on a $t\times n$ and $t\times m$ matrix. This uses algorithm [@Jacob08].
+    problem: ["median", "exponential-search"]
     complexity: $O(t\log k/t)$ time, $O(\log k)$ oracle calls. 
 note: what is the generalization to multidimentional arrays?
 children:
