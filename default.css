@@ -323,10 +323,7 @@ ul.inline {
 }
 .parameters dd {
     float: left;
-    margin-inline-start:0;
-}
-.parameters dd::before {
-    content:"\00a0";
+    margin: 0;
 }
 .parameters dl:after {content:"";display:table;clear:both;}
 /* Global content control

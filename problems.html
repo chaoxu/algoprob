@@ -31,28 +31,6 @@ Algorithmic Problems
     </div>
     {% endif %}
 
-    {% if problem.note %}
-    <div class="note">
-      {{problem.note}}
-    </div>
-    {% endif %}
-
-    {% if problem.exercises %}
-    <div class="exercises">
-      {% for exercise in problem.exercises %}
-        <div class="exercise">{{exercise}}</div>
-      {% endfor %}
-    </div>
-    {% endif %}
-
-    {% if problem.tag %}
-    <div class="tags">
-      {% for tag in problem.tag %}
-        <div class="tag">{{tag}}</div>
-      {% endfor %}
-    </div>
-    {% endif %}
-
     {% if problem.algorithms %}
     <div class="algorithms">
       {% for algorithm in problem.algorithms %}
@@ -95,7 +73,27 @@ Algorithmic Problems
     {% endif %}
 
 
+    {% if problem.note %}
+    <div class="note">
+      {{problem.note}}
+    </div>
+    {% endif %}
 
+    {% if problem.exercises %}
+    <div class="exercises">
+      {% for exercise in problem.exercises %}
+        <div class="exercise">{{exercise}}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if problem.tag %}
+    <div class="tags">
+      {% for tag in problem.tag %}
+        <div class="tag">{{tag}}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
 
   </div>
 {% endfor %}

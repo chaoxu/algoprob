@@ -53,14 +53,14 @@ algorithms:
 id: partition-refinement
 title: Partition refinement
 problem: Maintain a partition $\mathcal{X}$ of $[m]$, such that taking a input set $S$, it creates a new partition $\mathcal{X}_S = \set{ X\cap S, X\setminus S |X\in \mathcal{X} }$.
-parameter:
+parameters:
   n: size of $S$
 note: We want $O(n)$ time per operation. This is the partition refinement data structure.
 ---
 id: min-max-sum-k-partition-array
 title: Partition minimize maximum sum of subarrays
 problem: Given an array of positive numbers, partition into $k$ contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
-parameter:
+parameters:
   n: the size of the array
   k:
 reduction: bottleneck-k-link-path
@@ -135,9 +135,9 @@ exercises:
 id: integer-sorting
 title: Integer sorting
 problem: Given a list of positive integers, return the sorted list
-parameter:
-  - $n$ is the length of the list
-  - $m$ is an upper bound of the elements in the list
+parameters:
+  n: the length of the list
+  m: an upper bound of the elements in the list
 exercises:
   - Show a running time of $O(n+m)$ can be achieved
   - Show a running time of $O(n\log m)$ can be achieved

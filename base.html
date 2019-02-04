@@ -71,33 +71,34 @@
 <div class="container">
 <nav class="hide-on-print">
   <ul>
-    <li><a href="../">Problems</a></li>
+    <li><a href=".">Problems</a></li>
     <li><a href="glossary.html">Glossary</a></li>
     <li><a href="https://github.com/chaoxu/algoprob">About</a></li>
   </ul>
 </nav>
 
 <form>
+
+  <input type="checkbox" name="show" value="title"  id="toggle-title" checked>
+  <label for="toggle-title">Title</label>
+
   <input type="checkbox" name="show" value="parameters"  id="toggle-parameters" checked>
   <label for="toggle-parameters">Parameters</label>
 
   <input type="checkbox" name="show" value="algorithms"  id="toggle-algorithms" checked>
   <label for="toggle-algorithms">Algorithms</label>
 
-  <input type="checkbox" name="show" value="exercises" id="toggle-exercises" checked> 
-  <label for="toggle-exercises">Exercises</label>
-  
-  <input type="checkbox" name="show" value="title"  id="toggle-title" checked>
-  <label for="toggle-title">Title</label>
-
-  <input class="inline" type="checkbox" name="show" value="note"  id="toggle-note" checked>
-  <label for="toggle-note">Note</label>
-
   <input class="inline" type="checkbox" name="show" value="children" id="toggle-children" checked>
   <label for="toggle-children">Special Cases</label>
 
   <input class="inline" type="checkbox" name="show" value="parents" id="toggle-parents" checked>
   <label for="toggle-parents">Generalizations</label>
+
+  <input class="inline" type="checkbox" name="show" value="note"  id="toggle-note" checked>
+  <label for="toggle-note">Note</label>
+
+  <input type="checkbox" name="show" value="exercises" id="toggle-exercises" checked> 
+  <label for="toggle-exercises">Exercises</label>
 
   <input class="inline" type="checkbox" name="show" value="tags"  id="toggle-tags" checked>
   <label for="toggle-tags">Tags</label>
