@@ -10,7 +10,11 @@
     width: 97%;
   }
 }
+/* useful for togging */
 
+.hidden {
+    display:none;
+}
 /* Navigation
 ----------------------------------------------- */
 nav {
