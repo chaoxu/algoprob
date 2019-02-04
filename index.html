@@ -61,32 +61,32 @@ Algorithmic Problems
     gtag('js', new Date());
     gtag('config', 'UA-4171915-4');
   </script>
-  <link rel="stylesheet" href="default.css?ver=1549269059">
+  <link rel="stylesheet" href="default.css?ver=1549277813">
 </head>
 <body>
 <div class="container">
 <nav class="hide-on-print">
   <ul>
-    <li><a href="../">Problems</a></li>
+    <li><a href=".">Problems</a></li>
     <li><a href="glossary.html">Glossary</a></li>
     <li><a href="https://github.com/chaoxu/algoprob">About</a></li>
   </ul>
 </nav>
 <form>
+  <input type="checkbox" name="show" value="title"  id="toggle-title" checked>
+  <label for="toggle-title">Title</label>
   <input type="checkbox" name="show" value="parameters"  id="toggle-parameters" checked>
   <label for="toggle-parameters">Parameters</label>
   <input type="checkbox" name="show" value="algorithms"  id="toggle-algorithms" checked>
   <label for="toggle-algorithms">Algorithms</label>
-  <input type="checkbox" name="show" value="exercises" id="toggle-exercises" checked> 
-  <label for="toggle-exercises">Exercises</label>
-  <input type="checkbox" name="show" value="title"  id="toggle-title" checked>
-  <label for="toggle-title">Title</label>
-  <input class="inline" type="checkbox" name="show" value="note"  id="toggle-note" checked>
-  <label for="toggle-note">Note</label>
   <input class="inline" type="checkbox" name="show" value="children" id="toggle-children" checked>
   <label for="toggle-children">Special Cases</label>
   <input class="inline" type="checkbox" name="show" value="parents" id="toggle-parents" checked>
   <label for="toggle-parents">Generalizations</label>
+  <input class="inline" type="checkbox" name="show" value="note"  id="toggle-note" checked>
+  <label for="toggle-note">Note</label>
+  <input type="checkbox" name="show" value="exercises" id="toggle-exercises" checked> 
+  <label for="toggle-exercises">Exercises</label>
   <input class="inline" type="checkbox" name="show" value="tags"  id="toggle-tags" checked>
   <label for="toggle-tags">Tags</label>
 </form>
@@ -194,6 +194,12 @@ Algorithmic Problems
     <div class="description">
       Maintain a partition <span class="math">\mathcal{X}</span> of <span class="math">[m]</span>, such that taking a input set <span class="math">S</span>, it creates a new partition <span class="math">\mathcal{X}_S = \set{ X\cap S, X\setminus S |X\in \mathcal{X} }</span>.
     </div>
+    <div class="parameters">
+      <dl>
+        <dt><span class="math">n</span></dt>
+        <dd>size of <span class="math">S</span></dd>
+      </dl>
+    </div>
     <div class="note">
       We want <span class="math">O(n)</span> time per operation. This is the partition refinement data structure.
     </div>
@@ -204,6 +210,14 @@ Algorithmic Problems
     </div>
     <div class="description">
       Given an array of positive numbers, partition into <span class="math">k</span> contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
+    </div>
+    <div class="parameters">
+      <dl>
+        <dt><span class="math">k</span></dt>
+        <dd></dd>
+        <dt><span class="math">n</span></dt>
+        <dd>the size of the array</dd>
+      </dl>
     </div>
     <div class="parents">
       <ul class="inline">
@@ -253,14 +267,14 @@ Algorithmic Problems
         <dd></dd>
       </dl>
     </div>
-    <div class="note">
-      See [ordered weight of complete DAG] and <a href="https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html">Bottleneck <span class="math">k</span>-link path</a>.
-    </div>
     <div class="children">
       <ul>
           <li class="child-problem"><a href="#problem-min-max-sum-k-partition-array">Partition minimize maximum sum of subarrays</a> : 
             <span class="child-description">when the weight of edge <span class="math">w(i,j)</span> is sum of elements from <span class="math">i</span>th to <span class="math">j-1</span>th.</span></li>
       </ul>
+    </div>
+    <div class="note">
+      See [ordered weight of complete DAG] and <a href="https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html">Bottleneck <span class="math">k</span>-link path</a>.
     </div>
   </div>
   <div class="problem" id="problem-">
@@ -342,13 +356,13 @@ Algorithmic Problems
     <div class="description">
       Given a list of positive integers, return the sorted list
     </div>
-    <div class="note">
-      Basically, counting sort, radix sort with constant size base and radix sort with size <span class="math">n</span> base. In particular, this shows sorting elements in <span class="math">[n^c]</span> can be done in <span class="math">O(n)</span> time.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show a running time of <span class="math">O(n+m)</span> can be achieved</div>
-        <div class="exercise">Show a running time of <span class="math">O(n\log m)</span> can be achieved</div>
-        <div class="exercise">Show a running time of <span class="math">O(n \log_n m)</span> can be achieved</div>
+    <div class="parameters">
+      <dl>
+        <dt><span class="math">m</span></dt>
+        <dd>an upper bound of the elements in the list</dd>
+        <dt><span class="math">n</span></dt>
+        <dd>the length of the list</dd>
+      </dl>
     </div>
     <div class="algorithms">
         <div class="algorithm">
@@ -359,6 +373,14 @@ Algorithmic Problems
           <div class="algo-description">radix sort with base <span class="math">n</span></div>
           <div class="algo-complexity"><span class="math">O(n\log_n m)</span></div>
         </div>
+    </div>
+    <div class="note">
+      Basically, counting sort, radix sort with constant size base and radix sort with size <span class="math">n</span> base. In particular, this shows sorting elements in <span class="math">[n^c]</span> can be done in <span class="math">O(n)</span> time.
+    </div>
+    <div class="exercises">
+        <div class="exercise">Show a running time of <span class="math">O(n+m)</span> can be achieved</div>
+        <div class="exercise">Show a running time of <span class="math">O(n\log m)</span> can be achieved</div>
+        <div class="exercise">Show a running time of <span class="math">O(n \log_n m)</span> can be achieved</div>
     </div>
   </div>
   <div class="problem" id="problem-exponential-search">
@@ -374,13 +396,13 @@ Algorithmic Problems
         <dd>the smallest value such that <span class="math">p(n)</span> is true.</dd>
       </dl>
     </div>
-    <div class="exercises">
-        <div class="exercise">Show it can be done in <span class="math">O(\log n)</span> time.</div>
-    </div>
     <div class="parents">
       <ul class="inline">
           <li><a href="#problem-"></a></li>
       </ul>
+    </div>
+    <div class="exercises">
+        <div class="exercise">Show it can be done in <span class="math">O(\log n)</span> time.</div>
     </div>
   </div>
   <div class="problem" id="problem-">
@@ -496,13 +518,6 @@ Algorithmic Problems
         <dd>the length of the array.</dd>
       </dl>
     </div>
-    <div class="exercises">
-        <div class="exercise">There are <span class="math">k</span> points on a circle, find a line such that there are same number <a href="https://chaoxuprime.com/posts/2014-03-27-bisect-circle-even-point-set.html">bisect a circle with same number of points</a></div>
-        <div class="exercise">There are red points and blue points on the plane, find a line so the number of red points and blue points on each side is the same.</div>
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
-    </div>
     <div class="algorithms">
         <div class="algorithm">
           <div class="algo-description">median of median recursion</div>
@@ -523,6 +538,13 @@ Algorithmic Problems
           <li><a href="#problem-selection">Unordered selection</a></li>
       </ul>
     </div>
+    <div class="exercises">
+        <div class="exercise">There are <span class="math">k</span> points on a circle, find a line such that there are same number <a href="https://chaoxuprime.com/posts/2014-03-27-bisect-circle-even-point-set.html">bisect a circle with same number of points</a></div>
+        <div class="exercise">There are red points and blue points on the plane, find a line so the number of red points and blue points on each side is the same.</div>
+    </div>
+    <div class="tags">
+        <div class="tag">selection</div>
+    </div>
   </div>
   <div class="problem" id="problem-selection">
     <div class="title">
@@ -536,12 +558,6 @@ Algorithmic Problems
         <dt><span class="math">n</span></dt>
         <dd>the length of the array.</dd>
       </dl>
-    </div>
-    <div class="note">
-      Linear time through soft-heap or median of median
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
     </div>
     <div class="algorithms">
         <div class="algorithm">
@@ -560,6 +576,12 @@ Algorithmic Problems
           <li><a href="#problem-weighted-selection">Unordered weighted selection</a></li>
       </ul>
     </div>
+    <div class="note">
+      Linear time through soft-heap or median of median
+    </div>
+    <div class="tags">
+        <div class="tag">selection</div>
+    </div>
   </div>
   <div class="problem" id="problem-weighted-selection">
     <div class="title">
@@ -573,12 +595,6 @@ Algorithmic Problems
         <dt><span class="math">n</span></dt>
         <dd>the length of the array.</dd>
       </dl>
-    </div>
-    <div class="note">
-      The weighted median problem
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
     </div>
     <div class="algorithms">
         <div class="algorithm">
@@ -597,6 +613,12 @@ Algorithmic Problems
             <span class="child-description">the weight of each element is <span class="math">1</span>.</span></li>
       </ul>
     </div>
+    <div class="note">
+      The weighted median problem
+    </div>
+    <div class="tags">
+        <div class="tag">selection</div>
+    </div>
   </div>
   <div class="problem" id="problem-unordered-search">
     <div class="title">
@@ -611,9 +633,6 @@ Algorithmic Problems
         <dd>the length of the array</dd>
       </dl>
     </div>
-    <div class="tags">
-        <div class="tag">selection</div>
-    </div>
     <div class="algorithms">
         <div class="algorithm">
           <div class="algo-description">find median, partition, decide which side <span class="math">y</span> lies and recur.</div>
@@ -624,6 +643,9 @@ Algorithmic Problems
             </div>
           <div class="algo-complexity"><span class="math">O(n)</span> time and <span class="math">O(\log n)</span> oracle calls</div>
         </div>
+    </div>
+    <div class="tags">
+        <div class="tag">selection</div>
     </div>
   </div>
   <div class="problem" id="problem-">
@@ -674,17 +696,6 @@ Algorithmic Problems
         <dd>the largest value where <span class="math">M_{n,1}\leq x</span>.</dd>
       </dl>
     </div>
-    <div class="note">
-      what is the generalization to multidimentional arrays?
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show there is an algorithm with running time and matrix access both <span class="math">O(n\log m/n)</span> and <span class="math">O(\log nm)</span> oracle calls.</div>
-        <div class="exercise">Let <span class="math">t</span> be the smallest integer such that <span class="math">M_{t,t}&gt;x</span>. Show there is a <span class="math">O(\log k)</span> oracle call and <span class="math">O(t \log k/t)</span> time algorithm.</div>
-        <div class="exercise">Show there is an <span class="math">O(\sqrt{k})</span> time algorithm with <span class="math">O(\log k)</span> oracle calls.</div>
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
-    </div>
     <div class="algorithms">
         <div class="algorithm">
           <div class="algo-description">find <span class="math">M_{t,t}&gt;x</span> using exponential search. Find <span class="math">n</span> and <span class="math">m</span> using exponential search on first row and first column. Apply search on a <span class="math">t\times n</span> and <span class="math">t\times m</span> matrix. This uses algorithm [cite the algorithm].</div>
@@ -696,6 +707,17 @@ Algorithmic Problems
           <li class="child-problem"><a href="#problem-exponential-search">Exponential search</a> : 
             <span class="child-description">One has extra knowledge that <span class="math">n=1</span>.</span></li>
       </ul>
+    </div>
+    <div class="note">
+      what is the generalization to multidimentional arrays?
+    </div>
+    <div class="exercises">
+        <div class="exercise">Show there is an algorithm with running time and matrix access both <span class="math">O(n\log m/n)</span> and <span class="math">O(\log nm)</span> oracle calls.</div>
+        <div class="exercise">Let <span class="math">t</span> be the smallest integer such that <span class="math">M_{t,t}&gt;x</span>. Show there is a <span class="math">O(\log k)</span> oracle call and <span class="math">O(t \log k/t)</span> time algorithm.</div>
+        <div class="exercise">Show there is an <span class="math">O(\sqrt{k})</span> time algorithm with <span class="math">O(\log k)</span> oracle calls.</div>
+    </div>
+    <div class="tags">
+        <div class="tag">selection</div>
     </div>
   </div>
   <div class="problem" id="problem-">
