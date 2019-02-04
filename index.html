@@ -10,6 +10,10 @@ Algorithmic Problems
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       var macros={
@@ -35,6 +39,20 @@ Algorithmic Problems
       if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false, macros:macros} );
     }}});
   </script>
+  <script>
+    function toggle_hidden(c) {
+      $(".".concat(c)).toggleClass("hidden");
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      var toggles = ["exercises", "algorithms", "title", "note", "children", "parents", "tags"];
+      for (i = 0; i < toggles.length; i++) {
+        $( "#toggle-"+toggles[i]).on( "click", function() {
+          var p = $( this ).attr("id").substring(7);
+          $( "."+p).toggleClass("hidden");
+        });
+      }
+    });
+  </script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4171915-4"></script>
   <script>
@@ -43,7 +61,7 @@ Algorithmic Problems
     gtag('js', new Date());
     gtag('config', 'UA-4171915-4');
   </script>
-  <link rel="stylesheet" href="default.css?ver=1549233121">
+  <link rel="stylesheet" href="default.css?ver=1549247599">
 </head>
 <body>
 <div class="container">
@@ -54,6 +72,22 @@ Algorithmic Problems
     <li><a href="https://github.com/chaoxu/algoprob">About</a></li>
   </ul>
 </nav>
+<form>
+  <input type="checkbox" name="show" value="exercises" id="toggle-exercises" checked> 
+  <label for="toggle-exercises">Exercises</label>
+  <input type="checkbox" name="show" value="algorithms"  id="toggle-algorithms" checked>
+  <label for="toggle-algorithms">Algorithms</label>
+  <input type="checkbox" name="show" value="title"  id="toggle-title" checked>
+  <label for="toggle-title">Title</label>
+  <input class="inline" type="checkbox" name="show" value="note"  id="toggle-note" checked>
+  <label for="toggle-note">Note</label>
+  <input class="inline" type="checkbox" name="show" value="children" id="toggle-children" checked>
+  <label for="toggle-children">Special Cases</label>
+  <input class="inline" type="checkbox" name="show" value="parents" id="toggle-parents" checked>
+  <label for="toggle-parents">Generalizations</label>
+  <input class="inline" type="checkbox" name="show" value="tags"  id="toggle-tags" checked>
+  <label for="toggle-tags">Tags</label>
+</form>
 <main>
 <div class="problems">
   <div class="problem" id="problem-h-index">
@@ -862,7 +896,6 @@ Algorithmic Problems
       Given <span class="math">u</span> and <span class="math">n</span> and a eventually periodic sequence with initial sequence length at most <span class="math">n</span> and period at most <span class="math">n</span>, find the initial sequence and the periodic sequence.
     </div>
   </div>
-</div>
 </div>
 </main>
 </body>

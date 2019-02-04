@@ -33,6 +33,7 @@ Often, we consider the algebraic complexity, which is the number of the arithmet
 For computational geometry problems, we consider the Real RAM.
 
 For data structures, optimal amortized running time is sufficient.
+We rarely care about dynamic problems, unless it can be used to improve running time for a static problem. 
 
 Rules can be broken if it serves a higher purpose. For example, often one has to solve enumeration problems in order to solving an optimization problem.
 
@@ -51,5 +52,10 @@ The output is currently posted on [AlgoRange](https://algorange.com).
 For graphs, $n$ is always the number of vertices and $m$ is the number of edges. 
 When we use $m$ in running time, we mean $m+n$, since it is rare when $m=o(n)$. 
 
+## Ambitious updates
 
+There are many problems are basically the same, but under different restrictions.
+For example, the shortest path tree problem.
+It be interesting to capture it, so instead of having a problem, we have a generator for problems. Similar to the [scheduling problem notation](https://en.wikipedia.org/wiki/Notation_for_theoretic_scheduling_problems).
 
+Isolate the input size parameters and the running time. 
