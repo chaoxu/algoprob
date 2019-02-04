@@ -42,7 +42,7 @@
       $(".".concat(c)).toggleClass("hidden");
     }
     document.addEventListener("DOMContentLoaded", function() {
-      var toggles = ["exercises", "algorithms", "title", "note", "children", "parents", "tags"];
+      var toggles = ["exercises", "algorithms", "title", "note", "children", "parents", "tags", "parameters"];
       for (i = 0; i < toggles.length; i++) {
         $( "#toggle-"+toggles[i]).on( "click", function() {
           var p = $( this ).attr("id").substring(7);
@@ -59,7 +59,7 @@
     gtag('js', new Date());
     gtag('config', 'UA-4171915-4');
   </script>
-  <link rel="stylesheet" href="default.css?ver=1549247599">
+  <link rel="stylesheet" href="default.css?ver=1549269059">
 </head>
 <body>
 <div class="container">
@@ -71,10 +71,12 @@
   </ul>
 </nav>
 <form>
-  <input type="checkbox" name="show" value="exercises" id="toggle-exercises" checked> 
-  <label for="toggle-exercises">Exercises</label>
+  <input type="checkbox" name="show" value="parameters"  id="toggle-parameters" checked>
+  <label for="toggle-parameters">Parameters</label>
   <input type="checkbox" name="show" value="algorithms"  id="toggle-algorithms" checked>
   <label for="toggle-algorithms">Algorithms</label>
+  <input type="checkbox" name="show" value="exercises" id="toggle-exercises" checked> 
+  <label for="toggle-exercises">Exercises</label>
   <input type="checkbox" name="show" value="title"  id="toggle-title" checked>
   <label for="toggle-title">Title</label>
   <input class="inline" type="checkbox" name="show" value="note"  id="toggle-note" checked>
