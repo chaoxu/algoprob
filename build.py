@@ -23,8 +23,10 @@ def set_default(y,x,default):
 def mki(x): 
     return mk(x)[3:-5]
 
+def build_math(x):
+    return '<span class="math">'+cgi.escape(x)+'</span>'
 def my_replace(match):
-    return '<span class="math">'+cgi.escape(match.group(1))+'</span>'
+    return build_math(match.group(1))
 
 def yaml_loader(filepath):
     """Load a yaml file."""
@@ -59,6 +61,7 @@ def build_problems(problems):
         set_default(problem,"exercises",[])
         #set_default(problem,"opt",[])
         set_default(problem,"algorithms",[])
+        set_default(problem,"parameters",{})
         set_default(problem,"children",{})
         set_default(problem,"id","")
 
@@ -72,6 +75,18 @@ def build_problems(problems):
         problem["note"] = parse(problem["note"])
         problem["problem"] = parse(problem["problem"])
         problem["exercises"] = map(parse,problem["exercises"])
+
+        parameters = []
+        for x in problem["parameters"].keys():
+            parameter = {}
+            parameter["name"] = build_math(x)
+            if problem["parameters"][x] is None:
+                parameter["description"] = ""
+            else:
+                parameter["description"] = parse(problem["parameters"][x]) 
+            parameters.append(parameter)
+
+        problem["parameters"] = parameters
 
         #problem["opt"] = map(parse,problem["opt"])
 
@@ -89,6 +104,7 @@ def build_problems(problems):
 
         for algorithm in problem["algorithms"]:
             algorithm["description"] = parse(algorithm["description"])
+            # set_default(algorithm,"complexity","")
             algorithm["complexity"] = parse(algorithm["complexity"])
             set_default(algorithm, "problem", [])
             if is_str(algorithm["problem"]):
@@ -102,9 +118,14 @@ def build_problems(problems):
             problem["parents"] = list(parents[problem["id"]])
         else:
             problem["parents"] = []
+
+    # partition, elements with title and elements without
+    # element with title are likely not drafts
+    z1 = [x for x in agg if x["title"]]
+    z2 = [x for x in agg if not x["title"]]
     env={}
     env["id_to_title"] = id_to_title
-    return agg, env
+    return z1+z2, env
 
 def build_glossary(glossary):
     #print list(glossary)

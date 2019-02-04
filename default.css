@@ -259,6 +259,9 @@ div .opts:before {
 div .parents:before {
   content: "Generalizations: ";
 }
+div .parameters:before {
+  content: "Parameters: ";
+}
 div .children:before {
   content: "Special Cases: ";
 }
@@ -308,7 +311,24 @@ ul.inline {
 .inline li+li::before {
   content: ", ";
 }
-
+/* definition list */
+.parameters dt {
+    float: left;
+    width: 2em;
+    text-align: right;
+    clear: left;
+}
+.parameters dt::after{
+    content: ":\00a0";
+}
+.parameters dd {
+    float: left;
+    margin-inline-start:0;
+}
+.parameters dd::before {
+    content:"\00a0";
+}
+.parameters dl:after {content:"";display:table;clear:both;}
 /* Global content control
 ----------------------------------------------- */
 img {

@@ -20,6 +20,17 @@ Algorithmic Problems
       {{problem.problem}}
     </div>
 
+    {% if problem.parameters %}
+    <div class="parameters">
+      <dl>
+      {% for parameter in problem.parameters %}
+        <dt>{{parameter.name}}</dt>
+        <dd>{{parameter.description}}</dd>
+      {% endfor %}
+      </dl>
+    </div>
+    {% endif %}
+
     {% if problem.note %}
     <div class="note">
       {{problem.note}}

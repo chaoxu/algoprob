@@ -19,6 +19,8 @@
 id: h-index
 title: The $h$-index problem
 problem: Given positive integers $a_1,\ldots, a_n$, find the largest $h$ such that $|\set{i | a_i \geq h}|\geq h$.
+parameters:
+  n:
 algorithms:
   - description: Replace each $a_i$ with $\min(a_i,n)$, and sort the new list. 
     problem: integer-sorting
@@ -27,6 +29,8 @@ algorithms:
 id: weighted-h-index
 title: The weighted $h$-index problem
 problem: Given pairs $(w_1,a_1),\ldots,(w_n,a_n)$, find the largest $h$ such that $\sum_{i:a_i\geq h} w_i \geq h$.
+parameters:
+  n:
 children: 
   h-index: set all $a_i$ to $1$.
 algorithms:
@@ -36,6 +40,8 @@ algorithms:
 ---
 title: Meet of two partitions
 problem: Let $\mathcal{A}$ and $\mathcal{B}$ to be partitions of $[n]$. Compute the meet of the two partitions. $\mathcal{C}=\set{A\cap B \mid A\in \mathcal{A}, B\in \mathcal{B}}$.
+parameters:
+  n:
 algorithms:
   - description: index the sets in $\mathcal{A}$ and $\mathcal{B}$. For each element $i$, find $a_i$ and $b_i$ where $a_i$ is index of a set in $\mathcal{A}$ that contains $i$, similarly for $b_i$. Group by $(a_i,b_i)$ using radix sort.
     problem: integer-sorting
@@ -46,23 +52,34 @@ algorithms:
 ---
 id: partition-refinement
 title: Partition refinement
-problem: Maintain a partition $\mathcal{X}$, such that taking a input set $S$, it creates a new partition $\mathcal{X}_S = \set{ X\cap S, X\setminus S |X\in \mathcal{X} }$.
-note: We want $O(|S|)$ time per operation. This is the partition refinement data structure.
+problem: Maintain a partition $\mathcal{X}$ of $[m]$, such that taking a input set $S$, it creates a new partition $\mathcal{X}_S = \set{ X\cap S, X\setminus S |X\in \mathcal{X} }$.
+parameter:
+  n: size of $S$
+note: We want $O(n)$ time per operation. This is the partition refinement data structure.
 ---
 id: min-max-sum-k-partition-array
 title: Partition minimize maximum sum of subarrays
-problem: Given an array of $n$ positive elements, partition into $k$ contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
+problem: Given an array of positive numbers, partition into $k$ contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
+parameter:
+  n: the size of the array
+  k:
 reduction: bottleneck-k-link-path
 ---
 id: min-max-weight-component-tree
 title: Minimize maximum weight component
 problem: Given positive weights on the vertices of a tree, $k$ edges so the maximum of the sum of the weights of each component is minimized.
+parameters:
+  n: the size of the tree
+  k:
 children:
   min-max-weight-component-tree: Tree is a path.
 ---
 id: bottleneck-k-link-path
 title: Bottleneck $k$-link path
 problem: Given a complete DAG with ordered weights, find a path consists of $k$ edges from $v_1$ to $v_n$, such that the maximum weight of the edges in the path is minimized.
+parameters:
+  n:
+  k:
 children:
   min-max-sum-k-partition-array: when the weight of edge $w(i,j)$ is sum of elements from $i$th to $j-1$th.
 note: See [ordered weight of complete DAG] and [Bottleneck $k$-link path](https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html).
@@ -74,15 +91,21 @@ problem: A tree on $n$ vertices with weights on the vertices. Finding height, ma
 title: Subset sum
 problem: Given $u$ and $S\subset [u]$ of size $n$, decide if there is a subset of $S$ that sums to $u$.
 tag: [subset sum]
+parameters:
+  n: the size of $S$.
+  u:
+  \sigma: the sum of all elements in $S$.
+  r: $\min(S)$
+  M: $\max(S)$
 exercises: 
   - Show the problem can be solved in $O(nu)$ time through dynamic programming.
 comments:
   - $O(\sqrt{n\log n}u\log u)$
   - $O(nu)$
-  - $O(\sigma \log \sigma \log n)$, where $\sigma$ is the sum of all elements. 
+  - $O(\sigma \log \sigma \log n)$. 
   - $O(u^{5/4}\log^2 u)$
-  - $O(\max(S)^{5/3})$
-  - $O(u^2/\min(S))$
+  - $O(M^{5/3})$
+  - $O(u^2/r)$
 ---
 title: Subset sum with cardinality table up to $u$
 problem: Given $u$ and $S\subset [u]$ of size $n$, compute a set $T$ such that $(i,j)$ in $T$ if and only if there exists a subset of $S$ of size $j$ that sums to $i$, and $i\leq u$. 
@@ -111,7 +134,10 @@ exercises:
 ---
 id: integer-sorting
 title: Integer sorting
-problem: Given $n$ elements in $[m]$, return them sorted.
+problem: Given a list of positive integers, return the sorted list
+parameter:
+  - $n$ is the length of the list
+  - $m$ is an upper bound of the elements in the list
 exercises:
   - Show a running time of $O(n+m)$ can be achieved
   - Show a running time of $O(n\log m)$ can be achieved
@@ -125,32 +151,47 @@ algorithms:
     complexity: $O(n\log_n m)$
 
 ---
-problem: Let $X$ be a set of $n$ elements, such that comparing element $x$ and $y$ takes $O(f(x)+f(y))$ time, where $f$ is some function.
+problem: Sort $X$ if the time of comparing two element equals to the sum of the weight of the element.
+parameters:
+  n: the number of elements in $X$
+  w: the weight function $w:X\to \N$.
 exercises:
-  - use the fact that there is a sorting network of $O(\log n)$ depth and $O(n\log n)$ size show sorting it can be done in $O(\sum_{x\in X} f(x) \log n)$ time. 
+  - use the fact that there is a sorting network of $O(\log n)$ depth and $O(n\log n)$ size show sorting it can be done in $O(\sum_{x\in X} w(x) \log n)$ time. 
   - Show sorting strings lexicographcially can be done in $O(m\log n)$ time, where $m$ is the total length of the strings.
 
 ---
+id: exponential-search
 title: Exponential search
-problem: Let $p$ be a monotonic predicate over positive integers, find the smallest $n$ such that $p(n)$ is true.
+problem: Let $p$ be a monotonic predicate over positive integers, find the smallest value that is is true.
+parameters:
+  n: the smallest value such that $p(n)$ is true.
 exercises: 
   - Show it can be done in $O(\log n)$ time.
 
 ---
 title: Binary search
-problem: Let $S$ be a sorted array of length $n$. Find the smallest index $i$ such that $S[i]\geq x$.
+problem: Let $S$ be a sorted array. Find the smallest index $i$ such that $S[i]\geq x$.
+parameters:
+  n: the number of elements in $S$
 exercises:
   - Show it reduces to the previous exponential search.
 
 ---
 title: multiple exponential search
-problem: Let $S$ be a sorted array on $n$ elements. Let $T$ be a set of $m$ elements, for each element $x\in T$ find the smallest $i$ such that $S[i]\geq x$.
+problem: Let $S$ be a sorted array. Let $T$ be a set, for each element $x\in T$ find the smallest $i$ such that $S[i]\geq x$.
+parameters:
+  n: the number of elements in $S$
+  m: the size of $T$
 exercises:
   - Show it takes $O(m\log \frac{n}{m})$ time. 
 
 ---
 title: Selection in sorted arrays
-problem: Given $n$ sorted arrays, find the rank $k$ element in the union of the arrays.
+problem: Given a collection of sorted arrays, find the rank $k$ element in the union of the arrays.
+parameters:
+  n: the number of sorted arrays
+  m_i: the number of elements in the $i$th sorted array
+  k:
 exercises:
   - Find $O(\log k)$ time algorithm when there are $2$ sorted arrays.
   - Find a $O(n\log k)$ time algorithm.
@@ -159,8 +200,11 @@ note: Let $p=\min(k,n)$, and $m_i$ be the length of the $i$th array.
   - $O(k+\sum_{i=1}^n m_i)$ [@FredericksonJ80].
 
 --- 
-title: Bitonic sequence
-problem: Given a bitonic sequence such that each element can appears at most $k$ times in the sequence. 
+title: Bitonic sequence minimum
+problem: Given a bitonic sequence, find the minimum element. 
+parameters:
+  n: the length of the array.
+  k: the maximum number an element can appear.
 exercises:
   - Find the minimum in $O(k+\log n)$ time.
   - Find if an element exists in $O(k+\log n)$ time. 
@@ -177,20 +221,26 @@ problem: todo, just read [soft heap](https://en.wikipedia.org/wiki/Soft_heap) he
 id: median
 title: Median of an array
 tag: [selection]
-problem: Given an array of elements of length $n$, find the median.
+problem: Given an array find the median.
+parameters:
+  n: the length of the array.
 algorithms:
   - description: median of median recursion
     complexity: $O(n)$ time
   - description: use a soft-heap find approximate range of the element, and recur in the range.
     problem: soft-heap
     complexity: $O(n)$ time
-
+exercises:
+  - There are $k$ points on a circle, find a line such that there are same number [bisect a circle with same number of points](https://chaoxuprime.com/posts/2014-03-27-bisect-circle-even-point-set.html)
+  - There are red points and blue points on the plane, find a line so the number of red points and blue points on each side is the same. 
 
 --- 
 id: selection
 title: Unordered selection 
 tag: [selection]
 problem: Given an array of elements of length $n$, find rank $k$ element.
+parameters:
+  n: the length of the array.
 note: Linear time through soft-heap or median of median
 algorithms:
   - description: find median, recur on the correct side
@@ -202,7 +252,9 @@ children:
 id: weighted-selection
 title: Unordered weighted selection
 tag: [selection]
-problem: Given an array of elements of length $n$, and each element has an associated weight. Find weighted rank $k$ element. 
+problem: Given an array where each element has an associated weight. Find weighted rank $k$ element. 
+parameters:
+  n: the length of the array.
 note: The weighted median problem
 children:
   selection: the weight of each element is $1$. 
@@ -215,7 +267,9 @@ algorithms:
 id: unordered-search
 title: Unordered search
 tag: [selection]
-problem: Given an array of elements of length $n$, and an oracle decides if $x\leq y$ or $x>y$, where $y$ is an unknown value. Find the largest value in the array that is no larger than $y$.
+problem: Given an array of elements, and an oracle decides if $x\leq y$ or $x>y$, where $y$ is an unknown value. Find the largest value in the array that is no larger than $y$.
+parameters:
+  n: the length of the array
 algorithms:
   - description: find median, partition, decide which side $y$ lies and recur. 
     problem: median
@@ -224,7 +278,11 @@ algorithms:
 ---
 title: Selection in sorted matrix
 tag: [selection]
-problem: Given a sorted $n\times m$ matrix where $n\leq m$, find the rank $k$ element.
+problem: Given a sorted matrix $M$, find the rank $k$ element.
+parameters:
+  n: number of rows of $M$
+  m: number of columns of $M$, assume $n\leq m$.
+  k:
 exercises:
   - Show we can assume $k\geq m$. 
   - Show this can be done in $O(k\log k)$ time.
@@ -233,13 +291,24 @@ exercises:
   - Show there is an algorithm with runnning time $O(n \log m/n)$ time. 
   - Can you modify the algorithm to output a description of all elements smaller than the $k$th smallest element? (i.e. for each $i$, find $j_i$, such that all elements before $j_i$ satisfies the property.) What's the running time? Is $O(n)$ time possible?
 ---
-title: Search in sorted matrix
+title: Search in infinite sorted matrix
 tag: [selection]
-problem: Given a sorted $n\times m$ matrix where $n\leq m$, and an oracle that decide if an element is at least $x$ or greater than $x$. Find the smallest value that is at most $x$ in the matrix.
+problem: Given a sorted infinite matrix $M$, and an oracle that decide if an element is at least $x$ or greater than $x$. Find the smallest value that is at most $x$ in the matrix.
+parameters: 
+  n: the largest value where $M_{n,1}\leq x$.
+  m: the largest value where $M_{1,m}\leq x$.
+  t: the largest value where $M_{t,t}\leq x$.
+  k: $|\set{(i,j)| M_{i,j}\leq x}|$.
 exercises:
   - Show there is an algorithm with running time and matrix access both $O(n\log m/n)$ and $O(\log nm)$ oracle calls.
-  - Show this can be used to solve selection in $O(n\log m/n)$ time.
-
+  - Let $t$ be the smallest integer such that $M_{t,t}>x$. Show there is a $O(\log k)$ oracle call and $O(t \log k/t)$ time algorithm. 
+  - Show there is an $O(\sqrt{k})$ time algorithm with $O(\log k)$ oracle calls.
+algorithms:
+  - description: find $M_{t,t}>x$ using exponential search. Find $n$ and $m$ using exponential search on first row and first column. Apply search on a $t\times n$ and $t\times m$ matrix. This uses algorithm [cite the algorithm].
+    complexity: $O(t\log k/t)$ time, $O(\log k)$ oracle calls. 
+note: what is the generalization to multidimentional arrays?
+children:
+  exponential-search: One has extra knowledge that $n=1$.
 --- 
 title: Maximum XOR Subarray
 problem: Given an array of non-negative integers. Find a subarray such that its XOR value is maximized.
@@ -379,6 +448,8 @@ tag: string, pattern matching
 title: Isomorphic subtrees
 problem: For each node, find all nodes with isomorphic subtrees.
 tag: pattern matching
+exercises: 
+  - Show how to find the most common subtree. 
 note: See [this](https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html). Note that the problem have different variations. The tree can be rooted/unrooted, ordered/unordered, labeled/unlabeled. All variations can be solved by [one algorithm](https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23) with $O(n)$ running time. 
 
 ---
@@ -420,7 +491,126 @@ exercises:
   - Find the pairs $(a,b)$ in $O(n+u)$ time.
   - Show one can directly use a online suffix tree construction algorithm to obtain the same running time. 
 note: An infinite string is given as a function, $s:\N\to \Sigma$. It take an index and output the character at the index. 
-    We say $(a,b)$ is a *split* of $s$ if $ab=s$ and $b$ is a infinite periodic string. A split $(a,b)$ is minimum, if period of $b$ is minimum and under the previous constraint, length of $a$ is minimum. 
-    An eventually periodic string $s$ is *$u$-normal*, if for any two indices $i<j$, where $j-i\leq u$ and $s[i..i+u] = s[j..j+u]$, there exists a split $(a,b)$ of $s$ where $|a|\leq i$, and the period of $b$ is at most $u$.
+  We say $(a,b)$ is a *split* of $s$ if $ab=s$ and $b$ is a infinite periodic string. A split $(a,b)$ is minimum, if period of $b$ is minimum and under the previous constraint, length of $a$ is minimum. 
+  An eventually periodic string $s$ is *$u$-normal*, if for any two indices $i<j$, where $j-i\leq u$ and $s[i..i+u] = s[j..j+u]$, there exists a split $(a,b)$ of $s$ where $|a|\leq i$, and the period of $b$ is at most $u$.
 ---
 problem: Given $u$ and $n$ and a eventually periodic sequence with initial sequence length at most $n$ and period at most $n$, find the initial sequence and the periodic sequence. 
+---
+problem: parametric string matching. [Look into it.](https://arxiv.org/abs/1603.07457)
+---
+problem: data structure for loaded die. 
+note: see [this](http://stackoverflow.com/questions/5027757/data-structure-for-loaded-dice)
+---
+problem: You have a data stream of a permutation of $\set{1,\ldots,n}$. However you know $k$ of the elements will be missing because the communication channel has fault. How can you detect which numbers are missing? 
+note: see [this](http://stackoverflow.com/questions/3492302/easy-interview-question-got-harder-given-numbers-1-100-find-the-missing-numbe)
+---
+problem: 
+  Let $x=p/q$ be an rational number, where $p$ and $q$ are integers. There is a function $f_x$, such that $f_x(y)$ tells you if $x < y$, $x > y$ or $x=y$. Find $x$? 
+note: see [this](http://stackoverflow.com/questions/5440688/the-guess-the-number-game-for-arbitrary-rational-numbers). Maybe it can be reduced to search in a sorted matrix?
+--- 
+problem: decide for the coins if the greedy algorithm work for the coin change problem for a input set of coins.
+note: See http://graal.ens-lyon.fr/~abenoit/algo09/coins2.pdf
+---
+problem: test if a point is inside a polygon. also consider convex version
+---
+problem: sliding window min, median, $k$th largest, max sum, etc.
+exercises:
+  - Find the shortest subarray such that the sum is at least $k$.
+---
+problem: cycle finding
+note: probably can use it for eventually periodic sequence
+---
+problem: A infinite sorted matrix, search for largest element no larger than $y$, whre we have an oracle that decides if a input is lesser or equal to, or greater than $y$
+note: We want running time and oracle calls to depend on the number of elements smaller than $y$.
+---
+problem: find a celebrity in a graph (vertex with only incoming edge and no outgoing edge)
+note: A subset of vertices is a celebrity clique, if the subset induces a clique, and only have incoming edges. can this be found quickly too?
+---
+problem: Given $k$-edge-disjoint path between $u$ and $v$ and $v$ and $w$, total of $m$ edges. Find $k$-edge-disjoint path between $u$ and $w$.
+note: can be done in linear $O(m)$ time.
+---
+problem: a data structure that takes $u,v,w$ and output if $v$ is in the $uw$-path. 
+---
+problem: least common ancestor, level ancestor of a tree. 
+---
+problem: range minimum query on path, tree
+---
+problem: range minimum query on multidimentional array
+---
+problem: Lexicographic bottleneck shortest path in undirected graph
+note: y [Lexicographic bottleneck shortest path in undirected graph](/posts/2014-05-10-lexicographical-bottleneck-path.html)
+---
+problem: Given a weighted forest. Connect the forests with edges of weight $L$ to get a spanning tree such that the diameter of the spanning tree is minimized. (Dreaming, IOI 2013)
+note: so it is the same as adding $k$ edges to minimize diameter.
+---
+problem: Given a tree with weight on the edges, create a data structure such given $u,v$, find the weight of the $uv$-path.
+note: due to it is a monoid, we can't do substraction. However, $O(\alpha(n))$ query time and $O(n)$ preprocessing time is possible I think. search for "OPTIMAL PREPROCESSING FOR ANSWERING ON-LINE PRODUCT QUERIES", also check Chazelle's paper on free trees.
+---
+problem: given a graph with $m$ edges, such that we can only check if two pointer points to the same vertex using an oracle. Construct a data structure that check if an edge is in the graph.
+note: A $O(m/n)$ query time data structure exists. In fact, $O(\alpha(G))$ which is the arboricity of the graph.
+---
+problem: Find the bottleneck shortest $st$-path
+note: $O(m)$ time possible if there an ordered list of edges by weight.
+---
+problem: stable matching in a graph
+note: linear time algorithm always exists, crazy
+---
+problem: You are given $k$ stacks $S_1,\ldots,S_k$. You know everything about the stacks(you can inspect all elements in the stacks without poping them). Assume the stacks have a total of $n$ elements. You want to pop all the elements from the stacks in such a way such that $S_1.peek()\leq S_2.peek()\leq \ldots \leq S_k.peek()$ is always true. Note that we define $S_i.peek()=\infty$ if $S_i$ is empty. Come up with an algorithm to decide if this is possible.
+note: this is weird, why did I think of this problem?
+---
+problem: Given $a_1\leq \ldots \leq a_k$, partition a set of $n$ numbers into $k$ sets, such that each set contains numbers of the rank greater or equal to $a_i$ and smaller than $a_{i+1}$.
+---
+problem: Find the maximum $k$ cover. namely disjoint $k$ intervals that sums to the max value. 
+note: http://arxiv.org/abs/1410.2847 (with $O(n)$ time preprocessing, you can do it in $O(k)$ time each!)
+---
+problem: Isotonic regression, bounded regression
+note: see [this](https://chaoxuprime.com/posts/2015-01-27-bounded-regression-on-data-streams.html). Problem can also be defined on a DAG.
+---
+problem:  Given integers $a_1,\ldots,a_n$, each one is either a power of 2 or a negative of a power of 2. Associated with each integer, a cost $c_1,\ldots,c_n$. Finally a integer $m$. Output $x_1,\ldots,x_n$, such that $x_i\in \{0,1\}$ such that $\sum_{i=1}^n a_i x_i = m$ and $\sum_{i=1}^n c_ix_i$ is minimized.
+note: very artificial problem.
+---
+problem: Discrete tomography in 2D
+---
+problem: Given $a_1,\ldots,a_{2n}$, pair the numbers to maximize the sum of min of pairs.
+---
+problem: Given a simple graph where there is an adjacency list on each vertex, find a matching that saturates $S$.
+note: I recall there is a running time only depend on $|S|$? oh right it is possible. 
+tag: matching
+---
+problem: two or zero matching
+note: http://cstheory.stackexchange.com/questions/33857/is-two-or-zero-matching-in-a-bipartite-graph-np-complete
+tag: matching
+---
+problem: minimum cost path with gas stations
+note: need to find time to formulate the actual problem
+---
+problem: Given a bipartite graph $G=(A\cup B, E)$ with weight function $w$ on the vertices, in strongly polynomial time, one can find $S$ a non-empty subset of $B$ such that $w(N(S))/w(S)$ is minimized.
+---
+problem: Find minimum number of edges such that the removal increase the weight of the minimum spanning tree
+note: generalize to base of matroids
+tag: combinatorial optimization
+---
+problem: Given a directed graph, find the minimum number of edges to remove so there is no arborescence.
+note: also works for union of $k$-arborescence.
+tag: combinatorial optimization
+---
+problem: Given a directed graph, find the minimum number of edges to remove so there is no optimal $k$-arborescence for fixed $k$.
+note: https://dl.acm.org/citation.cfm?id=2884550
+tag: combinatorial optimization
+---
+problem: compute minimum double cut. Namely find nonempty disjoint $Z_1$, $Z_2$ such that number of in-edges of $Z_1$ and $Z_2$ is minimized. 
+tag: combinatorial optimization
+---
+problem: find the minimum cut under the constraint that each side has at least $k$ vertices for constant $k$.
+---
+problem: find the minimum cut under the constraint that each side is connected and has at least $k$ vertices for constant $k$.
+note: special case of $2$ is interesting, see https://chaoxuprime.com/posts/2016-04-24-restricted-min-cut.html
+---
+problem: $f$ is a symmetric function on $V$, find the value of min-$st$ separating set for all $s,t$, assume one have access to min-$ST$ separating set for any $S,T\subset V$.
+note: $n-1$ oracle call is sufficient. 
+---
+problem: maximum perimeter triangle, maximum dispersion set of size $k$.
+note: anything better than $O(n^k)$ is good.
+---
+problem: Let $X_A,X_B,Y_A,Y_B$ be intervals, if $A=X_A \times Y_A$ and $B=X_B\times Y_B$. Define $A\oplus_0 B = (X_A\cup X_B) \times (Y_A\cap Y_B)$ and $A\oplus_1 B = (X_A\cap X_B) \times (Y_A\cup Y_B)$. Find an algorithm such that if we are given a set of axis-aligned rectangles $S$ and a axis-aligned rectangle $R$. Device an algorithm that either find an expression using $\oplus_0$, $\oplus_1$ and rectangles in $S$, such that it covers the rectangle $R$, or return it is impossible.
+note: where did I get this problem?
