@@ -5,6 +5,8 @@ import functools
 from jinja2 import Template, Environment, BaseLoader, FileSystemLoader
 import os
 import cgi
+import sys
+
 
 mk = mistune.Markdown(parse_block_html=True)
 
@@ -146,6 +148,8 @@ problems = list(yaml_loader("problems.yaml"))
 parsed, glob = build_problems(problems)
 
 glob["csstime"] = int(os.path.getmtime("default.css"))
+# production or test
+glob["production"] = (len(sys.argv) > 1)
 template = env.get_template('problems.html')
 with open('_site/index.html', 'w') as file:
     file.write(remove_empty_lines(template.render(problems=parsed, env=glob)).encode( "utf-8" ))

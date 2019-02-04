@@ -6,7 +6,7 @@ git stash
 git checkout develop
 
 # Build files
-python build.py
+python build.py production
 cp default.css _site/default.css
 cp README.md _site/README.md
 cp .gitignore _site/.gitignore
