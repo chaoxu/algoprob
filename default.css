@@ -231,6 +231,10 @@ div .problem {
   content: ", ";
 }
 
+.formulation{
+    background-color: #EEE;
+    padding: 0.5em;
+}
 div .title {
     font-size: 110%;
     font-weight: bold;
@@ -312,20 +316,20 @@ ul.inline {
   content: ", ";
 }
 /* definition list */
-.parameters dt {
+.dlist dt {
     float: left;
     width: 2em;
     text-align: right;
     clear: left;
 }
-.parameters dt::after{
+.dlist dt::after{
     content: ":\00a0";
 }
-.parameters dd {
+.dlist dd {
     float: left;
     margin: 0;
 }
-.parameters dl:after {content:"";display:table;clear:both;}
+.dlist dl:after {content:"";display:table;clear:both;}
 /* Global content control
 ----------------------------------------------- */
 img {

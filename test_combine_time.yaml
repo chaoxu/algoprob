@@ -1,0 +1,36 @@
+# eventually, one want to use this to combine running times.
+# there seems to be only a few functions
+# *, log(base,x), +, pow(base,x), /
+# we also allow constants.  
+
+
+id: shortest-path
+parameters:
+  - name: n
+    description: number of vertices
+  - name: m
+    description: number of edges
+algorithms:
+  - description: Dijkstra with fibonnaci heap
+    complexity: $O(m+n\log n)$ time
+    _complexity:
+      - time: T(n,m) = add(m,product(n,log(n)))   #ordering of running time?
+---
+id: min-cost-flow
+title: min-cost flow
+problem: Given a graph with edge capacity and cost, find the min-cost flow.
+parameters:
+  - name: n
+    description: number of vertices
+  - name: m
+    description: number of edges
+  - name: m'
+    description: number of edges with finite capacity upper bound
+algorithms:
+  - description: Orlin's 1991
+    problem: [shortest-path]
+    complexity: $O((n+m') log n S(m,n))$ time. Here $S(m,n)$ is running time for shortest path algorithm. 
+    _complexity:
+      - subroutine:
+        - problem: shortest-path
+      - time: product(add(n,m'), log(n), [shortest-path](m,n))

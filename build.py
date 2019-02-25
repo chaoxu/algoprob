@@ -6,7 +6,10 @@ from jinja2 import Template, Environment, BaseLoader, FileSystemLoader
 import os
 import cgi
 import sys
-
+import networkx as nx
+import string
+from random import *
+from operator import itemgetter
 
 mk = mistune.Markdown(parse_block_html=True)
 
@@ -43,8 +46,14 @@ def math(string):
     # find $ $ pairs
     return re.sub(r'\$(.*?)\$', my_replace, string)
 
+def tohtml(string):
+    z = compose(mki,math)
+    return z(string)
+
+def randomId():
+    return "".join(choice(string.ascii_letters) for x in range(8))
+
 def build_problems(problems):
-    parse = compose(mki,math)
     # problem statement
     # minimum required is problem, which defines the formal problem
     # everything else is optional
@@ -55,79 +64,159 @@ def build_problems(problems):
     agg = []
     id_to_title = {}
     parents = {}
+    p = {}
+
+    # create the graph of problems
+    D = nx.DiGraph()
     for problem in problems:
-        set_default(problem,"title","")
-        set_default(problem,"tag",[])
-        set_default(problem,"note","")
-        # set_default(problem,"problem","") there is always a default
-        set_default(problem,"exercises",[])
-        #set_default(problem,"opt",[])
+        set_default(problem,"inherit",[])
+        set_default(problem,"parameters",[])
         set_default(problem,"algorithms",[])
-        set_default(problem,"parameters",{})
-        set_default(problem,"children",{})
-        set_default(problem,"id","")
+        set_default(problem,"id",randomId())
+        set_default(problem,"name","")
 
-        #if is_str(problem["opt"]): 
-        #    problem["opt"] = [problem["opt"]]
-        if is_str(problem["tag"]):
-            problem["tag"] = [x.strip() for x in problem["tag"].split(',')]
+        p[problem["id"]] = problem
+        for x in problem["inherit"]:
+            D.add_edge(x,problem["id"])
+    if not nx.is_directed_acyclic_graph(D):
+        print "Not DAG"
+    ordered = list(nx.topological_sort(D))
 
-        problem["title"] = parse(problem["title"])
-        problem["tag"] = map(parse,problem["tag"])
-        problem["note"] = parse(problem["note"])
-        problem["problem"] = parse(problem["problem"])
-        problem["exercises"] = map(parse,problem["exercises"])
+    index = {}
+    for i in range(len(ordered)):
+        index[ordered[i]] = i
 
-        parameters = []
-        for x in problem["parameters"].keys():
-            parameter = {}
-            parameter["name"] = build_math(x)
-            if problem["parameters"][x] is None:
-                parameter["description"] = ""
-            else:
-                parameter["description"] = parse(problem["parameters"][x]) 
-            parameters.append(parameter)
-
-        problem["parameters"] = parameters
-
-        #problem["opt"] = map(parse,problem["opt"])
-
-        children = []
-        for (key,value) in problem["children"].items():
-            z={}
-            z["id"] = key
-            z["description"] = parse(value)
-            if key not in parents.keys():
-                parents[key] = set()
-            parents[key].add(problem["id"]) 
-            children.append(z)
-
-        problem["children"] = children
-
-        for algorithm in problem["algorithms"]:
-            algorithm["description"] = parse(algorithm["description"])
-            # set_default(algorithm,"complexity","")
-            algorithm["complexity"] = parse(algorithm["complexity"])
-            set_default(algorithm, "problem", [])
-            if is_str(algorithm["problem"]):
-                algorithm["problem"] = [x.strip() for x in algorithm["problem"].split(',')]
-        agg.append(problem)
-        id_to_title[problem["id"]] = problem["title"]
-
-    # update children
+    # we only inherit algorithm and parameters for now
     for problem in problems:
-        if problem["id"] in parents.keys():
-            problem["parents"] = list(parents[problem["id"]])
+        v = problem["id"]
+        if v in index:
+            i = index[v]
         else:
-            problem["parents"] = []
+            i = -1
+        # p[v]["algorithms"] = [  (x,i)  for x in p[v]["algorithms"]]
+        # for now we don't track how algorithm is inherited
+        p[v]["parameters"] = [  (x,i)  for x in p[v]["parameters"]]
 
-    # partition, elements with title and elements without
-    # element with title are likely not drafts
-    z1 = [x for x in agg if x["title"]]
-    z2 = [x for x in agg if not x["title"]]
-    env={}
-    env["id_to_title"] = id_to_title
-    return z1+z2, env
+    # print p
+    for v in ordered:
+        for x in D.predecessors(v):
+            # Inherit!
+            parent = p[x]
+            self   = p[v]
+            self["parameters"] = mergeParameters(self["parameters"],parent["parameters"])
+            self["algorithms"].extend(parent["algorithms"])
+            self["algorithms"] = list(set(self["algorithms"]))
+            if "description" not in self:
+                if "description" in parent:
+                    self["description"] = parent["description"]
+    for v in ordered:
+        zz = []
+        for (t,i) in p[v]["parameters"]:
+            if t["description"] is not None:
+                zz.append((t,i))
+        p[v]["parameters"] = zz
+    return list(p.values())
+    # inherit through topological sort order
+    # create inherited problems    
+
+def mergeParameters(A,B):
+    # Larger number item does the replacement
+    C = sorted(A+B, key=itemgetter(1))
+    uni = {}
+
+    for (x,i) in C:
+        key = ""
+        if "id" in x:
+            key = x["id"]
+        elif "type" in x and "name" in x:
+            key = x["type"] + x["name"]
+        uni[key] = (x,i)
+    return list(uni.values())
+
+
+def build_subroutine(subroutine):
+    return subroutine
+
+def build_presentation_complexity(complexity):
+    presentation_complexity = {}
+    presentation_complexity["name"] = complexity["name"]
+    presentation_complexity["description"] = tohtml(complexity["description"])
+    return presentation_complexity
+
+def build_algorithms(algorithm):
+    a = {}
+    for x in algorithms:
+        a[x["id"]] = x
+    return a
+
+def build_presentation_algorithm(algo):
+    presentation_algo = {}
+    presentation_algo["description"] = tohtml(algo["description"])
+    presentaiton_subroutines = []
+    if "subroutine" in algo:
+        for x in algo["subroutine"]:
+            y = build_subroutine(x)
+            presentaiton_subroutines.append(y)
+    presentation_algo["subroutine"] = presentaiton_subroutines
+
+    presentation_algo["complexity"] = []
+    for x in algo["complexity"]:
+        presentation_algo["complexity"].append(build_presentation_complexity(x))
+
+    return presentation_algo
+
+def get_default(a,b,default):
+    if b in a:
+        return a[b]
+    return default
+
+def build_presentation(problems, algorithms):
+    p = {}
+    D = nx.DiGraph()
+    presentation = {}
+    # print problems
+    for problem in problems:
+        p[problem["id"]] = problem
+        D.add_node(problem["id"])
+        for x in problem["inherit"]:
+            D.add_edge(x,problem["id"])
+
+    glob = {}
+    glob["id_to_title"] = {}
+
+
+    for problem in problems:
+        i = problem["id"]
+        presentation[i] = {}
+        presentation[i]["children"] = list(D.successors(i))
+        presentation[i]["parents"]  = list(D.predecessors(i))
+        presentation[i]["title"]    = tohtml(problem["name"])
+        presentation[i]["description"] = tohtml(get_default(problem,"description",""))
+        glob["id_to_title"][i] = presentation[i]["title"]
+        presentation[i]["note"] = tohtml(get_default(problem,"note",""))
+        # group parameters
+        parameters= {}
+        # print problem["parameters"]
+        for (x,j) in problem["parameters"]:
+            if x["type"] not in parameters:
+                parameters[x["type"]] = []
+            y = {}
+            y["name"] = tohtml("$"+x["name"]+"$")
+            y["description"] = tohtml(x["description"])
+            parameters[x["type"]].append(y)
+            # TODO, if we want to present inherit property, need to update with (y,j)
+        presentation[i]["parameters"] = parameters
+
+        presentation[i]["algorithms"] = []
+        for algo in problem["algorithms"]:
+            presentation[i]["algorithms"].append(build_presentation_algorithm(algorithms[algo]))
+        
+    return presentation, glob
+
+
+    # problem_presentation
+
+    # link all problems, add parents and children
 
 def build_glossary(glossary):
     #print list(glossary)
@@ -145,7 +234,10 @@ def build_glossary(glossary):
 env = Environment(loader=FileSystemLoader(""))
 # build problems
 problems = list(yaml_loader("problems.yaml"))
-parsed, glob = build_problems(problems)
+algorithms = list(yaml_loader("algorithms.yaml"))
+
+parsed, glob = build_presentation(build_problems(problems),build_algorithms(algorithms))
+
 
 glob["csstime"] = int(os.path.getmtime("default.css"))
 # production or test

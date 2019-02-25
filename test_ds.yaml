@@ -1,0 +1,43 @@
+# Here are are interested in creating a data structure
+# yay
+
+---
+id: collection-ordered-elements
+title: collection of ordered elements
+problem:
+  description: maintain a collection of elements, the elements has an order and can be compared.
+  queries:
+    - name: initialize
+      description: initialize(X)
+      input: 
+        - collection of elements in X
+      output:
+        - initialized data structure that contains all elements in X
+      parameters:
+        - name: n
+          description: the size of $S$
+    - name: insert
+      description: insert(S,x)
+      input: element x
+    - name: delete
+      description: delete(S,x)
+      input: element x
+    - name: search
+      description: search(S,x)
+      input: element x
+      output: 
+        - description: the largest element no larger than x
+parameters:
+  - name: n
+    description: size of $S$
+data-structures:
+  - description: balanced binary search tree
+    complexity:
+      - name: insert
+        complexity: $O(\log n)$
+      - name: delete
+        complexity: $O(\log n)$
+      - name: search
+        complexity: $O(\log n)$
+      - name: initialize
+        complexity: $O(n\log n)$, $O(n)$ if the initialized elements are sorted.

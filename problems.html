@@ -7,8 +7,8 @@ Algorithmic Problems
 {% block content %}
 
 <div class="problems">
-{% for problem in problems %}
-  <div class="problem" id="problem-{{problem.id}}">
+{% for key,problem in problems.items() %}
+  <div class="problem" id="problem-{{key}}">
 
     {% if problem.title %}
     <div class="title">
@@ -16,19 +16,46 @@ Algorithmic Problems
     </div>
     {% endif %}
 
-    <div class="description">
-      {{problem.problem}}
+    <div class="formulation">
+      <div class="description">
+        {{problem.description}}
+      </div>
+
+      {% if problem.parameters.input %}
+        <div class="input dlist">
+          Input:
+          <ul>
+          {% for parameter in problem.parameters.input %}
+              <!--<dt>{{parameter.name}}</dt>-->
+              <li>{{parameter.description}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if problem.parameters.output %}
+        <div class="output dlist">
+          Output:
+          <ul>
+          {% for parameter in problem.parameters.output %}
+              <!-- <dt>{{parameter.name}}</dt> -->
+              <li>{{parameter.description}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
     </div>
 
-    {% if problem.parameters %}
-    <div class="parameters">
-      <dl>
-      {% for parameter in problem.parameters %}
-        <dt>{{parameter.name}}</dt>
-        <dd>{{parameter.description}}</dd>
-      {% endfor %}
-      </dl>
-    </div>
+    {% if problem.parameters.complexity %}
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+        {% for parameter in problem.parameters.complexity %}
+            <dt>{{parameter.name}}</dt>
+            <dd>{{parameter.description}}</dd>
+          {% endfor %}
+        </dl>
+      </div>
     {% endif %}
 
     {% if problem.algorithms %}
@@ -45,7 +72,13 @@ Algorithmic Problems
               </ul>
             </div>
           {% endif %}
-          <div class="algo-complexity">{{algorithm.complexity}}</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+              {% for complexity in algorithm.complexity %}
+                <li>{{complexity.name}}: {{complexity.description}}</li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
       {% endfor %}
     </div>
@@ -55,8 +88,10 @@ Algorithmic Problems
     <div class="children">
       <ul>
         {% for child in problem.children  %}
-          <li class="child-problem"><a href="#problem-{{child.id}}">{{env.id_to_title[child.id]}}</a> : 
-            <span class="child-description">{{child.description}}</span></li>
+          <li class="child-problem"><a href="#problem-{{child}}">{{env.id_to_title[child]}}</a> 
+            <!--: 
+            <span class="child-description">{{child.description}}</span>-->
+          </li>
         {% endfor %}
       </ul>
     </div>

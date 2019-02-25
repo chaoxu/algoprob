@@ -1,0 +1,72 @@
+id: min-cost-flow-orlin-91
+description: Orlin's 1991 paper
+subroutine: 
+  - problem: shortest-path
+complexity: 
+  - name: time
+    description: $O((n+m') \log n S(m,n))$ time. Here $S(m,n)$ is running time for shortest path algorithm.
+---
+id: min-cost-flow-integer-capacity-edmonds-karp
+description: Edmonds and Karp
+subroutine: 
+  - problem: shortest-path
+complexity:
+  - name: time
+    description: $O((n+m') \log U (m+n \log n))$
+---
+id: min-cost-flow-integer-cost-goldber-tarjan-87
+description: Goldberg and Tarjan 1987
+complexity:
+  - name: time
+    description: $O(nm \log (n^2/m) \log (nC))$
+---
+id: min-cost-flow-all-integers-agot-98
+description: Ahuja, Goldberg, Orlin and Tarjan 1998
+complexity:
+  - name: time
+    description: $O(nm \log (n^2/m) \log (nC))$
+---
+id: dijkstra
+description: The dijkstra algorithm using fibonacci heap.
+complexity:
+  - name: time
+    description: $O(m+n\log n)$
+---
+id: weighted-h-index-selection
+description : Select weighted median, remove half of the elements, and recur.
+subroutine: weighted-selection
+complexity: 
+  - name: time
+    description: $O(n)$ time
+---
+id: weighted-h-index-selection
+description : Select weighted median, remove half of the elements, and recur.
+subroutine: 
+  - problem: weighted-selection
+complexity: 
+  - name: time
+    description: $O(n)$
+---
+id: h-index-sort
+description : Replace each $a_i$ with $\min(a_i,n)$, and sort the new list. 
+subroutine:
+  - problem: integer-sorting
+complexity: 
+  - name: time
+    description: $O(n)$
+---
+id: meet-two-partitions-1
+description: index the sets in $\mathcal{A}$ and $\mathcal{B}$. For each element $i$, find $a_i$ and $b_i$ where $a_i$ is index of a set in $\mathcal{A}$ that contains $i$, similarly for $b_i$. Group by $(a_i,b_i)$ using radix sort.
+subroutine:
+  - problem: integer-sorting
+complexity: 
+  - name: time
+    description: $O(n)$
+---
+id: meet-two-partitions-2
+description: For each set in $\mathcal{A}$, interset it with all sets in $\mathcal{B}$ through a partition refinement data structure.
+subroutine:
+  - problem: partition-refinement
+complexity: 
+  - name: time
+    description: $O(n)$
