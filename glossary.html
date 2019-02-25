@@ -42,7 +42,7 @@
       $(".".concat(c)).toggleClass("hidden");
     }
     document.addEventListener("DOMContentLoaded", function() {
-      var toggles = ["exercises", "algorithms", "title", "note", "children", "parents", "tags", "parameters"];
+      var toggles = ["exercises", "algorithms", "title", "note", "children", "parents", "tags", "problem-complexity"];
       for (i = 0; i < toggles.length; i++) {
         $( "#toggle-"+toggles[i]).on( "click", function() {
           var p = $( this ).attr("id").substring(7);
@@ -51,30 +51,32 @@
       }
     });
   </script>
-  <!-- Fathom - simple website analytics - https://github.com/usefathom/fathom -->
-  <script>
-  (function(f, a, t, h, o, m){
-    a[h]=a[h]||function(){
-      (a[h].q=a[h].q||[]).push(arguments)
-    };
-    o=f.createElement('script'),
-    m=f.getElementsByTagName('script')[0];
-    o.async=1; o.src=t; o.id='fathom-script';
-    m.parentNode.insertBefore(o,m)
-  })(document, window, '//track.chaoxuprime.com/tracker.js', 'fathom');
-  fathom('set', 'siteId', 'TYDUI');
-  fathom('trackPageview');
-  </script>
-  <!-- / Fathom -->
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4171915-4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-4171915-4');
-  </script>
-  <link rel="stylesheet" href="default.css?ver=1549302403">
+    <!-- Fathom - simple website analytics - https://github.com/usefathom/fathom -->
+    <script>
+    if(window.location.hostname === "algorange.com"){
+      (function(f, a, t, h, o, m){
+        a[h]=a[h]||function(){
+          (a[h].q=a[h].q||[]).push(arguments)
+        };
+        o=f.createElement('script'),
+        m=f.getElementsByTagName('script')[0];
+        o.async=1; o.src=t; o.id='fathom-script';
+        m.parentNode.insertBefore(o,m)
+      })(document, window, '//track.chaoxuprime.com/tracker.js', 'fathom');
+      fathom('set', 'siteId', 'TYDUI');
+      fathom('trackPageview');
+    }
+    </script>
+    <!-- / Fathom -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134134761-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-134134761-1');
+    </script>
+  <link rel="stylesheet" href="default.css?ver=1551086829">
 </head>
 <body>
 <div class="container">
@@ -88,8 +90,8 @@
 <form>
   <input type="checkbox" name="show" value="title"  id="toggle-title" checked>
   <label for="toggle-title">Title</label>
-  <input type="checkbox" name="show" value="parameters"  id="toggle-parameters" checked>
-  <label for="toggle-parameters">Parameters</label>
+  <input type="checkbox" name="show" value="problem-complexity"  id="toggle-problem-complexity" checked>
+  <label for="toggle-problem-complexity">Complexity Measures</label>
   <input type="checkbox" name="show" value="algorithms"  id="toggle-algorithms" checked>
   <label for="toggle-algorithms">Algorithms</label>
   <input class="inline" type="checkbox" name="show" value="children" id="toggle-children" checked>

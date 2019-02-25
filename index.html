@@ -44,7 +44,7 @@ Algorithmic Problems
       $(".".concat(c)).toggleClass("hidden");
     }
     document.addEventListener("DOMContentLoaded", function() {
-      var toggles = ["exercises", "algorithms", "title", "note", "children", "parents", "tags", "parameters"];
+      var toggles = ["exercises", "algorithms", "title", "note", "children", "parents", "tags", "problem-complexity"];
       for (i = 0; i < toggles.length; i++) {
         $( "#toggle-"+toggles[i]).on( "click", function() {
           var p = $( this ).attr("id").substring(7);
@@ -53,30 +53,32 @@ Algorithmic Problems
       }
     });
   </script>
-  <!-- Fathom - simple website analytics - https://github.com/usefathom/fathom -->
-  <script>
-  (function(f, a, t, h, o, m){
-    a[h]=a[h]||function(){
-      (a[h].q=a[h].q||[]).push(arguments)
-    };
-    o=f.createElement('script'),
-    m=f.getElementsByTagName('script')[0];
-    o.async=1; o.src=t; o.id='fathom-script';
-    m.parentNode.insertBefore(o,m)
-  })(document, window, '//track.chaoxuprime.com/tracker.js', 'fathom');
-  fathom('set', 'siteId', 'TYDUI');
-  fathom('trackPageview');
-  </script>
-  <!-- / Fathom -->
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4171915-4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-4171915-4');
-  </script>
-  <link rel="stylesheet" href="default.css?ver=1549302403">
+    <!-- Fathom - simple website analytics - https://github.com/usefathom/fathom -->
+    <script>
+    if(window.location.hostname === "algorange.com"){
+      (function(f, a, t, h, o, m){
+        a[h]=a[h]||function(){
+          (a[h].q=a[h].q||[]).push(arguments)
+        };
+        o=f.createElement('script'),
+        m=f.getElementsByTagName('script')[0];
+        o.async=1; o.src=t; o.id='fathom-script';
+        m.parentNode.insertBefore(o,m)
+      })(document, window, '//track.chaoxuprime.com/tracker.js', 'fathom');
+      fathom('set', 'siteId', 'TYDUI');
+      fathom('trackPageview');
+    }
+    </script>
+    <!-- / Fathom -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134134761-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-134134761-1');
+    </script>
+  <link rel="stylesheet" href="default.css?ver=1551086829">
 </head>
 <body>
 <div class="container">
@@ -90,8 +92,8 @@ Algorithmic Problems
 <form>
   <input type="checkbox" name="show" value="title"  id="toggle-title" checked>
   <label for="toggle-title">Title</label>
-  <input type="checkbox" name="show" value="parameters"  id="toggle-parameters" checked>
-  <label for="toggle-parameters">Parameters</label>
+  <input type="checkbox" name="show" value="problem-complexity"  id="toggle-problem-complexity" checked>
+  <label for="toggle-problem-complexity">Complexity Measures</label>
   <input type="checkbox" name="show" value="algorithms"  id="toggle-algorithms" checked>
   <label for="toggle-algorithms">Algorithms</label>
   <input class="inline" type="checkbox" name="show" value="children" id="toggle-children" checked>
@@ -107,28 +109,289 @@ Algorithmic Problems
 </form>
 <main>
 <div class="problems">
+  <div class="problem" id="problem-aAdgVRcD">
+    <div class="formulation">
+      <div class="description">
+        minimum cost path with gas stations
+      </div>
+    </div>
+    <div class="note">
+      need to find time to formulate the actual problem
+    </div>
+  </div>
+  <div class="problem" id="problem-min-max-weight-component-tree">
+    <div class="title">
+      Minimize maximum weight component
+    </div>
+    <div class="formulation">
+      <div class="description">
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">G</span></dt>-->
+              <li><span class="math">G=(V,E)</span> a tree</li>
+              <!--<dt><span class="math">w</span></dt>-->
+              <li>a positive vertex weight function <span class="math">w:V\to \R^+</span></li>
+              <!--<dt><span class="math">k</span></dt>-->
+              <li><span class="math">k\in \N</span></li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">out</span></dt> -->
+              <li>The set of <span class="math">k</span> edges to remove, such that the maximum of the sum of the weights of each component is minimized.</li>
+          </ul>
+        </div>
+    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">n</span></dt>
+            <dd>the number of vertices in the input</dd>
+            <dt><span class="math">k</span></dt>
+            <dd><span class="math">k</span></dd>
+        </dl>
+      </div>
+    <div class="children">
+      <ul>
+          <li class="child-problem"><a href="#problem-min-max-sum-k-partition-array">Partition minimize maximum sum of subarrays</a> 
+            <!--: 
+            <span class="child-description"></span>-->
+          </li>
+      </ul>
+    </div>
+  </div>
+  <div class="problem" id="problem-shortest-path">
+    <div class="title">
+      Shortest path
+    </div>
+    <div class="formulation">
+      <div class="description">
+        The shortest path tree problem on directed graph.
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">G</span></dt>-->
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
+              <!--<dt><span class="math">w</span></dt>-->
+              <li>A function <span class="math">w:E\to \R^+</span>.</li>
+              <!--<dt><span class="math">s</span></dt>-->
+              <li>a vertex <span class="math">s\in V</span>, the root vertex of the shortest path tree.</li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">T</span></dt> -->
+              <li>The shortest path tree rooted at vertex <span class="math">s</span></li>
+          </ul>
+        </div>
+    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">n</span></dt>
+            <dd>the number of vertices of <span class="math">G</span>.</dd>
+            <dt><span class="math">m</span></dt>
+            <dd>the number of edges of <span class="math">G</span>.</dd>
+        </dl>
+      </div>
+    <div class="algorithms">
+        <div class="algorithm">
+          <div class="algo-description">The dijkstra algorithm using fibonacci heap.</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(m+n\log n)</span></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="problem" id="problem-XSHqEfmJ">
+    <div class="title">
+      Meet of two partitions
+    </div>
+    <div class="formulation">
+      <div class="description">
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">partitions</span></dt>-->
+              <li><span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span> partitions of <span class="math">[n]</span>.</li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">meet</span></dt> -->
+              <li>The meet of <span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span>, <span class="math">\mathcal{C}=\set{A\cap B \mid A\in \mathcal{A}, B\in \mathcal{B}}</span>.</li>
+          </ul>
+        </div>
+    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">n</span></dt>
+            <dd>The size of the universe.</dd>
+        </dl>
+      </div>
+    <div class="algorithms">
+        <div class="algorithm">
+          <div class="algo-description">index the sets in <span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span>. For each element <span class="math">i</span>, find <span class="math">a_i</span> and <span class="math">b_i</span> where <span class="math">a_i</span> is index of a set in <span class="math">\mathcal{A}</span> that contains <span class="math">i</span>, similarly for <span class="math">b_i</span>. Group by <span class="math">(a_i,b_i)</span> using radix sort.</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(n)</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="algorithm">
+          <div class="algo-description">For each set in <span class="math">\mathcal{A}</span>, interset it with all sets in <span class="math">\mathcal{B}</span> through a partition refinement data structure.</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(n)</span></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="problem" id="problem-weighted-h-index">
+    <div class="title">
+      The weighted <span class="math">h</span>-index problem
+    </div>
+    <div class="formulation">
+      <div class="description">
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">a</span></dt>-->
+              <li>Positive reals <span class="math">a_1,\ldots,a_n</span></li>
+              <!--<dt><span class="math">w</span></dt>-->
+              <li>Positive reals weights <span class="math">w_1,\ldots,w_n</span></li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">h</span></dt> -->
+              <li>the largest value <span class="math">h</span> such that <span class="math">\sum_{i:a_i\geq h} w_i \geq h</span>.</li>
+          </ul>
+        </div>
+    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">n</span></dt>
+            <dd>length of the <span class="math">a</span></dd>
+        </dl>
+      </div>
+    <div class="algorithms">
+        <div class="algorithm">
+          <div class="algo-description">Select weighted median, remove half of the elements, and recur.</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(n)</span></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <div class="children">
+      <ul>
+          <li class="child-problem"><a href="#problem-h-index">The <span class="math">h</span>-index problem</a> 
+            <!--: 
+            <span class="child-description"></span>-->
+          </li>
+      </ul>
+    </div>
+  </div>
+  <div class="problem" id="problem-bottleneck-k-link-path">
+    <div class="title">
+      Bottleneck <span class="math">k</span>-link path
+    </div>
+    <div class="formulation">
+      <div class="description">
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">G</span></dt>-->
+              <li><span class="math">G=(V,E)</span> a complete DAG with vertex ordering <span class="math">v_1,\ldots,v_n</span>.</li>
+              <!--<dt><span class="math">w</span></dt>-->
+              <li>An ordered weight function <span class="math">w:E\to \R</span></li>
+              <!--<dt><span class="math">k</span></dt>-->
+              <li><span class="math">k</span></li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">out</span></dt> -->
+              <li>A bottleneck shortest path consists of exactly <span class="math">k</span> edges in <span class="math">G</span> from <span class="math">v_1</span> to <span class="math">v_n</span> with weights <span class="math">w</span>.</li>
+          </ul>
+        </div>
+    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">n</span></dt>
+            <dd>Number of vertices in <span class="math">G</span></dd>
+            <dt><span class="math">k</span></dt>
+            <dd><span class="math">k\in \N</span></dd>
+        </dl>
+      </div>
+    <div class="note">
+      See [ordered weight of complete DAG] and <a href="https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html">Bottleneck <span class="math">k</span>-link path</a>.
+    </div>
+  </div>
   <div class="problem" id="problem-h-index">
     <div class="title">
       The <span class="math">h</span>-index problem
     </div>
-    <div class="description">
-      Given positive integers <span class="math">a_1,\ldots, a_n</span>, find the largest <span class="math">h</span> such that <span class="math">|\set{i | a_i \geq h}|\geq h</span>.
+    <div class="formulation">
+      <div class="description">
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">a</span></dt>-->
+              <li>Positive integers <span class="math">a_1,\ldots,a_n</span></li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">h</span></dt> -->
+              <li>the largest value <span class="math">h</span> such that <span class="math">|\set{i | a_i \geq h}|\geq h</span>.</li>
+          </ul>
+        </div>
     </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd></dd>
-      </dl>
-    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">n</span></dt>
+            <dd>length of the <span class="math">a</span></dd>
+        </dl>
+      </div>
     <div class="algorithms">
         <div class="algorithm">
           <div class="algo-description">Replace each <span class="math">a_i</span> with <span class="math">\min(a_i,n)</span>, and sort the new list.</div>
-            <div class="algo-problem">
-              <ul class="inline">
-                <li><a href="#problem-integer-sorting">Integer sorting</a></li>
-              </ul>
-            </div>
-          <div class="algo-complexity"><span class="math">O(n)</span> time</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(n)</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="algorithm">
+          <div class="algo-description">Select weighted median, remove half of the elements, and recur.</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(n)</span></li>
+            </ul>
+          </div>
         </div>
     </div>
     <div class="parents">
@@ -137,1286 +400,349 @@ Algorithmic Problems
       </ul>
     </div>
   </div>
-  <div class="problem" id="problem-weighted-h-index">
+  <div class="problem" id="problem-min-cost-flow-all-integers">
     <div class="title">
-      The weighted <span class="math">h</span>-index problem
+      min-cost flow (integer cost and capacity)
     </div>
-    <div class="description">
-      Given pairs <span class="math">(w_1,a_1),\ldots,(w_n,a_n)</span>, find the largest <span class="math">h</span> such that <span class="math">\sum_{i:a_i\geq h} w_i \geq h</span>.
+    <div class="formulation">
+      <div class="description">
+        Given a graph with edge capacity and cost, find the min-cost flow.
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">v</span></dt>-->
+              <li><span class="math">v\in \N</span> the value of the flow.</li>
+              <!--<dt><span class="math">st</span></dt>-->
+              <li>The source and sink vertices <span class="math">s</span> and <span class="math">t</span>.</li>
+              <!--<dt><span class="math">u</span></dt>-->
+              <li>The capacity function, <span class="math">u:E\to \N</span></li>
+              <!--<dt><span class="math">c</span></dt>-->
+              <li>The cost function <span class="math">c:E\to \N</span></li>
+              <!--<dt><span class="math">G</span></dt>-->
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">f</span></dt> -->
+              <li>A minimum cost <span class="math">st</span>-flow <span class="math">f:E\to \R</span> of value <span class="math">v</span>.</li>
+          </ul>
+        </div>
     </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd></dd>
-      </dl>
-    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">C</span></dt>
+            <dd>upper bound on the absolute value of the cost</dd>
+            <dt><span class="math">n</span></dt>
+            <dd>number of vertices of <span class="math">G</span>.</dd>
+            <dt><span class="math">m</span></dt>
+            <dd>number of edges of <span class="math">G</span>.</dd>
+            <dt><span class="math">U</span></dt>
+            <dd>upper bound on the absolute value of the capacity</dd>
+            <dt><span class="math">m'</span></dt>
+            <dd>number of edges with infinite capacity.</dd>
+        </dl>
+      </div>
     <div class="algorithms">
         <div class="algorithm">
-          <div class="algo-description">Select weighted median, remove half of the elements, and recur.</div>
-            <div class="algo-problem">
-              <ul class="inline">
-                <li><a href="#problem-weighted-selection">Unordered weighted selection</a></li>
-              </ul>
-            </div>
-          <div class="algo-complexity"><span class="math">O(n)</span> time</div>
+          <div class="algo-description">Edmonds and Karp</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O((n+m') \log U (m+n \log n))</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="algorithm">
+          <div class="algo-description">Ahuja, Goldberg, Orlin and Tarjan 1998</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(nm \log (n^2/m) \log (nC))</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="algorithm">
+          <div class="algo-description">Orlin's 1991 paper</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O((n+m') \log n S(m,n))</span> time. Here <span class="math">S(m,n)</span> is running time for shortest path algorithm.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="algorithm">
+          <div class="algo-description">Goldberg and Tarjan 1987</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(nm \log (n^2/m) \log (nC))</span></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <div class="parents">
+      <ul class="inline">
+          <li><a href="#problem-min-cost-flow-integer-cost">min-cost flow (integer cost)</a></li>
+          <li><a href="#problem-min-cost-flow-integer-capacity">min-cost flow (integer capacity)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="problem" id="problem-min-cost-flow-integer-cost">
+    <div class="title">
+      min-cost flow (integer cost)
+    </div>
+    <div class="formulation">
+      <div class="description">
+        Given a graph with edge capacity and cost, find the min-cost flow.
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">v</span></dt>-->
+              <li>The value <span class="math">v\in \R</span> of the flow.</li>
+              <!--<dt><span class="math">st</span></dt>-->
+              <li>The source and sink vertices <span class="math">s</span> and <span class="math">t</span>.</li>
+              <!--<dt><span class="math">u</span></dt>-->
+              <li>The capacity function, <span class="math">u:E\to \R^+\cup \set{\infty}</span></li>
+              <!--<dt><span class="math">c</span></dt>-->
+              <li>The cost function <span class="math">c:E\to \N</span></li>
+              <!--<dt><span class="math">G</span></dt>-->
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">f</span></dt> -->
+              <li>A minimum cost <span class="math">st</span>-flow <span class="math">f:E\to \R</span> of value <span class="math">v</span>.</li>
+          </ul>
+        </div>
+    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">C</span></dt>
+            <dd>upper bound on the absolute value of the cost</dd>
+            <dt><span class="math">n</span></dt>
+            <dd>number of vertices of <span class="math">G</span>.</dd>
+            <dt><span class="math">m</span></dt>
+            <dd>number of edges of <span class="math">G</span>.</dd>
+            <dt><span class="math">m'</span></dt>
+            <dd>number of edges with infinite capacity.</dd>
+        </dl>
+      </div>
+    <div class="algorithms">
+        <div class="algorithm">
+          <div class="algo-description">Orlin's 1991 paper</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O((n+m') \log n S(m,n))</span> time. Here <span class="math">S(m,n)</span> is running time for shortest path algorithm.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="algorithm">
+          <div class="algo-description">Goldberg and Tarjan 1987</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(nm \log (n^2/m) \log (nC))</span></li>
+            </ul>
+          </div>
         </div>
     </div>
     <div class="children">
       <ul>
-          <li class="child-problem"><a href="#problem-h-index">The <span class="math">h</span>-index problem</a> : 
-            <span class="child-description">set all <span class="math">a_i</span> to <span class="math">1</span>.</span></li>
+          <li class="child-problem"><a href="#problem-min-cost-flow-all-integers">min-cost flow (integer cost and capacity)</a> 
+            <!--: 
+            <span class="child-description"></span>-->
+          </li>
       </ul>
     </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Meet of two partitions
-    </div>
-    <div class="description">
-      Let <span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span> to be partitions of <span class="math">[n]</span>. Compute the meet of the two partitions. <span class="math">\mathcal{C}=\set{A\cap B \mid A\in \mathcal{A}, B\in \mathcal{B}}</span>.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd></dd>
-      </dl>
-    </div>
-    <div class="algorithms">
-        <div class="algorithm">
-          <div class="algo-description">index the sets in <span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span>. For each element <span class="math">i</span>, find <span class="math">a_i</span> and <span class="math">b_i</span> where <span class="math">a_i</span> is index of a set in <span class="math">\mathcal{A}</span> that contains <span class="math">i</span>, similarly for <span class="math">b_i</span>. Group by <span class="math">(a_i,b_i)</span> using radix sort.</div>
-            <div class="algo-problem">
-              <ul class="inline">
-                <li><a href="#problem-integer-sorting">Integer sorting</a></li>
-              </ul>
-            </div>
-          <div class="algo-complexity"><span class="math">O(n)</span> time</div>
-        </div>
-        <div class="algorithm">
-          <div class="algo-description">For each set in <span class="math">\mathcal{A}</span>, interset it with all sets in <span class="math">\mathcal{B}</span> through a partition refinement data structure.</div>
-            <div class="algo-problem">
-              <ul class="inline">
-                <li><a href="#problem-partition-refinement">Partition refinement</a></li>
-              </ul>
-            </div>
-          <div class="algo-complexity"><span class="math">O(n)</span> time</div>
-        </div>
-    </div>
-  </div>
-  <div class="problem" id="problem-partition-refinement">
-    <div class="title">
-      Partition refinement
-    </div>
-    <div class="description">
-      Maintain a partition <span class="math">\mathcal{X}</span> of <span class="math">[m]</span>, such that taking a input set <span class="math">S</span>, it creates a new partition <span class="math">\mathcal{X}_S = \set{ X\cap S, X\setminus S |X\in \mathcal{X} }</span>.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd>size of <span class="math">S</span></dd>
-      </dl>
-    </div>
-    <div class="note">
-      We want <span class="math">O(n)</span> time per operation. This is the partition refinement data structure.
+    <div class="parents">
+      <ul class="inline">
+          <li><a href="#problem-min-cost-flow">min-cost flow</a></li>
+      </ul>
     </div>
   </div>
   <div class="problem" id="problem-min-max-sum-k-partition-array">
     <div class="title">
       Partition minimize maximum sum of subarrays
     </div>
-    <div class="description">
-      Given an array of positive numbers, partition into <span class="math">k</span> contiguous subarrays, such that we minimize the maximum of the sum of each subarray.
+    <div class="formulation">
+      <div class="description">
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">w</span></dt>-->
+              <li>a positive vertex weight function <span class="math">w:V\to \R^+</span></li>
+              <!--<dt><span class="math">G</span></dt>-->
+              <li><span class="math">G=(V,E)</span> a path</li>
+              <!--<dt><span class="math">k</span></dt>-->
+              <li><span class="math">k\in \N</span></li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">out</span></dt> -->
+              <li>The set of <span class="math">k</span> edges to remove, such that the maximum of the sum of the weights of each component is minimized.</li>
+          </ul>
+        </div>
     </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">k</span></dt>
-        <dd></dd>
-        <dt><span class="math">n</span></dt>
-        <dd>the size of the array</dd>
-      </dl>
-    </div>
-    <div class="parents">
-      <ul class="inline">
-          <li><a href="#problem-bottleneck-k-link-path">Bottleneck <span class="math">k</span>-link path</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="problem" id="problem-min-max-weight-component-tree">
-    <div class="title">
-      Minimize maximum weight component
-    </div>
-    <div class="description">
-      Given positive weights on the vertices of a tree, <span class="math">k</span> edges so the maximum of the sum of the weights of each component is minimized.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">k</span></dt>
-        <dd></dd>
-        <dt><span class="math">n</span></dt>
-        <dd>the size of the tree</dd>
-      </dl>
-    </div>
-    <div class="children">
-      <ul>
-          <li class="child-problem"><a href="#problem-min-max-weight-component-tree">Minimize maximum weight component</a> : 
-            <span class="child-description">Tree is a path.</span></li>
-      </ul>
-    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">k</span></dt>
+            <dd><span class="math">k</span></dd>
+            <dt><span class="math">n</span></dt>
+            <dd>the number of vertices in the input</dd>
+        </dl>
+      </div>
     <div class="parents">
       <ul class="inline">
           <li><a href="#problem-min-max-weight-component-tree">Minimize maximum weight component</a></li>
       </ul>
     </div>
   </div>
-  <div class="problem" id="problem-bottleneck-k-link-path">
+  <div class="problem" id="problem-min-cost-flow">
     <div class="title">
-      Bottleneck <span class="math">k</span>-link path
+      min-cost flow
     </div>
-    <div class="description">
-      Given a complete DAG with ordered weights, find a path consists of <span class="math">k</span> edges from <span class="math">v_1</span> to <span class="math">v_n</span>, such that the maximum weight of the edges in the path is minimized.
+    <div class="formulation">
+      <div class="description">
+        Given a graph with edge capacity and cost, find the min-cost flow.
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">G</span></dt>-->
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
+              <!--<dt><span class="math">c</span></dt>-->
+              <li>The cost function <span class="math">c:E\to \R</span></li>
+              <!--<dt><span class="math">u</span></dt>-->
+              <li>The capacity function, <span class="math">u:E\to \R^+\cup \set{\infty}</span></li>
+              <!--<dt><span class="math">v</span></dt>-->
+              <li>The value <span class="math">v\in \R</span> of the flow.</li>
+              <!--<dt><span class="math">st</span></dt>-->
+              <li>The source and sink vertices <span class="math">s</span> and <span class="math">t</span>.</li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">f</span></dt> -->
+              <li>A minimum cost <span class="math">st</span>-flow <span class="math">f:E\to \R</span> of value <span class="math">v</span>.</li>
+          </ul>
+        </div>
     </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">k</span></dt>
-        <dd></dd>
-        <dt><span class="math">n</span></dt>
-        <dd></dd>
-      </dl>
-    </div>
-    <div class="children">
-      <ul>
-          <li class="child-problem"><a href="#problem-min-max-sum-k-partition-array">Partition minimize maximum sum of subarrays</a> : 
-            <span class="child-description">when the weight of edge <span class="math">w(i,j)</span> is sum of elements from <span class="math">i</span>th to <span class="math">j-1</span>th.</span></li>
-      </ul>
-    </div>
-    <div class="note">
-      See [ordered weight of complete DAG] and <a href="https://chaoxuprime.com/posts/2019-01-31-bottleneck-k-link-path.html">Bottleneck <span class="math">k</span>-link path</a>.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Subset sum
-    </div>
-    <div class="description">
-      Given <span class="math">u</span> and <span class="math">S\subset [u]</span> of size <span class="math">n</span>, decide if there is a subset of <span class="math">S</span> that sums to <span class="math">u</span>.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">u</span></dt>
-        <dd></dd>
-        <dt><span class="math">r</span></dt>
-        <dd><span class="math">\min(S)</span></dd>
-        <dt><span class="math">M</span></dt>
-        <dd><span class="math">\max(S)</span></dd>
-        <dt><span class="math">\sigma</span></dt>
-        <dd>the sum of all elements in <span class="math">S</span>.</dd>
-        <dt><span class="math">n</span></dt>
-        <dd>the size of <span class="math">S</span>.</dd>
-      </dl>
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show the problem can be solved in <span class="math">O(nu)</span> time through dynamic programming.</div>
-    </div>
-    <div class="tags">
-        <div class="tag">subset sum</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Subset sum with cardinality table up to <span class="math">u</span>
-    </div>
-    <div class="description">
-      Given <span class="math">u</span> and <span class="math">S\subset [u]</span> of size <span class="math">n</span>, compute a set <span class="math">T</span> such that <span class="math">(i,j)</span> in <span class="math">T</span> if and only if there exists a subset of <span class="math">S</span> of size <span class="math">j</span> that sums to <span class="math">i</span>, and <span class="math">i\leq u</span>.
-    </div>
-    <div class="tags">
-        <div class="tag">subset sum</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Subset sum with cardinality table
-    </div>
-    <div class="description">
-      Given <span class="math">S</span> a sequence of <span class="math">n</span> positive integers that sums to <span class="math">\sigma</span>, compute a set <span class="math">T</span> such that <span class="math">(i,j)</span> in <span class="math">T</span> if and only if there exists a subset of <span class="math">S</span> of size <span class="math">j</span> that sums to <span class="math">i</span>.
-    </div>
-    <div class="tags">
-        <div class="tag">subset sum</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Subset sum with cardinality and count
-    </div>
-    <div class="description">
-      Given <span class="math">u</span> and <span class="math">S\subset [u]</span> of size <span class="math">n</span>, compute the function <span class="math">f</span> such that <span class="math">f(i,j)</span> is the number of subsets of <span class="math">S</span> of size <span class="math">j</span> that sums to <span class="math">i</span>.
-    </div>
-    <div class="tags">
-        <div class="tag">subset sum</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Sorting
-    </div>
-    <div class="description">
-      Sort a sequence in a stable way.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Every comparison sorting algorithm can be made stable. Instead of sort <span class="math">s_1,\ldots,s_n</span>, sorting the sequence <span class="math">(s_1,1),\ldots,(s_n,n)</span></div>
-    </div>
-  </div>
-  <div class="problem" id="problem-integer-sorting">
-    <div class="title">
-      Integer sorting
-    </div>
-    <div class="description">
-      Given a list of positive integers, return the sorted list
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">m</span></dt>
-        <dd>an upper bound of the elements in the list</dd>
-        <dt><span class="math">n</span></dt>
-        <dd>the length of the list</dd>
-      </dl>
-    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">n</span></dt>
+            <dd>number of vertices of <span class="math">G</span>.</dd>
+            <dt><span class="math">m</span></dt>
+            <dd>number of edges of <span class="math">G</span>.</dd>
+            <dt><span class="math">m'</span></dt>
+            <dd>number of edges with infinite capacity.</dd>
+        </dl>
+      </div>
     <div class="algorithms">
         <div class="algorithm">
-          <div class="algo-description">counting sort</div>
-          <div class="algo-complexity"><span class="math">O(n+m)</span></div>
-        </div>
-        <div class="algorithm">
-          <div class="algo-description">radix sort with base <span class="math">n</span></div>
-          <div class="algo-complexity"><span class="math">O(n\log_n m)</span></div>
-        </div>
-    </div>
-    <div class="note">
-      Basically, counting sort, radix sort with constant size base and radix sort with size <span class="math">n</span> base. In particular, this shows sorting elements in <span class="math">[n^c]</span> can be done in <span class="math">O(n)</span> time.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show a running time of <span class="math">O(n+m)</span> can be achieved</div>
-        <div class="exercise">Show a running time of <span class="math">O(n\log m)</span> can be achieved</div>
-        <div class="exercise">Show a running time of <span class="math">O(n \log_n m)</span> can be achieved</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-exponential-search">
-    <div class="title">
-      Exponential search
-    </div>
-    <div class="description">
-      Let <span class="math">p</span> be a monotonic predicate over positive integers, find the smallest value that is is true.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd>the smallest value such that <span class="math">p(n)</span> is true.</dd>
-      </dl>
-    </div>
-    <div class="parents">
-      <ul class="inline">
-          <li><a href="#problem-"></a></li>
-      </ul>
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show it can be done in <span class="math">O(\log n)</span> time.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Binary search
-    </div>
-    <div class="description">
-      Let <span class="math">S</span> be a sorted array. Find the smallest index <span class="math">i</span> such that <span class="math">S[i]\geq x</span>.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd>the number of elements in <span class="math">S</span></dd>
-      </dl>
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show it reduces to the previous exponential search.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      multiple exponential search
-    </div>
-    <div class="description">
-      Let <span class="math">S</span> be a sorted array. Let <span class="math">T</span> be a set, for each element <span class="math">x\in T</span> find the smallest <span class="math">i</span> such that <span class="math">S[i]\geq x</span>.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">m</span></dt>
-        <dd>the size of <span class="math">T</span></dd>
-        <dt><span class="math">n</span></dt>
-        <dd>the number of elements in <span class="math">S</span></dd>
-      </dl>
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show it takes <span class="math">O(m\log \frac{n}{m})</span> time.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Selection in sorted arrays
-    </div>
-    <div class="description">
-      Given a collection of sorted arrays, find the rank <span class="math">k</span> element in the union of the arrays.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">m_i</span></dt>
-        <dd>the number of elements in the <span class="math">i</span>th sorted array</dd>
-        <dt><span class="math">k</span></dt>
-        <dd></dd>
-        <dt><span class="math">n</span></dt>
-        <dd>the number of sorted arrays</dd>
-      </dl>
-    </div>
-    <div class="note">
-      Let <span class="math">p=\min(k,n)</span>, and <span class="math">m_i</span> be the length of the <span class="math">i</span>th array. - <span class="math">O(n+p\log k/p)</span> [@FredericksonJ82] - <span class="math">O(k+\sum_{i=1}^n m_i)</span> [@FredericksonJ80].
-    </div>
-    <div class="exercises">
-        <div class="exercise">Find <span class="math">O(\log k)</span> time algorithm when there are <span class="math">2</span> sorted arrays.</div>
-        <div class="exercise">Find a <span class="math">O(n\log k)</span> time algorithm.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Bitonic sequence minimum
-    </div>
-    <div class="description">
-      Given a bitonic sequence, find the minimum element.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">k</span></dt>
-        <dd>the maximum number an element can appear.</dd>
-        <dt><span class="math">n</span></dt>
-        <dd>the length of the array.</dd>
-      </dl>
-    </div>
-    <div class="exercises">
-        <div class="exercise">Find the minimum in <span class="math">O(k+\log n)</span> time.</div>
-        <div class="exercise">Find if an element exists in <span class="math">O(k+\log n)</span> time.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Rotation of a sorted array
-    </div>
-    <div class="description">
-      Let <span class="math">n</span> be a rotation of a sorted array consist of distinct elements, find if an element <span class="math">x</span> is in the array.
-    </div>
-    <div class="note">
-      rotation of a sorted array is bitonic.
-    </div>
-  </div>
-  <div class="problem" id="problem-soft-heap">
-    <div class="title">
-      Soft heap
-    </div>
-    <div class="description">
-      todo, just read <a href="https://en.wikipedia.org/wiki/Soft_heap">soft heap</a> here
-    </div>
-  </div>
-  <div class="problem" id="problem-median">
-    <div class="title">
-      Median of an array
-    </div>
-    <div class="description">
-      Given an array find the median.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd>the length of the array.</dd>
-      </dl>
-    </div>
-    <div class="algorithms">
-        <div class="algorithm">
-          <div class="algo-description">median of median recursion</div>
-          <div class="algo-complexity"><span class="math">O(n)</span> time</div>
-        </div>
-        <div class="algorithm">
-          <div class="algo-description">use a soft-heap find approximate range of the element, and recur in the range.</div>
-            <div class="algo-problem">
-              <ul class="inline">
-                <li><a href="#problem-soft-heap">Soft heap</a></li>
-              </ul>
-            </div>
-          <div class="algo-complexity"><span class="math">O(n)</span> time</div>
-        </div>
-    </div>
-    <div class="parents">
-      <ul class="inline">
-          <li><a href="#problem-selection">Unordered selection</a></li>
-      </ul>
-    </div>
-    <div class="exercises">
-        <div class="exercise">There are <span class="math">k</span> points on a circle, find a line such that there are same number <a href="https://chaoxuprime.com/posts/2014-03-27-bisect-circle-even-point-set.html">bisect a circle with same number of points</a></div>
-        <div class="exercise">There are red points and blue points on the plane, find a line so the number of red points and blue points on each side is the same.</div>
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-selection">
-    <div class="title">
-      Unordered selection
-    </div>
-    <div class="description">
-      Given an array of elements of length <span class="math">n</span>, find rank <span class="math">k</span> element.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd>the length of the array.</dd>
-      </dl>
-    </div>
-    <div class="algorithms">
-        <div class="algorithm">
-          <div class="algo-description">find median, recur on the correct side</div>
-          <div class="algo-complexity"><span class="math">O(n)</span> time</div>
+          <div class="algo-description">Orlin's 1991 paper</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O((n+m') \log n S(m,n))</span> time. Here <span class="math">S(m,n)</span> is running time for shortest path algorithm.</li>
+            </ul>
+          </div>
         </div>
     </div>
     <div class="children">
       <ul>
-          <li class="child-problem"><a href="#problem-median">Median of an array</a> : 
-            <span class="child-description">select the rank <span class="math">\floor{n/2}</span> element</span></li>
+          <li class="child-problem"><a href="#problem-min-cost-flow-integer-cost">min-cost flow (integer cost)</a> 
+            <!--: 
+            <span class="child-description"></span>-->
+          </li>
+          <li class="child-problem"><a href="#problem-min-cost-flow-integer-capacity">min-cost flow (integer capacity)</a> 
+            <!--: 
+            <span class="child-description"></span>-->
+          </li>
+      </ul>
+    </div>
+  </div>
+  <div class="problem" id="problem-min-cost-flow-integer-capacity">
+    <div class="title">
+      min-cost flow (integer capacity)
+    </div>
+    <div class="formulation">
+      <div class="description">
+        Given a graph with edge capacity and cost, find the min-cost flow.
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">v</span></dt>-->
+              <li><span class="math">v\in \N</span> the value of the flow.</li>
+              <!--<dt><span class="math">st</span></dt>-->
+              <li>The source and sink vertices <span class="math">s</span> and <span class="math">t</span>.</li>
+              <!--<dt><span class="math">u</span></dt>-->
+              <li>The capacity function, <span class="math">u:E\to \N</span></li>
+              <!--<dt><span class="math">c</span></dt>-->
+              <li>The cost function <span class="math">c:E\to \R</span></li>
+              <!--<dt><span class="math">G</span></dt>-->
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">f</span></dt> -->
+              <li>A minimum cost <span class="math">st</span>-flow <span class="math">f:E\to \R</span> of value <span class="math">v</span>.</li>
+          </ul>
+        </div>
+    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">n</span></dt>
+            <dd>number of vertices of <span class="math">G</span>.</dd>
+            <dt><span class="math">m</span></dt>
+            <dd>number of edges of <span class="math">G</span>.</dd>
+            <dt><span class="math">U</span></dt>
+            <dd>upper bound on the absolute value of the capacity</dd>
+            <dt><span class="math">m'</span></dt>
+            <dd>number of edges with infinite capacity.</dd>
+        </dl>
+      </div>
+    <div class="algorithms">
+        <div class="algorithm">
+          <div class="algo-description">Edmonds and Karp</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O((n+m') \log U (m+n \log n))</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="algorithm">
+          <div class="algo-description">Orlin's 1991 paper</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O((n+m') \log n S(m,n))</span> time. Here <span class="math">S(m,n)</span> is running time for shortest path algorithm.</li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <div class="children">
+      <ul>
+          <li class="child-problem"><a href="#problem-min-cost-flow-all-integers">min-cost flow (integer cost and capacity)</a> 
+            <!--: 
+            <span class="child-description"></span>-->
+          </li>
       </ul>
     </div>
     <div class="parents">
       <ul class="inline">
-          <li><a href="#problem-weighted-selection">Unordered weighted selection</a></li>
+          <li><a href="#problem-min-cost-flow">min-cost flow</a></li>
       </ul>
-    </div>
-    <div class="note">
-      Linear time through soft-heap or median of median
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-weighted-selection">
-    <div class="title">
-      Unordered weighted selection
-    </div>
-    <div class="description">
-      Given an array where each element has an associated weight. Find weighted rank <span class="math">k</span> element.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd>the length of the array.</dd>
-      </dl>
-    </div>
-    <div class="algorithms">
-        <div class="algorithm">
-          <div class="algo-description">find the median and partition, check if weighted rank in which side, recur in the correct side</div>
-            <div class="algo-problem">
-              <ul class="inline">
-                <li><a href="#problem-median">Median of an array</a></li>
-              </ul>
-            </div>
-          <div class="algo-complexity"><span class="math">O(n)</span> time</div>
-        </div>
-    </div>
-    <div class="children">
-      <ul>
-          <li class="child-problem"><a href="#problem-selection">Unordered selection</a> : 
-            <span class="child-description">the weight of each element is <span class="math">1</span>.</span></li>
-      </ul>
-    </div>
-    <div class="note">
-      The weighted median problem
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-unordered-search">
-    <div class="title">
-      Unordered search
-    </div>
-    <div class="description">
-      Given an array of elements, and an oracle decides if <span class="math">x\leq y</span> or <span class="math">x&gt;y</span>, where <span class="math">y</span> is an unknown value. Find the largest value in the array that is no larger than <span class="math">y</span>.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">n</span></dt>
-        <dd>the length of the array</dd>
-      </dl>
-    </div>
-    <div class="algorithms">
-        <div class="algorithm">
-          <div class="algo-description">find median, partition, decide which side <span class="math">y</span> lies and recur.</div>
-            <div class="algo-problem">
-              <ul class="inline">
-                <li><a href="#problem-median">Median of an array</a></li>
-              </ul>
-            </div>
-          <div class="algo-complexity"><span class="math">O(n)</span> time and <span class="math">O(\log n)</span> oracle calls</div>
-        </div>
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Selection in sorted matrix
-    </div>
-    <div class="description">
-      Given a sorted matrix <span class="math">M</span>, find the rank <span class="math">k</span> element.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">k</span></dt>
-        <dd></dd>
-        <dt><span class="math">m</span></dt>
-        <dd>number of columns of <span class="math">M</span>, assume <span class="math">n\leq m</span>.</dd>
-        <dt><span class="math">n</span></dt>
-        <dd>number of rows of <span class="math">M</span></dd>
-      </dl>
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show we can assume <span class="math">k\geq m</span>.</div>
-        <div class="exercise">Show this can be done in <span class="math">O(k\log k)</span> time.</div>
-        <div class="exercise">Let <span class="math">r(a,A)</span> be the number of elements in matrix <span class="math">A</span> smaller or equal to <span class="math">a</span>. Let <span class="math">A_o</span> be the matrix we obtain from <span class="math">A</span> by removing all even columns. Show if <span class="math">A</span> is a sorted <span class="math">n\times m</span> matrix, then <span class="math">2(r(a,A_o)-n)\leq r(a,A) \leq 2r(a,A_o)</span>.</div>
-        <div class="exercise">Show that there is a <span class="math">O(m)</span> time algorithm to find the <span class="math">k</span>th smallest element. (Recursively solve the problem by solving the problem on <span class="math">A_o</span>. Use <span class="math">A_o</span> to bound the search space in <span class="math">A</span>. )</div>
-        <div class="exercise">Show there is an algorithm with runnning time <span class="math">O(n \log m/n)</span> time.</div>
-        <div class="exercise">Can you modify the algorithm to output a description of all elements smaller than the <span class="math">k</span>th smallest element? (i.e. for each <span class="math">i</span>, find <span class="math">j_i</span>, such that all elements before <span class="math">j_i</span> satisfies the property.) What's the running time? Is <span class="math">O(n)</span> time possible?</div>
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Search in infinite sorted matrix
-    </div>
-    <div class="description">
-      Given a sorted infinite matrix <span class="math">M</span>, and an oracle that decide if an element is at least <span class="math">x</span> or greater than <span class="math">x</span>. Find the smallest value that is at most <span class="math">x</span> in the matrix.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">k</span></dt>
-        <dd><span class="math">|\set{(i,j)| M_{i,j}\leq x}|</span>.</dd>
-        <dt><span class="math">m</span></dt>
-        <dd>the largest value where <span class="math">M_{1,m}\leq x</span>.</dd>
-        <dt><span class="math">t</span></dt>
-        <dd>the largest value where <span class="math">M_{t,t}\leq x</span>.</dd>
-        <dt><span class="math">n</span></dt>
-        <dd>the largest value where <span class="math">M_{n,1}\leq x</span>.</dd>
-      </dl>
-    </div>
-    <div class="algorithms">
-        <div class="algorithm">
-          <div class="algo-description">Find <span class="math">t,n</span> and <span class="math">m</span> using exponential search on diagonal, first row and first column. Apply search on a <span class="math">t\times n</span> and <span class="math">t\times m</span> matrix. This uses algorithm [@Jacob08].</div>
-            <div class="algo-problem">
-              <ul class="inline">
-                <li><a href="#problem-median">Median of an array</a></li>
-                <li><a href="#problem-exponential-search">Exponential search</a></li>
-              </ul>
-            </div>
-          <div class="algo-complexity"><span class="math">O(t\log k/t)</span> time, <span class="math">O(\log k)</span> oracle calls.</div>
-        </div>
-    </div>
-    <div class="children">
-      <ul>
-          <li class="child-problem"><a href="#problem-exponential-search">Exponential search</a> : 
-            <span class="child-description">One has extra knowledge that <span class="math">n=1</span>.</span></li>
-      </ul>
-    </div>
-    <div class="note">
-      what is the generalization to multidimentional arrays?
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show there is an algorithm with running time and matrix access both <span class="math">O(n\log m/n)</span> and <span class="math">O(\log nm)</span> oracle calls.</div>
-        <div class="exercise">Let <span class="math">t</span> be the smallest integer such that <span class="math">M_{t,t}&gt;x</span>. Show there is a <span class="math">O(\log k)</span> oracle call and <span class="math">O(t \log k/t)</span> time algorithm.</div>
-        <div class="exercise">Show there is an <span class="math">O(\sqrt{k})</span> time algorithm with <span class="math">O(\log k)</span> oracle calls.</div>
-    </div>
-    <div class="tags">
-        <div class="tag">selection</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Maximum XOR Subarray
-    </div>
-    <div class="description">
-      Given an array of non-negative integers. Find a subarray such that its XOR value is maximized.
-    </div>
-    <div class="note">
-      This is Lintcode 722, Maximum Subarray VI
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Single source shortest path tree in directed graph
-    </div>
-    <div class="description">
-      Given a directed graph and a vertex <span class="math">s</span>, find the shortest path tree rooted at <span class="math">s</span>.
-    </div>
-    <div class="note">
-      If cost are integers bounded by <span class="math">C</span>, then we have a parameter <span class="math">C</span>. - <span class="math">O(m+n\log n)</span> - <span class="math">O(m)</span> if graph is DAG - <span class="math">O(m\log \log n)</span> [@Thorup00] for integer cost - <span class="math">O(m+n \min(\log^{1/3+\e}n, \log^{1/4+\e} C))</span> [@Raman97] for integer cost - <span class="math">O(nm)</span> Allowing negative weights
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Single source shortest <span class="math">2</span>-disjoint paths to all sinks
-    </div>
-    <div class="description">
-      Given a directed graph and a vertex <span class="math">s</span>, for each <span class="math">v</span>, find the shortest <span class="math">2</span>-disjoint path from <span class="math">s</span> to <span class="math">v</span>.
-    </div>
-    <div class="note">
-      If instead of <span class="math">2</span>, it is <span class="math">3</span>. I have no idea if a similar running time is possible. - <span class="math">O(m+n\log n)</span> Suurballe's algorithm.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Single source shortest path tree in undirected graph
-    </div>
-    <div class="description">
-      Given a undirected graph and a vertex <span class="math">s</span>, find the shortest path tree rooted at <span class="math">s</span>. - same as directed graph - <span class="math">O(m)</span> if positive integer weight [@Thorup99]
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      All-pair shortest path
-    </div>
-    <div class="description">
-      Given a directed graph with positive and negative edges, find the distance function or indicate there is a negative cycle. - <span class="math">O(nm+n^2\log n)</span>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      DAG longest path
-    </div>
-    <div class="description">
-      Given a DAG, find the longest path in the DAG
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Lights out game
-    </div>
-    <div class="description">
-      Solve <span class="math">Ax=b</span> where <span class="math">b\in \F_2</span> and <span class="math">A</span> is the incident matrix of a undirected graph.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show if the graph is a <span class="math">n\times m</span> grid graph, then <span class="math">O(nm^2)</span> running time is possible.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Find induced <span class="math">P_3</span>.
-    </div>
-    <div class="description">
-      Find a induced <span class="math">P_3</span> in a undirected graph.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show a linear time algorithm.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Find a <span class="math">C_4</span>
-    </div>
-    <div class="description">
-      Find a <span class="math">C_4</span> in a undirected graph.
-    </div>
-    <div class="note">
-      For a graph with at least <span class="math">100kn^{1+1/k}</span> edges, then there is a <span class="math">C_{2\ell}</span> for every <span class="math">\ell\in [k,n^{1/k}]</span>.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show <span class="math">O(n^2)</span> time algorithm.</div>
-        <div class="exercise">Show a <span class="math">O(m\sqrt{n})</span> time algorithm.</div>
-        <div class="exercise">Show a <span class="math">O(m^{4/3})</span> time algorithm. (Use the fact about degenercy)</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Find a triangle
-    </div>
-    <div class="description">
-      Find a triangle in a undirected graph.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show a <span class="math">O(n^3)</span> time algorithm.</div>
-        <div class="exercise">Show a <span class="math">O(n^\omega)</span> time algorithm.</div>
-        <div class="exercise">Show a <span class="math">O(m^{3/2})</span> time algorithm.</div>
-        <div class="exercise">Speed it up further.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Find a cycle of minimum weight.
-    </div>
-    <div class="description">
-      Find a cycle of minimum weight in a directed graph.
-    </div>
-    <div class="note">
-      Orlin had a <span class="math">O(nm)</span> time algorithm
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show a solution using dijkstra <span class="math">O(n)</span> times.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Find a cycle of minimum weight that contains specified <span class="math">k</span> vertices
-    </div>
-    <div class="description">
-      Given undirected graph and a subset of <span class="math">k</span> vertices, find a shortest cycle that contains them all.
-    </div>
-    <div class="note">
-      the problem is NP-hard when <span class="math">k\geq 2</span> for directed graphs. <a href="https://arxiv.org/abs/1705.00055">A good survey</a>. - <span class="math">k=1,2</span>, <span class="math">O(m+n\log n)</span>, reduces to single source shortest <span class="math">2</span>-disjoint paths to all sinks - polynomial time for feasbility test for constant <span class="math">k</span>, as it reduces to disjoint path problem. - open for <span class="math">k\geq 3</span>. randomized polynomial time algorithm exists for each constant <span class="math">k</span>.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Minimum average weight cycle
-    </div>
-    <div class="description">
-      Find a cycle with minimum average weight. That is, the total weight divided by the number of edges is minimum.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Steiner tree on constant number of vertices
-    </div>
-    <div class="description">
-      Given <span class="math">k</span>, a constant number of vertices, find a minimum Steiner tree.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Lexicographically minimal string rotation
-    </div>
-    <div class="description">
-      Given a string, find a rotation that is lexicographically minimal.
-    </div>
-    <div class="tags">
-        <div class="tag">string</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      String matching
-    </div>
-    <div class="description">
-      Given strings <span class="math">s</span> and <span class="math">t</span>, decide if <span class="math">t</span> is an substring of <span class="math">s</span>.
-    </div>
-    <div class="tags">
-        <div class="tag">string</div>
-        <div class="tag">pattern matching</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Isomorphic subtrees
-    </div>
-    <div class="description">
-      For each node, find all nodes with isomorphic subtrees.
-    </div>
-    <div class="note">
-      See <a href="https://chaoxuprime.com/posts/2014-06-05-pattern-in-labeled-ordered-rooted-trees.html">this</a>. Note that the problem have different variations. The tree can be rooted/unrooted, ordered/unordered, labeled/unlabeled. All variations can be solved by <a href="https://link.springer.com/chapter/10.1007%2F978-3-642-45278-9_23">one algorithm</a> with <span class="math">O(n)</span> running time.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show how to find the most common subtree.</div>
-    </div>
-    <div class="tags">
-        <div class="tag">pattern matching</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="title">
-      Multiple string matching
-    </div>
-    <div class="description">
-      Given strings <span class="math">s</span> and <span class="math">t_1,\ldots,t_k</span>, find the matching positions for each <span class="math">t_i</span>.
-    </div>
-    <div class="note">
-      expect running time <span class="math">O(n+m)</span>, where <span class="math">m</span> is the total length of <span class="math">t_1,\ldots,t_k</span> and <span class="math">n</span> is the length of <span class="math">s</span>.
-    </div>
-    <div class="tags">
-        <div class="tag">string</div>
-        <div class="tag">pattern matching</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      The <a href="https://chaoxuprime.com/posts/2016-08-02-proportional-apportionment.html">proportional apportionment</a>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      A tree on <span class="math">n</span> vertices with weights on the vertices. Finding height, max, min of the tree.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Sort <span class="math">X</span> if the time of comparing two element equals to the sum of the weight of the element.
-    </div>
-    <div class="parameters">
-      <dl>
-        <dt><span class="math">w</span></dt>
-        <dd>the weight function <span class="math">w:X\to \N</span>.</dd>
-        <dt><span class="math">n</span></dt>
-        <dd>the number of elements in <span class="math">X</span></dd>
-      </dl>
-    </div>
-    <div class="exercises">
-        <div class="exercise">use the fact that there is a sorting network of <span class="math">O(\log n)</span> depth and <span class="math">O(n\log n)</span> size show sorting it can be done in <span class="math">O(\sum_{x\in X} w(x) \log n)</span> time.</div>
-        <div class="exercise">Show sorting strings lexicographcially can be done in <span class="math">O(m\log n)</span> time, where <span class="math">m</span> is the total length of the strings.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Single source replacement path
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Continous Weak Frechet distance in 1D <a href="https://arxiv.org/abs/1807.08699">See</a>.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      for each edge, find a min-weight matching that contains the edge.
-    </div>
-    <div class="tags">
-        <div class="tag">matching</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      For a bipartite graph <span class="math">G=(A,B,E)</span>, find <span class="math">M</span> such that <span class="math">\deg_M(v)=1</span> for all <span class="math">v\in A</span>, and the degree sequence of vertices in <span class="math">B</span> is lexicographcially maximum.
-    </div>
-    <div class="note">
-      this is the optimal semi-matching problem.
-    </div>
-    <div class="tags">
-        <div class="tag">matching</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Let <span class="math">S_1,\ldots,S_n</span> be a sequence of sets, where the sum of the sizes is <span class="math">m</span>. Partition <span class="math">[n]</span> such that <span class="math">S_i=S_j</span> iff <span class="math">i</span> and <span class="math">j</span> are in the same partition classes.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show this can be solved in <span class="math">O(m)</span> time.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Let <span class="math">S_1,\ldots,S_n</span> be a sequence of sets, decide if there are two sets such that <span class="math">S_i\cap S_j\geq k</span>.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show if <span class="math">k=1,0</span>, then <span class="math">O(m)</span> time is sufficient</div>
-        <div class="exercise">Show if <span class="math">k=2</span>, then <span class="math">O(m^{4/3})</span> time is sufficient (convert to finding <span class="math">C_4</span>)</div>
-        <div class="exercise">Show if <span class="math">k=3</span>, there is a <span class="math">O(m^{2-\delta})</span> time algorithm where <span class="math">\delta</span> is a constant strictly larger than <span class="math">0</span>. (See <a href="https://chaoxuprime.com/posts/2019-01-21-high-degree-low-degree-technique.html">this</a> for a solution.)</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given a collection of sets, find all maximal sets and all minimal sets.
-    </div>
-    <div class="tags">
-        <div class="tag">set system</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Find a weakly connected dominating set such that the sum of degrees is <span class="math">O(n\sqrt{n\log n})</span>.
-    </div>
-    <div class="note">
-      This result is used in matroid <span class="math">4</span>-connectivity algorithms. See <a href="https://chaoxuprime.com/posts/2019-01-21-high-degree-low-degree-technique.html">this</a>.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given a set of <span class="math">n</span> strings, each of length <span class="math">m</span>, decide if any two strings where the sum of the length of matched prefix and matched suffix is at least <span class="math">k</span>.
-    </div>
-    <div class="note">
-      See a solution <a href="https://chaoxuprime.com/posts/2018-12-23-strings-with-hamming-distance-exactly-1.html">here</a>. It work for <span class="math">k=m-1</span>, but the same algorithm work for larger <span class="math">k</span>, too.
-    </div>
-    <div class="tags">
-        <div class="tag">string</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given string <span class="math">s</span>, find a primitive string <span class="math">p</span> such that <span class="math">p^k=s</span>.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Find the period of a string.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Show a string is periodic if and only if it has a proper border of length at least <span class="math">\ceil{n/2}</span>.</div>
-        <div class="exercise">If the string is periodic, then the period is the length of the maximum proper border.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Find the longest periodic suffix.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Use suffix tree to solve this in <span class="math">O(n)</span> time.</div>
-    </div>
-    <div class="tags">
-        <div class="tag">string</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Decide if a set forms a uniquely decodable code.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Find the largest subset that forms a uniquely decodable code.
-    </div>
-    <div class="note">
-      I think the problem is open.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Find the first substring of length <span class="math">t</span> that appears at least twice.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given <span class="math">u</span> and a <span class="math">u</span>-normal eventually periodic string <span class="math">s</span>, find the the minimum split <span class="math">(a,b)</span> of <span class="math">s</span>.
-    </div>
-    <div class="note">
-      An infinite string is given as a function, <span class="math">s:\N\to \Sigma</span>. It take an index and output the character at the index. We say <span class="math">(a,b)</span> is a <em>split</em> of <span class="math">s</span> if <span class="math">ab=s</span> and <span class="math">b</span> is a infinite periodic string. A split <span class="math">(a,b)</span> is minimum, if period of <span class="math">b</span> is minimum and under the previous constraint, length of <span class="math">a</span> is minimum. An eventually periodic string <span class="math">s</span> is <em><span class="math">u</span>-normal</em>, if for any two indices <span class="math">i&lt;j</span>, where <span class="math">j-i\leq u</span> and <span class="math">s[i..i+u] = s[j..j+u]</span>, there exists a split <span class="math">(a,b)</span> of <span class="math">s</span> where <span class="math">|a|\leq i</span>, and the period of <span class="math">b</span> is at most <span class="math">u</span>.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Let <span class="math">n</span> be length of <span class="math">a</span>. Find an algorithm with running time <span class="math">O((n+u)u)</span>.</div>
-        <div class="exercise">Given an index <span class="math">i</span> such that <span class="math">i&lt;n\leq i+2u</span>, find <span class="math">n</span>. Show this can be done in <span class="math">O(u)</span> time.</div>
-        <div class="exercise">Find the pairs <span class="math">(a,b)</span> in <span class="math">O(n+u)</span> time.</div>
-        <div class="exercise">Show one can directly use a online suffix tree construction algorithm to obtain the same running time.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given <span class="math">u</span> and <span class="math">n</span> and a eventually periodic sequence with initial sequence length at most <span class="math">n</span> and period at most <span class="math">n</span>, find the initial sequence and the periodic sequence.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      parametric string matching. <a href="https://arxiv.org/abs/1603.07457">Look into it.</a>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      data structure for loaded die.
-    </div>
-    <div class="note">
-      see <a href="http://stackoverflow.com/questions/5027757/data-structure-for-loaded-dice">this</a>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      You have a data stream of a permutation of <span class="math">\set{1,\ldots,n}</span>. However you know <span class="math">k</span> of the elements will be missing because the communication channel has fault. How can you detect which numbers are missing?
-    </div>
-    <div class="note">
-      see <a href="http://stackoverflow.com/questions/3492302/easy-interview-question-got-harder-given-numbers-1-100-find-the-missing-numbe">this</a>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Let <span class="math">x=p/q</span> be an rational number, where <span class="math">p</span> and <span class="math">q</span> are integers. There is a function <span class="math">f_x</span>, such that <span class="math">f_x(y)</span> tells you if <span class="math">x &lt; y</span>, <span class="math">x &gt; y</span> or <span class="math">x=y</span>. Find <span class="math">x</span>?
-    </div>
-    <div class="note">
-      see <a href="http://stackoverflow.com/questions/5440688/the-guess-the-number-game-for-arbitrary-rational-numbers">this</a>. Maybe it can be reduced to search in a sorted matrix?
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      decide for the coins if the greedy algorithm work for the coin change problem for a input set of coins.
-    </div>
-    <div class="note">
-      See <a href="http://graal.ens-lyon.fr/~abenoit/algo09/coins2.pdf">http://graal.ens-lyon.fr/~abenoit/algo09/coins2.pdf</a>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      test if a point is inside a polygon. also consider convex version
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      sliding window min, median, <span class="math">k</span>th largest, max sum, etc.
-    </div>
-    <div class="exercises">
-        <div class="exercise">Find the shortest subarray such that the sum is at least <span class="math">k</span>.</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      cycle finding
-    </div>
-    <div class="note">
-      probably can use it for eventually periodic sequence
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      A infinite sorted matrix, search for largest element no larger than <span class="math">y</span>, whre we have an oracle that decides if a input is lesser or equal to, or greater than <span class="math">y</span>
-    </div>
-    <div class="note">
-      We want running time and oracle calls to depend on the number of elements smaller than <span class="math">y</span>.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      find a celebrity in a graph (vertex with only incoming edge and no outgoing edge)
-    </div>
-    <div class="note">
-      A subset of vertices is a celebrity clique, if the subset induces a clique, and only have incoming edges. can this be found quickly too?
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given <span class="math">k</span>-edge-disjoint path between <span class="math">u</span> and <span class="math">v</span> and <span class="math">v</span> and <span class="math">w</span>, total of <span class="math">m</span> edges. Find <span class="math">k</span>-edge-disjoint path between <span class="math">u</span> and <span class="math">w</span>.
-    </div>
-    <div class="note">
-      can be done in linear <span class="math">O(m)</span> time.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      a data structure that takes <span class="math">u,v,w</span> and output if <span class="math">v</span> is in the <span class="math">uw</span>-path.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      least common ancestor, level ancestor of a tree.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      range minimum query on path, tree
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      range minimum query on multidimentional array
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Lexicographic bottleneck shortest path in undirected graph
-    </div>
-    <div class="note">
-      y <a href="/posts/2014-05-10-lexicographical-bottleneck-path.html">Lexicographic bottleneck shortest path in undirected graph</a>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given a weighted forest. Connect the forests with edges of weight <span class="math">L</span> to get a spanning tree such that the diameter of the spanning tree is minimized. (Dreaming, IOI 2013)
-    </div>
-    <div class="note">
-      so it is the same as adding <span class="math">k</span> edges to minimize diameter.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given a tree with weight on the edges, create a data structure such given <span class="math">u,v</span>, find the weight of the <span class="math">uv</span>-path.
-    </div>
-    <div class="note">
-      due to it is a monoid, we can't do substraction. However, <span class="math">O(\alpha(n))</span> query time and <span class="math">O(n)</span> preprocessing time is possible I think. search for "OPTIMAL PREPROCESSING FOR ANSWERING ON-LINE PRODUCT QUERIES", also check Chazelle's paper on free trees.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      given a graph with <span class="math">m</span> edges, such that we can only check if two pointer points to the same vertex using an oracle. Construct a data structure that check if an edge is in the graph.
-    </div>
-    <div class="note">
-      A <span class="math">O(m/n)</span> query time data structure exists. In fact, <span class="math">O(\alpha(G))</span> which is the arboricity of the graph.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Find the bottleneck shortest <span class="math">st</span>-path
-    </div>
-    <div class="note">
-      <span class="math">O(m)</span> time possible if there an ordered list of edges by weight.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      stable matching in a graph
-    </div>
-    <div class="note">
-      linear time algorithm always exists, crazy
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      You are given <span class="math">k</span> stacks <span class="math">S_1,\ldots,S_k</span>. You know everything about the stacks(you can inspect all elements in the stacks without poping them). Assume the stacks have a total of <span class="math">n</span> elements. You want to pop all the elements from the stacks in such a way such that <span class="math">S_1.peek()\leq S_2.peek()\leq \ldots \leq S_k.peek()</span> is always true. Note that we define <span class="math">S_i.peek()=\infty</span> if <span class="math">S_i</span> is empty. Come up with an algorithm to decide if this is possible.
-    </div>
-    <div class="note">
-      this is weird, why did I think of this problem?
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given <span class="math">a_1\leq \ldots \leq a_k</span>, partition a set of <span class="math">n</span> numbers into <span class="math">k</span> sets, such that each set contains numbers of the rank greater or equal to <span class="math">a_i</span> and smaller than <span class="math">a_{i+1}</span>.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Find the maximum <span class="math">k</span> cover. namely disjoint <span class="math">k</span> intervals that sums to the max value.
-    </div>
-    <div class="note">
-      <a href="http://arxiv.org/abs/1410.2847">http://arxiv.org/abs/1410.2847</a> (with <span class="math">O(n)</span> time preprocessing, you can do it in <span class="math">O(k)</span> time each!)
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Isotonic regression, bounded regression
-    </div>
-    <div class="note">
-      see <a href="https://chaoxuprime.com/posts/2015-01-27-bounded-regression-on-data-streams.html">this</a>. Problem can also be defined on a DAG.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given integers <span class="math">a_1,\ldots,a_n</span>, each one is either a power of 2 or a negative of a power of 2. Associated with each integer, a cost <span class="math">c_1,\ldots,c_n</span>. Finally a integer <span class="math">m</span>. Output <span class="math">x_1,\ldots,x_n</span>, such that <span class="math">x_i\in \{0,1\}</span> such that <span class="math">\sum_{i=1}^n a_i x_i = m</span> and <span class="math">\sum_{i=1}^n c_ix_i</span> is minimized.
-    </div>
-    <div class="note">
-      very artificial problem.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Discrete tomography in 2D
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given <span class="math">a_1,\ldots,a_{2n}</span>, pair the numbers to maximize the sum of min of pairs.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given a simple graph where there is an adjacency list on each vertex, find a matching that saturates <span class="math">S</span>.
-    </div>
-    <div class="note">
-      I recall there is a running time only depend on <span class="math">|S|</span>? oh right it is possible.
-    </div>
-    <div class="tags">
-        <div class="tag">matching</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      two or zero matching
-    </div>
-    <div class="note">
-      <a href="http://cstheory.stackexchange.com/questions/33857/is-two-or-zero-matching-in-a-bipartite-graph-np-complete">http://cstheory.stackexchange.com/questions/33857/is-two-or-zero-matching-in-a-bipartite-graph-np-complete</a>
-    </div>
-    <div class="tags">
-        <div class="tag">matching</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      minimum cost path with gas stations
-    </div>
-    <div class="note">
-      need to find time to formulate the actual problem
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given a bipartite graph <span class="math">G=(A\cup B, E)</span> with weight function <span class="math">w</span> on the vertices, in strongly polynomial time, one can find <span class="math">S</span> a non-empty subset of <span class="math">B</span> such that <span class="math">w(N(S))/w(S)</span> is minimized.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Find minimum number of edges such that the removal increase the weight of the minimum spanning tree
-    </div>
-    <div class="note">
-      generalize to base of matroids
-    </div>
-    <div class="tags">
-        <div class="tag">combinatorial optimization</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given a directed graph, find the minimum number of edges to remove so there is no arborescence.
-    </div>
-    <div class="note">
-      also works for union of <span class="math">k</span>-arborescence.
-    </div>
-    <div class="tags">
-        <div class="tag">combinatorial optimization</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Given a directed graph, find the minimum number of edges to remove so there is no optimal <span class="math">k</span>-arborescence for fixed <span class="math">k</span>.
-    </div>
-    <div class="note">
-      <a href="https://dl.acm.org/citation.cfm?id=2884550">https://dl.acm.org/citation.cfm?id=2884550</a>
-    </div>
-    <div class="tags">
-        <div class="tag">combinatorial optimization</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      compute minimum double cut. Namely find nonempty disjoint <span class="math">Z_1</span>, <span class="math">Z_2</span> such that number of in-edges of <span class="math">Z_1</span> and <span class="math">Z_2</span> is minimized.
-    </div>
-    <div class="tags">
-        <div class="tag">combinatorial optimization</div>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      find the minimum cut under the constraint that each side has at least <span class="math">k</span> vertices for constant <span class="math">k</span>.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      find the minimum cut under the constraint that each side is connected and has at least <span class="math">k</span> vertices for constant <span class="math">k</span>.
-    </div>
-    <div class="note">
-      special case of <span class="math">2</span> is interesting, see <a href="https://chaoxuprime.com/posts/2016-04-24-restricted-min-cut.html">https://chaoxuprime.com/posts/2016-04-24-restricted-min-cut.html</a>
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      <span class="math">f</span> is a symmetric function on <span class="math">V</span>, find the value of min-<span class="math">st</span> separating set for all <span class="math">s,t</span>, assume one have access to min-<span class="math">ST</span> separating set for any <span class="math">S,T\subset V</span>.
-    </div>
-    <div class="note">
-      <span class="math">n-1</span> oracle call is sufficient.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      maximum perimeter triangle, maximum dispersion set of size <span class="math">k</span>.
-    </div>
-    <div class="note">
-      anything better than <span class="math">O(n^k)</span> is good.
-    </div>
-  </div>
-  <div class="problem" id="problem-">
-    <div class="description">
-      Let <span class="math">X_A,X_B,Y_A,Y_B</span> be intervals, if <span class="math">A=X_A \times Y_A</span> and <span class="math">B=X_B\times Y_B</span>. Define <span class="math">A\oplus_0 B = (X_A\cup X_B) \times (Y_A\cap Y_B)</span> and <span class="math">A\oplus_1 B = (X_A\cap X_B) \times (Y_A\cup Y_B)</span>. Find an algorithm such that if we are given a set of axis-aligned rectangles <span class="math">S</span> and a axis-aligned rectangle <span class="math">R</span>. Device an algorithm that either find an expression using <span class="math">\oplus_0</span>, <span class="math">\oplus_1</span> and rectangles in <span class="math">S</span>, such that it covers the rectangle <span class="math">R</span>, or return it is impossible.
-    </div>
-    <div class="note">
-      where did I get this problem?
     </div>
   </div>
 </div>
