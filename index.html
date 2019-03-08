@@ -61,7 +61,7 @@ Algorithmic Problems
       gtag('js', new Date());
       gtag('config', 'UA-134134761-1');
     </script>
-  <link rel="stylesheet" href="default.css?ver=1552021418">
+  <link rel="stylesheet" href="default.css?ver=1552021456">
 </head>
 <body>
 <div class="container">
@@ -103,18 +103,18 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">w</span></dt>-->
-              <li><span class="math">w</span></li>
+              <li><span class="math">w:E\to \R^+</span> a positive weight function</li>
               <!--<dt><span class="math">c</span></dt>-->
-              <li><span class="math">c</span></li>
+              <li><span class="math">c:V\to \R^+</span> a positive cost function</li>
               <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
+              <li>A graph <span class="math">G=(V,E)</span>.</li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">U</span></dt> -->
-              <li><span class="math">U</span></li>
+              <li>A subset of vertices <span class="math">U</span>, such that <span class="math">w(E(G[U]))-c(U)</span> is maximized.</li>
           </ul>
         </div>
     </div>
@@ -122,9 +122,9 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>The size of <span class="math">V</span>.</dd>
             <dt><span class="math">m</span></dt>
-            <dd><span class="math">m</span></dd>
+            <dd>The size of <span class="math">E</span>.</dd>
         </dl>
       </div>
     <div class="note">
@@ -142,18 +142,18 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
+              <li><span class="math">G=(V,E)</span> a tree</li>
               <!--<dt><span class="math">w</span></dt>-->
-              <li><span class="math">w</span></li>
+              <li>a positive vertex weight function <span class="math">w:V\to \R^+</span></li>
               <!--<dt><span class="math">k</span></dt>-->
-              <li><span class="math">k</span></li>
+              <li><span class="math">k\in \N</span></li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">out</span></dt> -->
-              <li><span class="math">out</span></li>
+              <li>The set of <span class="math">k</span> edges to remove, such that the maximum of the sum of the weights of each component is minimized.</li>
           </ul>
         </div>
     </div>
@@ -161,7 +161,7 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>the number of vertices in the input</dd>
             <dt><span class="math">k</span></dt>
             <dd><span class="math">k</span></dd>
         </dl>
@@ -173,6 +173,54 @@ Algorithmic Problems
             <span class="child-description"></span>-->
           </li>
       </ul>
+    </div>
+  </div>
+  <div class="problem" id="problem-sxIfBcIt">
+    <div class="title">
+      Meet of two partitions
+    </div>
+    <div class="formulation">
+      <div class="description">
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">partitions</span></dt>-->
+              <li><span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span> partitions of <span class="math">[n]</span>.</li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">meet</span></dt> -->
+              <li>The meet of <span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span>, <span class="math">\mathcal{C}=\set{A\cap B \mid A\in \mathcal{A}, B\in \mathcal{B}}</span>.</li>
+          </ul>
+        </div>
+    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">n</span></dt>
+            <dd>The size of the universe.</dd>
+        </dl>
+      </div>
+    <div class="algorithms">
+        <div class="algorithm">
+          <div class="algo-description">index the sets in <span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span>. For each element <span class="math">i</span>, find <span class="math">a_i</span> and <span class="math">b_i</span> where <span class="math">a_i</span> is index of a set in <span class="math">\mathcal{A}</span> that contains <span class="math">i</span>, similarly for <span class="math">b_i</span>. Group by <span class="math">(a_i,b_i)</span> using radix sort.</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(n)</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="algorithm">
+          <div class="algo-description">For each set in <span class="math">\mathcal{A}</span>, interset it with all sets in <span class="math">\mathcal{B}</span> through a partition refinement data structure.</div>
+          <div class="algo-complexity">
+            <ul class="inline">
+                <li>time: <span class="math">O(n)</span></li>
+            </ul>
+          </div>
+        </div>
     </div>
   </div>
   <div class="problem" id="problem-shortest-path">
@@ -187,18 +235,18 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
               <!--<dt><span class="math">w</span></dt>-->
-              <li><span class="math">w</span></li>
+              <li>A function <span class="math">w:E\to \R^+</span>.</li>
               <!--<dt><span class="math">s</span></dt>-->
-              <li><span class="math">s</span></li>
+              <li>a vertex <span class="math">s\in V</span>, the root vertex of the shortest path tree.</li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">T</span></dt> -->
-              <li><span class="math">T</span></li>
+              <li>The shortest path tree rooted at vertex <span class="math">s</span></li>
           </ul>
         </div>
     </div>
@@ -206,9 +254,9 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>the number of vertices of <span class="math">G</span>.</dd>
             <dt><span class="math">m</span></dt>
-            <dd><span class="math">m</span></dd>
+            <dd>the number of edges of <span class="math">G</span>.</dd>
         </dl>
       </div>
     <div class="algorithms">
@@ -233,16 +281,16 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">k</span></dt>-->
-              <li><span class="math">k</span></li>
+              <li>a positive integer <span class="math">k</span></li>
               <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
+              <li>A directed graph <span class="math">G=(V,E)</span>.</li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">f</span></dt> -->
-              <li><span class="math">f</span></li>
+              <li>A function <span class="math">f:V\to [k]</span>, such that <span class="math">\sum_{uv\in E} \max(f(u)-f(v)+1,0)</span> is minimized.</li>
           </ul>
         </div>
     </div>
@@ -250,9 +298,9 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>The size of <span class="math">V</span>.</dd>
             <dt><span class="math">m</span></dt>
-            <dd><span class="math">m</span></dd>
+            <dd>The size of <span class="math">E</span>.</dd>
         </dl>
       </div>
     <div class="note">
@@ -271,22 +319,22 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
               <!--<dt><span class="math">c</span></dt>-->
-              <li><span class="math">c</span></li>
+              <li>The cost function <span class="math">c:E\to \R</span></li>
               <!--<dt><span class="math">u</span></dt>-->
-              <li><span class="math">u</span></li>
+              <li>The capacity function, <span class="math">u:E\to \R^+\cup \set{\infty}</span></li>
               <!--<dt><span class="math">v</span></dt>-->
-              <li><span class="math">v</span></li>
+              <li>The value <span class="math">v\in \R</span> of the flow.</li>
               <!--<dt><span class="math">st</span></dt>-->
-              <li><span class="math">st</span></li>
+              <li>The source and sink vertices <span class="math">s</span> and <span class="math">t</span>.</li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">f</span></dt> -->
-              <li><span class="math">f</span></li>
+              <li>A minimum cost <span class="math">st</span>-flow <span class="math">f:E\to \R</span> of value <span class="math">v</span>.</li>
           </ul>
         </div>
     </div>
@@ -294,11 +342,11 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>number of vertices of <span class="math">G</span>.</dd>
             <dt><span class="math">m</span></dt>
-            <dd><span class="math">m</span></dd>
+            <dd>number of edges of <span class="math">G</span>.</dd>
             <dt><span class="math">m'</span></dt>
-            <dd><span class="math">m'</span></dd>
+            <dd>number of edges with infinite capacity.</dd>
         </dl>
       </div>
     <div class="algorithms">
@@ -335,16 +383,16 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">a</span></dt>-->
-              <li><span class="math">a</span></li>
+              <li>Positive reals <span class="math">a_1,\ldots,a_n</span></li>
               <!--<dt><span class="math">w</span></dt>-->
-              <li><span class="math">w</span></li>
+              <li>Positive reals weights <span class="math">w_1,\ldots,w_n</span></li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">h</span></dt> -->
-              <li><span class="math">h</span></li>
+              <li>the largest value <span class="math">h</span> such that <span class="math">\sum_{i:a_i\geq h} w_i \geq h</span>.</li>
           </ul>
         </div>
     </div>
@@ -352,7 +400,7 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>length of the <span class="math">a</span></dd>
         </dl>
       </div>
     <div class="algorithms">
@@ -386,9 +434,9 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
+              <li><span class="math">G=(V,E)</span> a complete DAG with vertex ordering <span class="math">v_1,\ldots,v_n</span>.</li>
               <!--<dt><span class="math">w</span></dt>-->
-              <li><span class="math">w</span></li>
+              <li>An ordered weight function <span class="math">w:E\to \R</span></li>
               <!--<dt><span class="math">k</span></dt>-->
               <li><span class="math">k</span></li>
           </ul>
@@ -397,7 +445,7 @@ Algorithmic Problems
           Output:
           <ul>
               <!-- <dt><span class="math">out</span></dt> -->
-              <li><span class="math">out</span></li>
+              <li>A bottleneck shortest path consists of exactly <span class="math">k</span> edges in <span class="math">G</span> from <span class="math">v_1</span> to <span class="math">v_n</span> with weights <span class="math">w</span>.</li>
           </ul>
         </div>
     </div>
@@ -405,9 +453,9 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>Number of vertices in <span class="math">G</span></dd>
             <dt><span class="math">k</span></dt>
-            <dd><span class="math">k</span></dd>
+            <dd><span class="math">k\in \N</span></dd>
         </dl>
       </div>
     <div class="note">
@@ -425,14 +473,14 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">a</span></dt>-->
-              <li><span class="math">a</span></li>
+              <li>Positive integers <span class="math">a_1,\ldots,a_n</span></li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">h</span></dt> -->
-              <li><span class="math">h</span></li>
+              <li>the largest value <span class="math">h</span> such that <span class="math">|\set{i | a_i \geq h}|\geq h</span>.</li>
           </ul>
         </div>
     </div>
@@ -440,7 +488,7 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>length of the <span class="math">a</span></dd>
         </dl>
       </div>
     <div class="algorithms">
@@ -479,22 +527,22 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">v</span></dt>-->
-              <li><span class="math">v</span></li>
+              <li><span class="math">v\in \N</span> the value of the flow.</li>
               <!--<dt><span class="math">st</span></dt>-->
-              <li><span class="math">st</span></li>
+              <li>The source and sink vertices <span class="math">s</span> and <span class="math">t</span>.</li>
               <!--<dt><span class="math">u</span></dt>-->
-              <li><span class="math">u</span></li>
+              <li>The capacity function, <span class="math">u:E\to \N</span></li>
               <!--<dt><span class="math">c</span></dt>-->
-              <li><span class="math">c</span></li>
+              <li>The cost function <span class="math">c:E\to \N</span></li>
               <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">f</span></dt> -->
-              <li><span class="math">f</span></li>
+              <li>A minimum cost <span class="math">st</span>-flow <span class="math">f:E\to \R</span> of value <span class="math">v</span>.</li>
           </ul>
         </div>
     </div>
@@ -502,15 +550,15 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">C</span></dt>
-            <dd><span class="math">C</span></dd>
+            <dd>upper bound on the absolute value of the cost</dd>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>number of vertices of <span class="math">G</span>.</dd>
             <dt><span class="math">m</span></dt>
-            <dd><span class="math">m</span></dd>
+            <dd>number of edges of <span class="math">G</span>.</dd>
             <dt><span class="math">U</span></dt>
-            <dd><span class="math">U</span></dd>
+            <dd>upper bound on the absolute value of the capacity</dd>
             <dt><span class="math">m'</span></dt>
-            <dd><span class="math">m'</span></dd>
+            <dd>number of edges with infinite capacity.</dd>
         </dl>
       </div>
     <div class="algorithms">
@@ -554,6 +602,47 @@ Algorithmic Problems
       </ul>
     </div>
   </div>
+  <div class="problem" id="problem-min-max-sum-k-partition-array">
+    <div class="title">
+      Partition minimize maximum sum of subarrays
+    </div>
+    <div class="formulation">
+      <div class="description">
+      </div>
+        <div class="input dlist">
+          Input:
+          <ul>
+              <!--<dt><span class="math">w</span></dt>-->
+              <li>a positive vertex weight function <span class="math">w:V\to \R^+</span></li>
+              <!--<dt><span class="math">G</span></dt>-->
+              <li><span class="math">G=(V,E)</span> a path</li>
+              <!--<dt><span class="math">k</span></dt>-->
+              <li><span class="math">k\in \N</span></li>
+          </ul>
+        </div>
+        <div class="output dlist">
+          Output:
+          <ul>
+              <!-- <dt><span class="math">out</span></dt> -->
+              <li>The set of <span class="math">k</span> edges to remove, such that the maximum of the sum of the weights of each component is minimized.</li>
+          </ul>
+        </div>
+    </div>
+      <div class="problem-complexity dlist">
+        Complexity measure:
+        <dl>
+            <dt><span class="math">k</span></dt>
+            <dd><span class="math">k</span></dd>
+            <dt><span class="math">n</span></dt>
+            <dd>the number of vertices in the input</dd>
+        </dl>
+      </div>
+    <div class="parents">
+      <ul class="inline">
+          <li><a href="#problem-min-max-weight-component-tree">Minimize maximum weight component</a></li>
+      </ul>
+    </div>
+  </div>
   <div class="problem" id="problem-min-cost-flow-integer-cost">
     <div class="title">
       min-cost flow (integer cost)
@@ -566,22 +655,22 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">v</span></dt>-->
-              <li><span class="math">v</span></li>
+              <li>The value <span class="math">v\in \R</span> of the flow.</li>
               <!--<dt><span class="math">st</span></dt>-->
-              <li><span class="math">st</span></li>
+              <li>The source and sink vertices <span class="math">s</span> and <span class="math">t</span>.</li>
               <!--<dt><span class="math">u</span></dt>-->
-              <li><span class="math">u</span></li>
+              <li>The capacity function, <span class="math">u:E\to \R^+\cup \set{\infty}</span></li>
               <!--<dt><span class="math">c</span></dt>-->
-              <li><span class="math">c</span></li>
+              <li>The cost function <span class="math">c:E\to \N</span></li>
               <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">f</span></dt> -->
-              <li><span class="math">f</span></li>
+              <li>A minimum cost <span class="math">st</span>-flow <span class="math">f:E\to \R</span> of value <span class="math">v</span>.</li>
           </ul>
         </div>
     </div>
@@ -589,13 +678,13 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">C</span></dt>
-            <dd><span class="math">C</span></dd>
+            <dd>upper bound on the absolute value of the cost</dd>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>number of vertices of <span class="math">G</span>.</dd>
             <dt><span class="math">m</span></dt>
-            <dd><span class="math">m</span></dd>
+            <dd>number of edges of <span class="math">G</span>.</dd>
             <dt><span class="math">m'</span></dt>
-            <dd><span class="math">m'</span></dd>
+            <dd>number of edges with infinite capacity.</dd>
         </dl>
       </div>
     <div class="algorithms">
@@ -630,95 +719,6 @@ Algorithmic Problems
       </ul>
     </div>
   </div>
-  <div class="problem" id="problem-min-max-sum-k-partition-array">
-    <div class="title">
-      Partition minimize maximum sum of subarrays
-    </div>
-    <div class="formulation">
-      <div class="description">
-      </div>
-        <div class="input dlist">
-          Input:
-          <ul>
-              <!--<dt><span class="math">w</span></dt>-->
-              <li><span class="math">w</span></li>
-              <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
-              <!--<dt><span class="math">k</span></dt>-->
-              <li><span class="math">k</span></li>
-          </ul>
-        </div>
-        <div class="output dlist">
-          Output:
-          <ul>
-              <!-- <dt><span class="math">out</span></dt> -->
-              <li><span class="math">out</span></li>
-          </ul>
-        </div>
-    </div>
-      <div class="problem-complexity dlist">
-        Complexity measure:
-        <dl>
-            <dt><span class="math">k</span></dt>
-            <dd><span class="math">k</span></dd>
-            <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
-        </dl>
-      </div>
-    <div class="parents">
-      <ul class="inline">
-          <li><a href="#problem-min-max-weight-component-tree">Minimize maximum weight component</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="problem" id="problem-IwDznjOf">
-    <div class="title">
-      Meet of two partitions
-    </div>
-    <div class="formulation">
-      <div class="description">
-      </div>
-        <div class="input dlist">
-          Input:
-          <ul>
-              <!--<dt><span class="math">partitions</span></dt>-->
-              <li><span class="math">partitions</span></li>
-          </ul>
-        </div>
-        <div class="output dlist">
-          Output:
-          <ul>
-              <!-- <dt><span class="math">meet</span></dt> -->
-              <li><span class="math">meet</span></li>
-          </ul>
-        </div>
-    </div>
-      <div class="problem-complexity dlist">
-        Complexity measure:
-        <dl>
-            <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
-        </dl>
-      </div>
-    <div class="algorithms">
-        <div class="algorithm">
-          <div class="algo-description">index the sets in <span class="math">\mathcal{A}</span> and <span class="math">\mathcal{B}</span>. For each element <span class="math">i</span>, find <span class="math">a_i</span> and <span class="math">b_i</span> where <span class="math">a_i</span> is index of a set in <span class="math">\mathcal{A}</span> that contains <span class="math">i</span>, similarly for <span class="math">b_i</span>. Group by <span class="math">(a_i,b_i)</span> using radix sort.</div>
-          <div class="algo-complexity">
-            <ul class="inline">
-                <li>time: <span class="math">O(n)</span></li>
-            </ul>
-          </div>
-        </div>
-        <div class="algorithm">
-          <div class="algo-description">For each set in <span class="math">\mathcal{A}</span>, interset it with all sets in <span class="math">\mathcal{B}</span> through a partition refinement data structure.</div>
-          <div class="algo-complexity">
-            <ul class="inline">
-                <li>time: <span class="math">O(n)</span></li>
-            </ul>
-          </div>
-        </div>
-    </div>
-  </div>
   <div class="problem" id="problem-upper-bound-by-piecewise-constant-function">
     <div class="title">
       Upper bound by piecewise constant function
@@ -730,16 +730,16 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">k</span></dt>-->
-              <li><span class="math">k</span></li>
+              <li>a positive integer <span class="math">k</span></li>
               <!--<dt><span class="math">a</span></dt>-->
-              <li><span class="math">a</span></li>
+              <li>A sequence of <span class="math">n</span> values <span class="math">a_1,\ldots,a_n</span></li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">f</span></dt> -->
-              <li><span class="math">f</span></li>
+              <li>A piecewise constant function consists of <span class="math">k</span> pieces. Such <span class="math">f(i)\geq a_i</span> and <span class="math">\sum_{i=1}^n f(i)-a_i</span> is minimized.</li>
           </ul>
         </div>
     </div>
@@ -766,22 +766,22 @@ Algorithmic Problems
           Input:
           <ul>
               <!--<dt><span class="math">v</span></dt>-->
-              <li><span class="math">v</span></li>
+              <li><span class="math">v\in \N</span> the value of the flow.</li>
               <!--<dt><span class="math">st</span></dt>-->
-              <li><span class="math">st</span></li>
+              <li>The source and sink vertices <span class="math">s</span> and <span class="math">t</span>.</li>
               <!--<dt><span class="math">u</span></dt>-->
-              <li><span class="math">u</span></li>
+              <li>The capacity function, <span class="math">u:E\to \N</span></li>
               <!--<dt><span class="math">c</span></dt>-->
-              <li><span class="math">c</span></li>
+              <li>The cost function <span class="math">c:E\to \R</span></li>
               <!--<dt><span class="math">G</span></dt>-->
-              <li><span class="math">G</span></li>
+              <li>A input directed graph <span class="math">G=(V,E)</span></li>
           </ul>
         </div>
         <div class="output dlist">
           Output:
           <ul>
               <!-- <dt><span class="math">f</span></dt> -->
-              <li><span class="math">f</span></li>
+              <li>A minimum cost <span class="math">st</span>-flow <span class="math">f:E\to \R</span> of value <span class="math">v</span>.</li>
           </ul>
         </div>
     </div>
@@ -789,13 +789,13 @@ Algorithmic Problems
         Complexity measure:
         <dl>
             <dt><span class="math">n</span></dt>
-            <dd><span class="math">n</span></dd>
+            <dd>number of vertices of <span class="math">G</span>.</dd>
             <dt><span class="math">m</span></dt>
-            <dd><span class="math">m</span></dd>
+            <dd>number of edges of <span class="math">G</span>.</dd>
             <dt><span class="math">U</span></dt>
-            <dd><span class="math">U</span></dd>
+            <dd>upper bound on the absolute value of the capacity</dd>
             <dt><span class="math">m'</span></dt>
-            <dd><span class="math">m'</span></dd>
+            <dd>number of edges with infinite capacity.</dd>
         </dl>
       </div>
     <div class="algorithms">
