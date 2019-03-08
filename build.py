@@ -202,7 +202,7 @@ def build_presentation(problems, algorithms):
                 parameters[x["type"]] = []
             y = {}
             y["name"] = tohtml("$"+x["name"]+"$")
-            if "description" in y:
+            if "description" in x:
                 y["description"] = tohtml(x["description"])
             else:
                 y["description"] = y["name"]
