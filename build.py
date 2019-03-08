@@ -202,7 +202,10 @@ def build_presentation(problems, algorithms):
                 parameters[x["type"]] = []
             y = {}
             y["name"] = tohtml("$"+x["name"]+"$")
-            y["description"] = tohtml(x["description"])
+            if "description" in y:
+                y["description"] = tohtml(x["description"])
+            else:
+                y["description"] = y["name"]
             parameters[x["type"]].append(y)
             # TODO, if we want to present inherit property, need to update with (y,j)
         presentation[i]["parameters"] = parameters
