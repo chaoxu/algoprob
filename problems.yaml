@@ -137,9 +137,6 @@ parameters:
     description: length of the $a$
 algorithms: [weighted-h-index-selection]
 ---
-description: minimum cost path with gas stations
-note: need to find time to formulate the actual problem
----
 name: Meet of two partitions
 parameters:
   - type: input
@@ -185,7 +182,7 @@ parameters:
 ---
 id: bottleneck-k-link-path
 name: Bottleneck $k$-link path
-problem:  such that the maximum weight of the edges in the path is minimized.
+description:  such that the maximum weight of the edges in the path is minimized.
 parameters:
   - type: input
     name: G
@@ -211,3 +208,62 @@ related:
     relation: reduction
     description: When the weight of edge $w(i,j)$ is sum of elements from $i$th to $j-1$th.
 
+---
+id: upper-bound-by-piecewise-constant-function
+name: Upper bound by piecewise constant function
+parameters:
+  - type: input
+    name: k
+    description: a positive integer $k$
+  - type: input
+    name: a
+    description: A sequence of $n$ values $a_1,\ldots,a_n$
+  - type: complexity
+    name: n
+  - type: output
+    name: f
+    description: A piecewise constant function consists of $k$ pieces. Such $f(i)\geq a_i$ and $\sum_{i=1}^n f(i)-a_i$ is minimized.
+note: Looks like $O(kn^2)$ by dynamic programming is possible. HW 6 of CS 374 Spring 2019 at UIUC
+---
+id: directed-graph-agony
+name: Agony of a directed graph
+parameters:
+  - type: input
+    name: k
+    description: a positive integer $k$
+  - type: input
+    name: G
+    description: A directed graph $G=(V,E)$.
+  - type: complexity
+    name: n
+    description: The size of $V$.
+  - type: complexity
+    name: m
+    description: The size of $E$.
+  - type: output
+    name: f
+    description: A function $f:V\to [k]$, such that $\sum_{uv\in E} \max(f(u)-f(v)+1,0)$ is minimized. 
+note: This problem is the agony problem https://arxiv.org/abs/1903.02999
+---
+id: heaviest-subgraph
+name: Heaviest subgraph
+parameters:
+  - type: input
+    name: w
+    description: $w:E\to \R^+$ a positive weight function
+  - type: input
+    name: c
+    description: $c:V\to \R^+$ a positive cost function
+  - type: input
+    name: G
+    description: A graph $G=(V,E)$.
+  - type: complexity
+    name: n
+    description: The size of $V$.
+  - type: complexity
+    name: m
+    description: The size of $E$.
+  - type: output
+    name: U
+    description: A subset of vertices $U$, such that $w(E(G[U]))-c(U)$ is maximized. 
+note: this problem can be converted to a min-cut problem, solution method is similar to densest subgraph problem

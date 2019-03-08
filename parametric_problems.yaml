@@ -1,0 +1,19 @@
+# here are the parametric problems
+
+name: P-min-cost-flow
+parameters: # note this can be automatic yo
+  - name: capacity domain
+    options: [Real, Integer]
+  - name: cost domain
+    options: [Real, Integer]
+maps: 
+  pattern: [capacity doamin, cost domain]
+  instances:
+    - instance: [Real, Real]
+      problem: min-cost-flow
+    - instance: [Real, Integer]
+      problem: min-cost-flow-integer-cost
+    - instance: [Integer, Real]
+      problem: min-cost-flow-integer-capacity
+    - instance: [Integer, Integer]
+      problem: min-cost-flow-all-integers
